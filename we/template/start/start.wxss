@@ -1,0 +1,19 @@
+
+.roundBtn{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  width: 350rpx;
+  height: 350rpx;
+  border-radius:50%;
+  background-color: antiquewhite;
+}
+.btnIcon{
+  font-size: 200rpx;
+  margin: -15%;
+}
+.btnText{
+  justify-content: center;
+  font-size: 60rpx;
+}

@@ -1,0 +1,30 @@
+/**index.wxss**/
+.startlogo{
+  display: flex;
+  flex-direction: column;
+  width: 300rpx;
+  align-items: center;
+  position: absolute;
+  top: 80rpx;
+}
+.logo{
+  margin-bottom: -10%;
+}
+.text{
+  width: 100%;
+  margin-top: -80%;
+}
+.background {
+  width: 100%;
+  height: 100%;
+  position:fixed; 
+  background-size:100% 100%;
+  z-index: -1;
+  }
+.userinfo-avatar {
+  overflow: hidden;
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}

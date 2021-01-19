@@ -1,0 +1,22 @@
+{
+  "name": "lab_admin_sys",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "weui-miniprogram": "^1.0.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "2734189761@qq.com"
+  },
+  "keywords": [
+    "lqf120120120"
+  ],
+  "author": "Teears",
+  "license": "ISC"
+}

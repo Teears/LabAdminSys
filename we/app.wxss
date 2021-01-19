@@ -1,0 +1,18 @@
+/**app.wxss**/
+/**引入weui**/
+@import 'miniprogram_npm/weui-miniprogram/weui-wxss/dist/style/weui.wxss';
+/**引入iconfont阿里巴巴矢量图标库**/
+@import "style/iconfont.wxss";
+page{
+  height: 100%;
+}
+
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 200rpx 0;
+  box-sizing: border-box;
+} 
