@@ -1,0 +1,19 @@
+/* 
+圆形icon标志
+ */
+.roundIcon{
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  width: 250rpx;
+  height: 250rpx;
+  border: thin solid rgb(221, 221, 221);
+}
+.roundIcon image{
+  width: auto;
+}
+.roundIcon text{
+  font-size: 32rpx;
+}

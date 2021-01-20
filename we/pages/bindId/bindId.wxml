@@ -1,2 +1,18 @@
 <!--pages/bindId/bindId.wxml-->
-<text>pages/bindId/bindId.wxml</text>
+<import src="/template/basictp.wxml"/>
+
+<view class="container">
+<view class="roundCornerCard">
+  <template is="roundIcon" data="{{...stuIcon}}"></template>
+  <mp-form rules="{{rule}}" models="{{formData}}">
+    <mp-cell prop="stuNumber" title="账号：" ext-class="formCell">
+      <input bindinput="formInputChange" data-field="stuNumber" placeholder="请输入学号" class="formInput"/>
+    </mp-cell>
+    <mp-cell prop="stuPassword" title="密码：" ext-class="formCell">
+      <input bindinput="formInputChange" data-field="stuPassword" placeholder="默认密码为身份证后六位" class="formInput"/>
+    </mp-cell>
+  </mp-form>
+</view>
+
+
+</view>

@@ -1,3 +1,6 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "mp-form": "/miniprogram_npm/weui-miniprogram/form/form",
+    "mp-cell": "/miniprogram_npm/weui-miniprogram/cell/cell"
+  }
 }

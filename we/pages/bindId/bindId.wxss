@@ -1,1 +1,22 @@
 /* pages/bindId/bindId.wxss */
+@import"/template/basictp.wxss";
+.roundCornerCard{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: fixed;
+  top: 100rpx;
+  height:70%; 
+  width:80%;
+  padding-top: 20rpx;
+}
+
+.formCell{
+  border-bottom: thin solid rgb(221, 221, 221);
+  height: 20rpx;
+  width: auto;
+}
+.formInput{
+  font-size: small;
+  margin-left: -100rpx;
+}

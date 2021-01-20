@@ -23,7 +23,7 @@ Page({
     var that = this
     app.userLogin().then(res =>{
       if(res == 0 || res == 1){
-        wx.navigateTo({
+        wx.redirectTo({
           url: '/pages/bindId/bindId'
         })
       }else if(res == 2){

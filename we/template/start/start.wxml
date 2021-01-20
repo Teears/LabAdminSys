@@ -1,8 +1,0 @@
-<template name="roundBtn">
-<view>
-  <view class="roundBtn">
-    <icon class="btnIcon {{btnIcon}}"></icon>
-    <text class="btnText">{{btnText}}</text>
-  </view>
-</view>
-</template>

@@ -5,7 +5,25 @@ Page({
    * 页面的初始数据
    */
   data: {
+    roleId:null,
+    stuNumber:"",
+    stuPassword:"",
+    teaNumber:"",
+    teaPassword:"",
+    stuForm:{
 
+    },
+    teaForm:{
+      
+    },
+    stuIcon:{
+      tpIcon:"/image/stuIcon.png",
+      tpText:"学生身份认定"
+    },
+    teaIcon:{
+      tpIcon:"/image/teaIcon.png",
+      tpText:"教师身份认定"
+    }
   },
 
   /**
