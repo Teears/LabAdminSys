@@ -1,66 +1,62 @@
-// custom-tab-bar/index.js
-Page({
-
-  /**
-   * 页面的初始数据
-   */
+Component({
   data: {
-
+    roleId:'',
+    selected: null,
+    color: "#ffffff",
+    selectedColor: "#ff8673",
+    tabList: [{
+      stuList: [{
+        "pagePath": "/pages/stu_history/stu_history",
+        "text": "历史",
+        "iconPath":"/image/clock.png",
+        "selectedIconPath":"/image/clock_on.png"
+      },{
+        "pagePath": "/pages/stu_check/stu_check",
+        "text": "签到",
+        "iconPath":"/image/check.png",
+        "selectedIconPath":"/image/check_on.png"
+      },{
+        "pagePath": "/pages/stu_mine/stu_mine",
+        "text": "个人",
+        "iconPath":"/image/mine.png",
+        "selectedIconPath":"/image/mine_on.png"
+      }],
+      teaList: [{
+        "pagePath": "/pages/tea_message/tea_message",
+        "text": "消息",
+        "iconPath":"/image/mail.png",
+        "selectedIconPath":"/image/mail_on.png"
+      },{
+        "pagePath": "/pages/tea_manage/tea_manage",
+        "text": "管理",
+        "iconPath":"/image/manage.png",
+        "selectedIconPath":"/image/manage_on.png"
+      },{
+        "pagePath": "/pages/stu_mine/stu_mine",
+        "text": "个人",
+        "iconPath":"/image/mine.png",
+        "selectedIconPath":"/image/mine_on.png"
+      }]
+    }],
+    list: []
   },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-
+  attached() {
+    const roleId = wx.getStorageSync('roleId')
+    if(roleId == 2){
+      this.setData({
+        list: this.data.tabList[0].stuList
+      })
+    }else if(roleId == 3){
+      this.setData({
+        list: this.data.tabList[0].teaList
+      })
+    }
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  methods: {
+    switchTab(e) {
+      const data = e.currentTarget.dataset
+      const url = data.path
+      wx.switchTab({url})
+    }
   }
 })
