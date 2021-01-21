@@ -1,2 +1,9 @@
 <!--pages/stu_check/stu_check.wxml-->
-<text>pages/stu_check/stu_check.wxml</text>
+<view class="container">
+  <!-- 尚未加入实验室 -->
+  <view wx:if="{{zhanwei == 1}}" class="zhanwei">
+    <image src="/image/taikong.png" mode="aspectFit" ></image>
+    <text>你尚未加入任何实验室</text>
+  </view>
+
+</view>

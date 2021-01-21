@@ -1,1 +1,18 @@
 /* pages/stu_check/stu_check.wxss */
+.container{
+  background-color: #F7F7F7;
+}
+.zhanwei{
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  font-size: small;
+  color: gray;
+}
+.zhanwei image{
+  width: auto;
+  width: 400rpx;
+  height: 300rpx;
+}

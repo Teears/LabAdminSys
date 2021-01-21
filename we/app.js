@@ -20,10 +20,12 @@ App({
               method:"POST",
               url: that.globalData.host + '/login',
               data:{
-                code:res.code
+                code:res.code,
+                appid:that.globalData.appid,
+                appsecret:that.globalData.appsecret
               },
               header:{
-                "content-type":"application/json"
+                "content-type":"application/x-www-form-urlencoded"
               },
               timeout:10000,
               success:function(res){
@@ -36,6 +38,7 @@ App({
                   真机测试置为2
                   */
                   // wx.setStorageSync('roleId', "2")
+                  wx.setStorageSync('token', res.data.token)
                   wx.setStorageSync('roleId', res.data.roleId)
                   wx.setStorageSync('session_key', res.data.session_key)
                 } catch (e) {
