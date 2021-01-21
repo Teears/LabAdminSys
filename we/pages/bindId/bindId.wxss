@@ -1,16 +1,26 @@
 /* pages/bindId/bindId.wxss */
 @import"/template/basictp.wxss";
+.container{
+  background-color: #F7F7F7;
+}
 .roundCornerCard{
-  display: flex;
+  /* display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: center; */
   position: fixed;
   top: 100rpx;
   height:70%; 
   width:80%;
-  padding-top: 20rpx;
+  padding: 40rpx;
 }
-
+.templateIcon{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #383852;
+  font-weight: 900;
+  font-family: YouYuan;
+}
 .formCell{
   border-bottom: thin solid rgb(221, 221, 221);
   height: 20rpx;
@@ -19,4 +29,14 @@
 .formInput{
   font-size: small;
   margin-left: -100rpx;
+}
+.btn-area{
+  margin-top:100rpx;
+}
+.submitBtn{
+  font-size: smaller;
+  font-weight: 500;
+  color: #F7F7F7;
+  background-color: #3399CC;
+  border-radius: 0%;
 }

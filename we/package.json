@@ -4,6 +4,7 @@
   "description": "",
   "main": "app.js",
   "dependencies": {
+    "miniprogram-computed": "^2.2.0",
     "weui-miniprogram": "^1.0.7"
   },
   "devDependencies": {},

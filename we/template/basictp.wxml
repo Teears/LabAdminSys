@@ -1,9 +1,8 @@
 <template name="roundIcon">
   <view>
     <view class="roundIcon">
-  <image src="{{tpIcon}}" mode="aspectFit"></image>
-  <text >{{tpText}}</text>
-</view>
+      <text >{{tpText}}</text>
+      <image src="{{tpIcon}}" mode="aspectFit"></image>
+    </view>
   </view>
-
 </template>

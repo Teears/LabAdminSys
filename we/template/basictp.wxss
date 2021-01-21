@@ -9,11 +9,12 @@
   text-align: center;
   width: 250rpx;
   height: 250rpx;
-  border: thin solid rgb(221, 221, 221);
+  /* border: thin solid rgb(221, 221, 221); */
 }
 .roundIcon image{
   width: auto;
 }
 .roundIcon text{
   font-size: 32rpx;
+  margin-bottom: 20rpx;
 }

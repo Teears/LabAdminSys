@@ -15,7 +15,6 @@ page{
   justify-content: space-between;
   padding: 200rpx 0;
   box-sizing: border-box;
-  background-color: #F7F7F7;
 } 
 .roundCornerCard{
   background-color: #fdfdfd;

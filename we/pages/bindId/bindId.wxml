@@ -1,18 +1,44 @@
 <!--pages/bindId/bindId.wxml-->
 <import src="/template/basictp.wxml"/>
-
 <view class="container">
+<!-- 学生卡片 -->
+<block wx:if="{{roleId == 0}}">
 <view class="roundCornerCard">
-  <template is="roundIcon" data="{{...stuIcon}}"></template>
-  <mp-form rules="{{rule}}" models="{{formData}}">
+  <view class="templateIcon">
+    <template is="roundIcon" data="{{...stuIcon}}"></template>
+  </view>
+  <mp-form>
     <mp-cell prop="stuNumber" title="账号：" ext-class="formCell">
-      <input bindinput="formInputChange" data-field="stuNumber" placeholder="请输入学号" class="formInput"/>
+      <input bindinput="getStuNumber" placeholder="请输入学号" class="formInput"/>
     </mp-cell>
     <mp-cell prop="stuPassword" title="密码：" ext-class="formCell">
-      <input bindinput="formInputChange" data-field="stuPassword" placeholder="默认密码为身份证后六位" class="formInput"/>
+      <input password="true" bindinput="getStuPassword" placeholder="默认密码为身份证后六位" class="formInput"/>
     </mp-cell>
+    <view class="btn-area">
+      <button class="submitBtn" form-type="submit" bindtap="submitStuForm">确认绑定</button>
+    </view>
   </mp-form>
 </view>
+</block>
 
+<!-- 教师卡片 -->
+<block wx:if="{{roleId == 1}}">
+<view class="roundCornerCard">
+  <view class="templateIcon">
+    <template is="roundIcon" data="{{...teaIcon}}"></template>
+  </view>
+  <mp-form>
+    <mp-cell prop="teaNumber" title="账号：" ext-class="formCell">
+      <input bindinput="getTeaNumber" placeholder="请输入工号" class="formInput"/>
+    </mp-cell>
+    <mp-cell prop="teaPassword" title="密码：" ext-class="formCell">
+      <input bindinput="getTeaPassword" placeholder="默认密码为身份证后六位" class="formInput"/>
+    </mp-cell>
+    <view class="btn-area">
+      <button class="submitBtn" form-type="submit" size="primary" bindtap="submitTeaForm">确认绑定</button>
+    </view>
+  </mp-form>
+</view>
+</block>
 
 </view>
