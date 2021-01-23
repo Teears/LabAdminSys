@@ -1,0 +1,52 @@
+/* components/card.wxss */
+.sky{
+  height: 900rpx;
+  width: 600rpx;
+  background-color: #0d0847;
+  border-radius: 20rpx;
+}
+.top{
+  position: relative;
+  height: 500rpx;
+  text-align: center;
+}
+.bottom{
+  height: 300rpx;
+}
+
+.test{
+  position: absolute;
+  top:200rpx
+}
+
+.main{
+  width: 500rpx;
+}
+.leftTop{
+  height: 175rpx;
+  width: 175rpx;
+  position: absolute;
+  top: 70rpx;
+  left: 70rpx;
+}
+.rightTop{
+  height: 125rpx;
+  width: 125rpx;
+  position: absolute;
+  top: 70rpx;
+  right: 70rpx;
+}
+.leftBottom{
+  height: 125rpx;
+  width: 125rpx;
+  position: absolute;
+  bottom: 70rpx;
+  left: 70rpx;
+}
+.rightBottom{
+  height: 175rpx;
+  width: 175rpx;
+  position: absolute;
+  bottom: 70rpx;
+  right: 70rpx;
+}

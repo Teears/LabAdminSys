@@ -1,0 +1,15 @@
+<!--components/card.wxml-->
+<view class="container">
+  <view class="sky">
+      <view class="top">
+        <image class="main" src="{{main}}" mode="aspectFill"></image>
+        <image wx:if="{{randomLoc==1||randomLoc==2||randomLoc==3}}" class="leftTop" src="{{leftTop}}" mode="aspectFit"></image>
+        <image wx:if="{{randomLoc==1||randomLoc==4||randomLoc==5}}" class="rightTop" src="{{rightTop}}" mode="aspectFit"></image>
+        <image wx:if="{{randomLoc==2||randomLoc==4||randomLoc==6}}" class="rightBottom" src="{{rightBottom}}" mode="aspectFit"></image>
+        <image wx:if="{{randomLoc==3||randomLoc==5||randomLoc==6}}" class="leftBottom" src="{{leftBottom}}" mode="aspectFit"></image>
+      </view>
+      <view class="bottom">
+
+      </view>
+  </view>
+</view>

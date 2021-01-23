@@ -6,3 +6,10 @@
     </view>
   </view>
 </template>
+
+<template name="quesheng">
+  <view class="zhanwei">
+    <image src="/image/taikong.png" mode="aspectFit" ></image>
+    <text>{{quesheng}}</text>
+  </view>
+</template>

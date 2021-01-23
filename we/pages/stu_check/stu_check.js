@@ -5,7 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    zhanwei:1
+    zhanwei:0,
+    quesheng:"你尚未加入任何实验室"
   },
 
   /**
