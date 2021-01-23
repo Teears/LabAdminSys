@@ -11,7 +11,11 @@ Component({
    * 组件的初始数据
    */
   data: {
-    date:"",
+    date:{
+      date:"",
+      day:"",
+      year_month:"",
+    },
     text:"",
     randomLoc:"",
     main:"",
@@ -22,15 +26,50 @@ Component({
   },
   attached: function (){
     this._initPic()
+    this._calendar()
   },
   /**
    * 组件的方法列表
    */
   methods: {
+    _calendar:function(){
+      var myDate = new Date()
+      const year = myDate.getFullYear()
+      const date = myDate.getDate()
+      var day = myDate.getDay()
+      const month = myDate.getMonth()+1
+      var year_month;
+      if(month<10){
+        year_month = year+".0"+month
+      }else{
+        year_month = year+"."+month
+      }
+      switch(day){
+        case 1:
+          day = "星期一"
+        case 2:
+          day = "星期二"
+        case 3:
+          day = "星期三"
+        case 4:
+          day = "星期四"
+        case 5:
+          day = "星期五"
+        case 6:
+          day = "星期六"
+        case 7:
+          day = "星期天"
+      }
+      this.setData({
+        "date.date":date,
+        "date.day":day,
+        "date.year_month":year_month
+      })
+    },
+
     _initPic:function(){
       const randomLoc = parseInt(Math.random()*5+1)
       const main = "/image/card/"+"planet"+(parseInt(Math.random()*7+1))+".png"
-      console.log(main)
       var pic1 = parseInt(Math.random()*7+1)
       var pic2 = parseInt(Math.random()*7+1)
       if(pic1 == pic2){

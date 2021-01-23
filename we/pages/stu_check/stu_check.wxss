@@ -4,3 +4,9 @@
 .container{
   background-color: #F7F7F7;
 }
+card-component{
+  height:70%;
+  width:80%;
+  position: absolute;
+  top: 10%;
+}

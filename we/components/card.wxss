@@ -1,52 +1,85 @@
 /* components/card.wxss */
+/* 背景样式 */
 .sky{
-  height: 900rpx;
-  width: 600rpx;
+  height: 100%;
+  width: 100%;
   background-color: #0d0847;
   border-radius: 20rpx;
+  position: relative;
 }
+/* 上下布局 */
 .top{
   position: relative;
-  height: 500rpx;
   text-align: center;
 }
 .bottom{
   height: 300rpx;
+  background-color: #0d0847;
+  border-radius: 20rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  color: aliceblue;
+}
+/* 日历样式 */
+.calendar{
+  height: 50%;
+  width: 150rpx;
+  border: thin solid rgb(221, 221, 221);
+}
+.date{
+  height: 50%;
+  font-size: xx-large;
+  line-height: 100%;
+  padding-top: 5rpx;
+}
+.day{
+  font-size: x-small;
+  height: 20%;
+  border-bottom: thin solid rgb(221, 221, 221);
+  padding: 2rpx;
+  line-height: 100%;
+}
+.year_month{
+  height: 30%;
+  font-size: small
+}
+/* 下方提示文字样式 */
+.bottom text{
+  margin: 30rpx;
+  font-size: xx-large  ;
 }
 
-.test{
-  position: absolute;
-  top:200rpx
-}
-
+/* 插画样式 */
 .main{
-  width: 500rpx;
+  width: 90%;
 }
 .leftTop{
-  height: 175rpx;
-  width: 175rpx;
+  height: 150rpx;
+  width: 150rpx;
   position: absolute;
-  top: 70rpx;
-  left: 70rpx;
+  top: 50rpx;
+  left: 50rpx;
 }
 .rightTop{
-  height: 125rpx;
-  width: 125rpx;
+  height: 150rpx;
+  width: 150rpx;
   position: absolute;
-  top: 70rpx;
-  right: 70rpx;
+  top: 50rpx;
+  right: 50rpx;
 }
 .leftBottom{
-  height: 125rpx;
-  width: 125rpx;
+  height: 150rpx;
+  width: 150rpx;
   position: absolute;
-  bottom: 70rpx;
-  left: 70rpx;
+  bottom: 50rpx;
+  left: 50rpx;
 }
 .rightBottom{
-  height: 175rpx;
-  width: 175rpx;
+  height: 150rpx;
+  width: 150rpx;
   position: absolute;
-  bottom: 70rpx;
-  right: 70rpx;
+  bottom: 50rpx;
+  right: 50rpx;
 }
