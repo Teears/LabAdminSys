@@ -4,7 +4,7 @@
 <view class="container">
   <!-- 尚未加入实验室 -->
   <view wx:if="{{zhanwei == 1}}">
-    <template is="quesheng" data="{{quesheng}}"></template>
+    <template is="quesheng" data="{{quesheng}}" ></template>
   </view>
   <card-component></card-component>
 

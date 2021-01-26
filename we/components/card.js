@@ -27,11 +27,16 @@ Component({
   attached: function (){
     this._initPic()
     this._calendar()
+    this.animation = wx.createAnimation()
   },
   /**
    * 组件的方法列表
    */
   methods: {
+    rotate: function () {
+      this.animation.rotateY(90).step()
+      this.setData({animation: this.animation.export()})
+    },
     _calendar:function(){
       var myDate = new Date()
       const year = myDate.getFullYear()
@@ -44,21 +49,28 @@ Component({
       }else{
         year_month = year+"."+month
       }
+      console.log(day)
       switch(day){
+        case 0:
+          day = "星期天"
+          break
         case 1:
           day = "星期一"
+          break
         case 2:
           day = "星期二"
+          break
         case 3:
           day = "星期三"
+          break
         case 4:
           day = "星期四"
+          break
         case 5:
           day = "星期五"
+          break
         case 6:
           day = "星期六"
-        case 7:
-          day = "星期天"
       }
       this.setData({
         "date.date":date,
