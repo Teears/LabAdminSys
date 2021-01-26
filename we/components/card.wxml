@@ -1,5 +1,6 @@
 <!--components/card.wxml-->
-  <view class="sky" animation="{{animation}}" bindtap="rotate">
+<view class="card" bindtap="rotate">
+  <view class="box sky" animation="{{animationMain}}">
       <view class="top">
         <image class="main" src="{{main}}" mode="aspectFill"></image>
         <image wx:if="{{randomLoc==1||randomLoc==2||randomLoc==3}}" class="leftTop" src="{{leftTop}}" mode="aspectFit"></image>
@@ -15,4 +16,9 @@
         </view>
         <text class="remindText">点击签到</text>
       </view>
+  </view>
+  <view class="box back" animation="{{animationBack}}">
+    <text>this is date</text>
+    <icon class="iconfont icon-gou"></icon>
+  </view>
 </view>

@@ -22,20 +22,33 @@ Component({
     leftTop:"",
     rightTop:"",
     leftBottom:"",
-    rightBottom:""
+    rightBottom:"",
+    animationMain:null,
+    animationBack:null
   },
   attached: function (){
     this._initPic()
     this._calendar()
-    this.animation = wx.createAnimation()
+    // this.animation = wx.createAnimation()
   },
   /**
    * 组件的方法列表
    */
   methods: {
     rotate: function () {
-      this.animation.rotateY(90).step()
-      this.setData({animation: this.animation.export()})
+      this.animation_main = wx.createAnimation({
+        delay: 0,
+      })
+      this.animation_back = wx.createAnimation({
+        delay: 0,
+      })
+      this.animation_main.rotateY(180).step()
+      this.animation_back.rotateY(0).step()
+      this.setData({
+        animationMain: this.animation_main.export(),
+        animationBack: this.animation_back.export()
+
+      })
     },
     _calendar:function(){
       var myDate = new Date()

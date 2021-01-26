@@ -1,11 +1,16 @@
 /* components/card.wxss */
+@import "/style/iconfont.wxss";
+.box{
+  position: absolute;
+	backface-visibility: hidden;
+}
 /* 背景样式 */
 .sky{
   height: 100%;
   width: 100%;
   background-color: #0d0847;
   border-radius: 20rpx;
-  position: relative;
+  /* position: relative; */
 }
 /* 上下布局 */
 .top{
@@ -82,4 +87,25 @@
   position: absolute;
   bottom: 50rpx;
   right: 50rpx;
+}
+/* 
+背面样式
+ */
+.back{
+  height: 100%;
+  width: 100%;
+  background-color: gold;
+  border-radius: 20rpx;
+  text-align: center;
+  padding-top: 50rpx;
+  transform: rotateY(-180deg);
+}
+.back text{
+  font-size: x-large;
+  color: white;
+}
+.iconfont{
+  font-size: 1200%;
+  color: white;
+  font-weight: 900;
 }
