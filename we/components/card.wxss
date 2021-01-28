@@ -7,10 +7,15 @@
 }
 .box{
   position: absolute;
-	backface-visibility: hidden;
+  backface-visibility: hidden;
+  height: 100%;
+  width: 100%;
 }
 /* 背景样式 */
 .sky{
+  background-color: #0D0847;
+  border-radius: 20rpx;
+  text-align: center;
   height: 100%;
   width: 100%;
 }
@@ -18,13 +23,8 @@
 .top{
   position: relative;
   text-align: center;
-  background-color: #0d0847;
-  border-radius: 20rpx 20rpx 0rpx 0rpx;
 }
 .bottom{
-  height: 300rpx;
-  background-color: #0d0847;
-  border-radius: 0rpx 0rpx 20rpx 20rpx;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -58,8 +58,7 @@
 .bottom text{
   margin: 30rpx;
   font-size: xx-large  ;
-}
-
+} 
 /* 插画样式 */
 .main{
   width: 90%;
@@ -92,16 +91,14 @@
   bottom: 50rpx;
   right: 50rpx;
 }
+
 /* 
 背面样式
  */
 .back{
-  height: 100%;
-  width: 100%;
-  background-color: gold;
+  background-image: linear-gradient(to bottom,#FF9966,#FF5E62);
   border-radius: 20rpx;
   text-align: center;
-  padding-top: 50rpx;
   transform: rotateY(-180deg);
 }
 .back text{

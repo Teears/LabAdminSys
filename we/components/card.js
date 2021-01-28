@@ -47,7 +47,6 @@ Component({
       this.setData({
         animationMain: this.animation_main.export(),
         animationBack: this.animation_back.export()
-
       })
     },
     _calendar:function(){
