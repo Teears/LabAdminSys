@@ -1,24 +1,24 @@
 /* components/card.wxss */
 @import "/style/iconfont.wxss";
 .card{
-  /* transform-style:preserve-3d;
-  transform-origin:0% center; */
-  perspective: 2500rpx
+  perspective: 2500rpx;
 }
 .box{
   position: absolute;
   backface-visibility: hidden;
-  height: 100%;
   width: 100%;
 }
-/* 背景样式 */
-.sky{
+.backgroundMain{
   background-color: #0D0847;
   border-radius: 20rpx;
-  text-align: center;
-  height: 100%;
-  width: 100%;
+  height: 800rpx
 }
+.backgroundBack{
+  background-image: linear-gradient(to bottom,#FF9966,#FF5E62);
+  border-radius: 20rpx;
+  height: 800rpx
+}
+/* 正面 */
 /* 上下布局 */
 .top{
   position: relative;
@@ -31,34 +31,6 @@
   text-align: center;
   color: aliceblue;
 }
-/* 日历样式 */
-.calendar{
-  height: 50%;
-  width: 150rpx;
-  border: thin solid rgb(221, 221, 221);
-}
-.date{
-  height: 50%;
-  font-size: xx-large;
-  line-height: 100%;
-  padding-top: 5rpx;
-}
-.day{
-  font-size: x-small;
-  height: 20%;
-  border-bottom: thin solid rgb(221, 221, 221);
-  padding: 2rpx;
-  line-height: 100%;
-}
-.year_month{
-  height: 30%;
-  font-size: small
-}
-/* 下方提示文字样式 */
-.bottom text{
-  margin: 30rpx;
-  font-size: xx-large  ;
-} 
 /* 插画样式 */
 .main{
   width: 90%;
@@ -91,18 +63,45 @@
   bottom: 50rpx;
   right: 50rpx;
 }
+/* 日历样式 */
+.calendar{
+  height: 50%;
+  width: 150rpx;
+  border: thin solid rgb(221, 221, 221);
+}
+.date{
+  height: 50%;
+  font-size: xx-large;
+  line-height: 100%;
+  padding-top: 5rpx;
+}
+.day{
+  font-size: x-small;
+  height: 20%;
+  border-bottom: thin solid rgb(221, 221, 221);
+  padding: 2rpx;
+  line-height: 100%;
+}
+.year_month{
+  height: 30%;
+  font-size: small
+}
+/* 下方提示文字样式 */
+.bottom text{
+  margin: 30rpx;
+  font-size: xx-large  ;
+} 
 
 /* 
 背面样式
  */
-.back{
-  background-image: linear-gradient(to bottom,#FF9966,#FF5E62);
-  border-radius: 20rpx;
-  text-align: center;
+ .wrapperBack{
   transform: rotateY(-180deg);
+  text-align: center;
 }
-.back text{
-  font-size: x-large;
+.backgroundBack view{
+  padding-top: 30rpx;
+  font-size: 300%;
   color: white;
 }
 .iconfont{

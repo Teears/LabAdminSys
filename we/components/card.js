@@ -4,7 +4,10 @@ Component({
    * 组件的属性列表
    */
   properties: {
-
+    rank: { // 名次
+      type: String,
+      value: '0'
+    },
   },
 
   /**
