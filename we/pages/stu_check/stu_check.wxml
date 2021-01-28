@@ -6,6 +6,6 @@
   <view wx:if="{{zhanwei == 1}}">
     <template is="quesheng" data="{{quesheng}}" ></template>
   </view>
-  <card-component rank="{{rank}}"></card-component>
+  <card-component wx:if="{{zhanwei == 0}}" rank="{{rank}}" bindtap="checkin"></card-component>
 
 </view>
