@@ -1,4 +1,5 @@
 // pages/stu_check/stu_check.js
+import {wxp} from '../../utils/promise.js'
 
 var QQMapWX = require('../../utils/qqmap-wx-jssdk.min.js')
 var qqmapsdk = new QQMapWX({
@@ -14,43 +15,54 @@ Page({
     queshengMark:0,
     queshengText:"你尚未加入任何实验室",
     rank:"12",  //签到名次
-    address:''
+    address:'',
+    turn:0
   },
 
   checkin:function(){
+    console.log("触发Page页面bind事件")
     const that = this
     //检查位置授权
-    wx.getSetting({
-      success:function(res){
-        const scopeAddress = res.authSetting["scope.userLocation"]
-        while(scopeAddress == false){
-          wx.openSetting({
-            success (res) {
-              console.log(res.authSetting)
-            }
-          })
-        }
-      }
-    })
+    // wx.getSetting({
+    //   success:function(res){
+    //     const scopeAddress = res.authSetting["scope.userLocation"]
+    //     while(scopeAddress == false){
+    //       wx.openSetting({
+    //         success (res) {
+    //           console.log(res.authSetting)
+    //         }
+    //       })
+    //     }
+    //   }
+    // })
     //获取腾讯逆向地址解析SDK
-    qqmapsdk.reverseGeocoder({
-      poi_options:'policy=2',
-      success: function(res){
-        const address = res.result.address_component.province+res.result.address_component.city+res.result.formatted_addresses.recommend
-        console.log("获取当前定位:"+address)
-        that.setData({
-          address:address
-        })
-      },
-      fail:function(err){
-        console.log(err)
-      },
-      complete:function(res){
-        console.log(res)
-      }
+    
+    that.getAddress().then(res =>{
+      console.log(res)
+      that.setData({
+        address:res,
+        turn:1
+      })
     })
+    console.log(this.data.turn+"data.turn<向服务器发送签到信息，向服务器获取签到名次")
+  },
 
-    console.log("向服务器发送签到信息，向服务器获取签到名次")
+  getAddress:function(){
+    var promise = new Promise((resolve,reject) =>{
+      qqmapsdk.reverseGeocoder({
+        poi_options:'policy=2',
+        success: function(res){
+          const address = res.result.address_component.province+res.result.address_component.city+res.result.formatted_addresses.recommend
+          console.log("获取当前定位:"+address)
+          resolve(address)
+        },
+        fail:function(err){
+          console.log("getAddress failed")
+          reject("getAddress failed")
+        }
+      })
+    })
+    return promise
   },
 
   /**

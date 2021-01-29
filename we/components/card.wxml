@@ -1,5 +1,5 @@
 <!--components/card.wxml-->
-<view class="card" bindtap="rotate">
+<view class="card">
   <view class="box" animation="{{animationMain}}">
     <view class="wrapperMain">
     <view class="backgroundMain">

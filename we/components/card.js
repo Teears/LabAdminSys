@@ -8,6 +8,10 @@ Component({
       type: String,
       value: '0'
     },
+    turn: { // 名次
+      type: Number,
+      value: null
+    },
   },
 
   /**
@@ -29,6 +33,13 @@ Component({
     animationMain:null,
     animationBack:null
   },
+  observers:{
+    'turn': function(newTurn){
+      if(newTurn == 1){
+        this.rotate()
+      }
+    }
+  },
   attached: function (){
     this._initPic()
     this._calendar()
@@ -39,6 +50,8 @@ Component({
    */
   methods: {
     rotate: function () {
+      console.log(this.properties.turn)
+      console.log("触发组件内部tap事件，导致rotate")
       this.animation_main = wx.createAnimation({
         delay: 0,
       })

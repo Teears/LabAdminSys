@@ -7,6 +7,6 @@
     <template is="quesheng" data="{{queshengText}}" ></template>
   </view>
   
-  <card-component wx:if="{{queshengMark == 0}}" rank="{{rank}}" bindtap="checkin"></card-component>
+  <card-component wx:if="{{queshengMark == 0}}" rank="{{rank}}" turn="{{turn}}" bind:tap="checkin"></card-component>
 
 </view>
