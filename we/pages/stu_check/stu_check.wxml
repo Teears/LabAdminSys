@@ -6,7 +6,15 @@
   <view wx:if="{{queshengMark == 1}}">
     <template is="quesheng" data="{{queshengText}}" ></template>
   </view>
-  
-  <card-component wx:if="{{queshengMark == 0}}" rank="{{rank}}" turn="{{turn}}" bind:tap="checkin"></card-component>
 
+  <!-- 签到界面 -->
+  <view class="containerMain" wx:if="{{queshengMark == 0}}">
+    <view class="address">
+      <text>{{address}}</text>
+      <view class="iconfont icon-shuaxin"></view>
+    </view>
+    <view>
+      <card-component rank="{{rank}}" turn="{{turn}}" bind:tap="checkin"></card-component>
+    </view>
+  </view>
 </view>

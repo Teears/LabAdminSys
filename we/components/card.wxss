@@ -11,12 +11,12 @@
 .backgroundMain{
   background-color: #0D0847;
   border-radius: 20rpx;
-  height: 800rpx
+  height: 850rpx
 }
 .backgroundBack{
   background-image: linear-gradient(to bottom,#FF9966,#FF5E62);
   border-radius: 20rpx;
-  height: 800rpx
+  height: 850rpx
 }
 /* 正面 */
 /* 上下布局 */
@@ -30,6 +30,7 @@
   align-items: center;
   text-align: center;
   color: aliceblue;
+  padding-top: 20rpx;
 }
 /* 插画样式 */
 .main{
@@ -105,7 +106,7 @@
   color: white;
 }
 .iconfont{
-  font-size: 1200%;
+  font-size: 1300%;
   color: white;
   font-weight: 900;
 }

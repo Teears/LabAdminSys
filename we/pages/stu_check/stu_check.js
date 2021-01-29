@@ -69,7 +69,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    const that = this
+    that.getAddress().then(res =>{
+      that.setData({
+        address:res
+      })
+    })
   },
 
   /**
