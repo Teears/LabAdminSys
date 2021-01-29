@@ -64,7 +64,6 @@ Component({
       }else{
         year_month = year+"."+month
       }
-      console.log(day)
       switch(day){
         case 0:
           day = "星期天"

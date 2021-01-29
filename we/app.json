@@ -9,6 +9,11 @@
     "pages/tea_manage/tea_manage",
     "pages/tea_message/tea_message"
   ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于签到定位"
+    }
+  },
   "window":{
     "backgroundTextStyle":"light",
     "navigationBarBackgroundColor": "#0d1327",
