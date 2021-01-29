@@ -50,7 +50,6 @@ Component({
    */
   methods: {
     rotate: function () {
-      console.log(this.properties.turn)
       console.log("触发组件内部tap事件，导致rotate")
       this.animation_main = wx.createAnimation({
         delay: 0,

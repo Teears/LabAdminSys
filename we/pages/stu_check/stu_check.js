@@ -16,7 +16,9 @@ Page({
     queshengText:"你尚未加入任何实验室",
     rank:"12",  //签到名次
     address:'',
-    turn:0
+    turn:0,
+    shuaxinAnimation:null,
+    rotateAngle:1
   },
 
   checkin:function(){
@@ -35,8 +37,8 @@ Page({
     //     }
     //   }
     // })
-    //获取腾讯逆向地址解析SDK
     
+    //获取腾讯逆向地址解析SDK
     that.getAddress().then(res =>{
       console.log(res)
       that.setData({
@@ -57,12 +59,26 @@ Page({
           resolve(address)
         },
         fail:function(err){
-          console.log("getAddress failed")
+          console.log(err)
           reject("getAddress failed")
         }
       })
     })
     return promise
+  },
+  shuaxinTap:function(){
+    const that = this
+    var animation = wx.createAnimation({
+      duration:300
+    })
+    animation.rotate(this.data.rotateAngle*240).step()
+    that.setData({shuaxinAnimation: animation.export()})
+    that.setData({rotateAngle: this.data.rotateAngle+1})
+    this.getAddress().then(res=>{
+      this.setData({
+        address:res
+      })
+    })
   },
 
   /**

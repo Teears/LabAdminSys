@@ -34,7 +34,8 @@
 }
 /* 插画样式 */
 .main{
-  width: 90%;
+  width: 80%;
+  /* background-color: hotpink; */
 }
 .leftTop{
   height: 150rpx;

@@ -6,12 +6,11 @@
   <view wx:if="{{queshengMark == 1}}">
     <template is="quesheng" data="{{queshengText}}" ></template>
   </view>
-
   <!-- 签到界面 -->
   <view class="containerMain" wx:if="{{queshengMark == 0}}">
     <view class="address">
-      <text>{{address}}</text>
-      <view class="iconfont icon-shuaxin"></view>
+      <text>当前定位：{{address}}</text>
+      <view class="iconfont icon-shuaxin" animation="{{shuaxinAnimation}}" bindtap="shuaxinTap"></view>
     </view>
     <view>
       <card-component rank="{{rank}}" turn="{{turn}}" bind:tap="checkin"></card-component>

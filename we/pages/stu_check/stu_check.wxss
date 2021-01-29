@@ -34,5 +34,5 @@
 .address view{
   margin-left: 10rpx;
   position: absolute;
-  right: 10rpx;
+  right: 20rpx;
 }
