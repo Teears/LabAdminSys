@@ -1,6 +1,7 @@
 // pages/stu_check/stu_check.js
 import {wxp} from '../../utils/promise.js'
 
+const app = getApp()
 var QQMapWX = require('../../utils/qqmap-wx-jssdk.min.js')
 var qqmapsdk = new QQMapWX({
   key:'5NCBZ-TZ5WF-GGRJL-JCX57-UCO3J-MSFPX'
@@ -21,36 +22,71 @@ Page({
     rotateAngle:1
   },
 
+  /* 
+    签到点击事件监听函数
+  */
   checkin:function(){
     console.log("触发Page页面bind事件")
     const that = this
     //检查位置授权
-    // wx.getSetting({
-    //   success:function(res){
-    //     const scopeAddress = res.authSetting["scope.userLocation"]
-    //     while(scopeAddress == false){
-    //       wx.openSetting({
-    //         success (res) {
-    //           console.log(res.authSetting)
-    //         }
-    //       })
-    //     }
-    //   }
-    // })
-    
-    //获取腾讯逆向地址解析SDK
-    that.getAddress().then(res =>{
-      console.log(res)
-      that.setData({
-        address:res,
-        turn:1
-      })
+    wxp.getSetting().then(res=>{
+      const scopeAddress = res.authSetting["scope.userLocation"]
+      if(scopeAddress == true || scopeAddress == undefined){
+        console.log("if auth")
+        //如果已授权，获取地址信息
+        that.getAddress().then(res =>{
+           that.setData({
+            address:res
+          })
+        }).then((res)=>{
+          /*  
+            向服务器发送位置，签到时间
+            接收签到名次
+          */
+          console.log("---------签到request----------")
+          // wxp.request({
+          //   method:"POST",
+          //   url: app.globalData.host+'/stu/checkin',
+          //   header:{
+          //     "content-type":"application/x-www-form-urlencoded"
+          //   },
+          //   timeout:10000,
+          //   data:{
+          //     address:that.data.address,
+          //     time:'',
+          //     token:''
+          //   },
+          //   success:function(res){
+          //     that.setData({
+          //       rank:res.data.rank,
+          //       turn:1
+          //     })
+          //   },
+          //   fail:function(){
+          //     wx.showToast({
+          //       title: '网络繁忙',
+          //       icon:"none",
+          //       duration: 2000
+          //     })
+          //   }
+          // })
+        })
+      }else{
+        // 引导授权
+        console.log("if not auth")
+        wx.openSetting()
+      }
     })
-    console.log(this.data.turn+"data.turn<向服务器发送签到信息，向服务器获取签到名次")
+
   },
 
+
+  /* 
+    获取当前位置Promise化函数
+  */
   getAddress:function(){
     var promise = new Promise((resolve,reject) =>{
+      //获取腾讯逆向地址解析SDK
       qqmapsdk.reverseGeocoder({
         poi_options:'policy=2',
         success: function(res){
@@ -66,6 +102,10 @@ Page({
     })
     return promise
   },
+
+  /* 
+    刷新按钮事件监听函数
+  */
   shuaxinTap:function(){
     const that = this
     var animation = wx.createAnimation({
@@ -112,38 +152,4 @@ Page({
       }
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })
