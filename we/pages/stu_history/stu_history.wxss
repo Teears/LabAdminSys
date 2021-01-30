@@ -1,1 +1,59 @@
 /* pages/stu_history/stu_history.wxss */
+.out_wrapper{
+  background-color: #F7F7F7;
+  height: 100%;
+  padding: 15rpx;
+}
+.card{
+  border-bottom: thin solid rgb(221, 221, 221);
+  border-right: thin solid rgb(221, 221, 221);
+  border-radius: 20rpx;
+  background-color: white;
+}
+/* 
+  上
+*/
+.statistic{
+  width: 100%;
+  height: 25%;
+}
+/* 上左 */
+.surpass_chart{
+  width: 40%;
+  float: left
+}
+/* 上右 */
+.right_combine{
+  width: 59%;
+  height: 100%;
+  float: right;
+  /* margin-left: 15rpx; */
+}
+.chart_text_combine{
+  width: 100%;
+  height: 49%;
+  margin-bottom: 5rpx;
+}
+.finish_rate_chart{
+  width: 50%;
+  height: 100%;
+  float: left;
+}
+.total{
+  float: right;
+  width: 50%;
+  color: #666699;
+  text-align: center;
+  font-size:large;
+  font-weight: 700;
+  line-height: 185%;
+}
+.total text{
+  font-size: x-large;
+  font-weight: 800;
+}
+.detail_chart{
+  width: 100%;
+  height: 49%;
+  margin-top: 5rpx;
+}

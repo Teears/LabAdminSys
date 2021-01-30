@@ -1,2 +1,17 @@
 <!--pages/stu_history/stu_history.wxml-->
-<text>pages/stu_history/stu_history.wxml</text>
+<view class="out_wrapper">
+  <view class="statistic">
+    <chart chart-class="surpass_chart card" option="{{ surpassOption }}" bindinstance="onInstance" />
+    <view class="right_combine">
+      <view class="chart_text_combine card">
+        <chart chart-class="finish_rate_chart" option="{{finishRateOption}}" bindinstance="onInstance" />
+        <view class="total">已加入<text>\n\t{{total}}</text>天</view>
+      </view>
+      <chart chart-class="detail_chart card" option="{{detailOption}}" bindinstance="onInstance" />
+    </view>
+  </view>
+
+</view>
+
+
+
