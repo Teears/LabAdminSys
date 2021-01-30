@@ -9,6 +9,8 @@ Page({
     finishRateOption:'',
     detailOption:'',
     total:'',
+    minDate:new Date(2020, 10, 30).getTime(),
+    maxDate:new Date().getTime()
   },
 
   /**
@@ -59,8 +61,14 @@ Page({
             }]
           },
           detailOption:{
+            grid : {
+              top:10,
+              bottom:10,
+              left:10,
+              right: 35,
+            },
             xAxis: {
-              type: 'value',
+              type: 'log',
               show: false,
             },
             yAxis: {
@@ -71,6 +79,15 @@ Page({
             series:[{
               name:'detail',
               type:'bar',
+              label:{
+                show: true,
+                position:'right',
+                formatter:'{b}{c}',
+                fontSize:9
+              },
+              borderRadius: [10, 10, 10, 10],
+              barWidth:'5',
+              barMinWidth:'1',
               data:[{
                 value:res.data.finished,
                 itemStyle:{color:'#99CC33'}
@@ -97,6 +114,7 @@ Page({
         })
       }
     })
+    
   },
 
   /**

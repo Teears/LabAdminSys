@@ -1,5 +1,7 @@
 {
   "usingComponents": {
-    "chart": "plugin://echarts/chart"
-  }
+    "chart": "plugin://echarts/chart",
+    "van-calendar":"../../lib/vant-weapp/calendar/index"
+  },
+  "disableScroll":true
 }

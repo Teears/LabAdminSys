@@ -10,6 +10,15 @@
   border-radius: 20rpx;
   background-color: white;
 }
+.scroll{
+  height: 75%;
+  margin-top: 15rpx;
+  background-color: tomato;
+}
+.calendar {
+  height: 400rpx;
+}
+
 /* 
   上
 */

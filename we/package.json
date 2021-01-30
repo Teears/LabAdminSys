@@ -4,6 +4,7 @@
   "description": "",
   "main": "app.js",
   "dependencies": {
+    "@vant/weapp": "^1.5.3",
     "miniprogram-api-promise": "^1.0.4",
     "miniprogram-computed": "^2.2.0",
     "weui-miniprogram": "^1.0.7"
