@@ -13,8 +13,15 @@
   <view class="calendar_box">
     <!-- <van-calendar min-date="{{ minDate }}" max-date="{{ maxDate }}" type="single" color="#006699" row-height="48" show-title="{{false}}" show-subtitle="{{false}}"  poppable="{{ false }}" show-confirm="{{ false }}" default-date="{{defaultDate}}" class="calendar"/> -->
     <calendar claendar-style="calendar" header-style="header" board-style="board" weeks-type="cn"active-type="rounded"/>
-  </view>
 
+    <view class="legend_box">
+      <view class="legend legend1"></view><text>到勤</text>
+      <view class="legend legend2"></view><text>迟到或早退</text>
+      <view class="legend legend3"></view><text>缺席</text>
+      <view class="legend legend4"></view><text>请假</text>
+    </view>
+  </view>
+  
 </view>
 
 

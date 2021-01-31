@@ -10,6 +10,9 @@
   border-radius: 20rpx;
   background-color: white;
 }
+/* 
+  calendar
+*/
 .calendar_box{
   height: 63%;
   margin-top: 15rpx;
@@ -22,7 +25,6 @@
   height: 70rpx;
   font-size: large;
   padding-top: 20rpx;
-
 }
 .board{
   box-shadow: 0 4rpx 20rpx -8rpx #CCCCCC inset;
@@ -30,6 +32,37 @@
   color: #a9a9a9;
   padding-top: 30rpx;
   height: 560rpx;
+}
+/* 图例 */
+.legend_box{
+  height: 60rpx;
+  width: 100%;
+  display: inline-flex;
+  justify-content:center;
+  padding-top: 15rpx;
+}
+.legend{
+  height: 20rpx;
+  width: 20rpx;
+  border-radius: 50%;
+  margin-left: 40rpx;
+}
+.legend_box text{
+  font-size: x-small;
+  color: #a9a9a9;
+  line-height: 22rpx;
+}
+.legend1{
+  background-color: #99CC33;
+}
+.legend2{
+  background-color: #FF9966;
+}
+.legend3{
+  background-color: #CC3333;
+}
+.legend4{
+  background-color: #666666;
 }
 
 /* 
