@@ -9,8 +9,9 @@ Page({
     finishRateOption:'',
     detailOption:'',
     total:'',
-    minDate:new Date(2020, 10, 30).getTime(),
-    maxDate:new Date().getTime()
+    startDate:new Date(2020, 11, 1).getTime(),
+    endDate:(new Date().getTime())-86400000,
+    defaultDate:(new Date().getTime())-86400000
   },
 
   /**

@@ -10,13 +10,26 @@
   border-radius: 20rpx;
   background-color: white;
 }
-.scroll{
-  height: 75%;
+.calendar_box{
+  height: 63%;
   margin-top: 15rpx;
-  background-color: tomato;
+  background-color: white;
 }
-.calendar {
-  height: 400rpx;
+.calendar{
+  background-color: white;
+}
+.header{
+  height: 70rpx;
+  font-size: large;
+  padding-top: 20rpx;
+
+}
+.board{
+  box-shadow: 0 4rpx 20rpx -8rpx #CCCCCC inset;
+  background-color: white;
+  color: #a9a9a9;
+  padding-top: 30rpx;
+  height: 560rpx;
 }
 
 /* 

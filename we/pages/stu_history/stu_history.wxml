@@ -10,8 +10,9 @@
       <chart chart-class="detail_chart card" option="{{detailOption}}" />
     </view>
   </view>
-  <view class="scroll">
-    <van-calendar min-date="{{ minDate }}" max-date="{{ maxDate }}" type="single" color="#006699" row-height="48" show-title="false"  poppable="{{ false }}" show-confirm="{{ false }}" class="calendar"/>
+  <view class="calendar_box">
+    <!-- <van-calendar min-date="{{ minDate }}" max-date="{{ maxDate }}" type="single" color="#006699" row-height="48" show-title="{{false}}" show-subtitle="{{false}}"  poppable="{{ false }}" show-confirm="{{ false }}" default-date="{{defaultDate}}" class="calendar"/> -->
+    <calendar claendar-style="calendar" header-style="header" board-style="board" weeks-type="cn"active-type="rounded"/>
   </view>
 
 </view>
