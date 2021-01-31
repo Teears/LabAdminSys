@@ -5,7 +5,7 @@
     <view class="right_combine">
       <view class="chart_text_combine card">
         <chart chart-class="finish_rate_chart" option="{{finishRateOption}}" />
-        <view class="total">已加入<text>\n\t{{total}}</text>天</view>
+        <text class="total">已加入\n\t{{total}}天</text>
       </view>
       <chart chart-class="detail_chart card" option="{{detailOption}}" />
     </view>

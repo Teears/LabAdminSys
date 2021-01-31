@@ -87,7 +87,7 @@ Page({
                 fontSize:9
               },
               borderRadius: [10, 10, 10, 10],
-              barWidth:'5',
+              barWidth:'8',
               barMinWidth:'1',
               data:[{
                 value:res.data.finished,
