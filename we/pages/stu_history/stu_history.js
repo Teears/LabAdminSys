@@ -9,9 +9,19 @@ Page({
     finishRateOption:'',
     detailOption:'',
     total:'',
-    startDate:new Date(2020, 11, 1).getTime(),
-    endDate:(new Date().getTime())-86400000,
-    defaultDate:(new Date().getTime())-86400000
+
+    startDate:"2020-01",
+    endDate:"2020-01",
+    daysInfo: "",
+
+    dialogTitle:"",
+    dialogShow:"",
+    checkinTime:"",
+    checkinAddress:"",
+    checkoutTime:"",
+    checkoutAddress:"",
+
+    oneButton: [{text: '确定'}],
   },
 
   /**
@@ -19,6 +29,7 @@ Page({
    */
   onLoad: function (options) {
     const that = this
+    //初始化图表信息 和 日历页数
     wx.request({
       method:"POST",
       url: app.globalData.host+'/stu/historyInit',
@@ -103,8 +114,9 @@ Page({
                 itemStyle:{color:'#666666'}
               }]
             }]
-          }
-
+          },
+          startDate:res.data.startDate,
+          endDate:res.data.endDate,        
         })//setData
       },
       fail:function(){
@@ -115,14 +127,70 @@ Page({
         })
       }
     })
-    
+  
+    //初始化当前页日历
+    const currentYear = new Date().getFullYear
+    const currentMonth = new Date().getMonth+1
+    that.getDaysInfo(currentMonth,currentYear)
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
+  nextMonth:function(e){
+    this.getDaysInfo(e.detail.currentMonth,e.detail.currentYear)
+  },
+  prevMonth:function(e){
+    this.getDaysInfo(e.detail.currentMonth,e.detail.currentYear)
+  },
+  dateChange:function(e){
+    this.getDaysInfo(e.detail.currentMonth,e.detail.currentYear)
+  },
+  //点击日历某一天
+  dayClick:function(e){
+    const that = this
+    wx.request({
+      // url: app.globalData.host+'/stu/dayDetail?year='+e.detail.year+'&month='+e.detail.month+'&day='+e.detail.day,
+      url: app.globalData.host+'/stu/dayDetail',
+      method:"GET",
+      "header": {
+        "content-type":"application/json; charset=utf-8",
+        "token":""
+      },
+      timeout:10000,
+      success:function(res){
+        that.setData({
+          dialogTitle:e.detail.month+"."+e.detail.day,
+          checkinTime:res.data.checkinTime,
+          checkinAddress:res.data.checkinAddress,
+          checkoutTime:res.data.checkoutTime,
+          checkoutAddress:res.data.checkoutAddress,
+          dialogShow:true
+        })
+      }
+    })
+  },
+  //渲染某个月的日历
+  getDaysInfo:function(currentMonth,currentYear){
+    const that = this
+    wx.request({
+      // url: app.globalData.host+'/stu/daysInfo?month='+currentMonth+"&year="+currentYear,
+      url: app.globalData.host+'/stu/daysInfo',
+      method:"GET",
+      "header": {
+        "content-type":"application/json; charset=utf-8",
+        "token":""
+      },
+      timeout:10000,
+      success:function(res){
+        that.setData({
+          daysInfo:res.data.daysInfo
+        })
+      }
+    })
+  },
 
+  tapDialogButton(e) {
+    this.setData({
+      dialogShow: false
+    })
   },
 
   /**
@@ -137,38 +205,4 @@ Page({
     }
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  }
 })

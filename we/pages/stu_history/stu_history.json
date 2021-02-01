@@ -1,7 +1,8 @@
 {
   "usingComponents": {
     "chart": "plugin://echarts/chart",
-    "calendar": "plugin://calendar/calendar"
+    "calendar": "plugin://calendar/calendar",
+    "mp-dialog": "/miniprogram_npm/weui-miniprogram/dialog/dialog"
   },
   "disableScroll":true
 }

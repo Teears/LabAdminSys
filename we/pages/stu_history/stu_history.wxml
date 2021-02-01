@@ -10,9 +10,11 @@
       <chart chart-class="detail_chart card" option="{{detailOption}}" />
     </view>
   </view>
+
   <view class="calendar_box">
-    <!-- <van-calendar min-date="{{ minDate }}" max-date="{{ maxDate }}" type="single" color="#006699" row-height="48" show-title="{{false}}" show-subtitle="{{false}}"  poppable="{{ false }}" show-confirm="{{ false }}" default-date="{{defaultDate}}" class="calendar"/> -->
-    <calendar claendar-style="calendar" header-style="header" board-style="board" weeks-type="cn"active-type="rounded"/>
+    <calendar claendar-style="calendar" header-style="header" board-style="board" weeks-type="cn" show-more-days="true" 
+    start-date="{{startDate}}" end-date="{{endDate}}" 
+    days-color="{{daysInfo}}" bindnextMonth="nextMonth" bindprevMonth="prevMonth" binddateChange="dateChange" binddayClick="dayClick"/>
 
     <view class="legend_box">
       <view class="legend legend1"></view><text>到勤</text>
@@ -21,7 +23,12 @@
       <view class="legend legend4"></view><text>请假</text>
     </view>
   </view>
-  
+  <mp-dialog title="{{dialogTitle}}" show="{{dialogShow}}" buttons="{{oneButton}}" bindbuttontap="tapDialogButton">
+        <view class="dialog_content"><text decode="{{true}}">
+          签到：{{checkinTime}}\n{{checkinAddress}}\n
+          签退：{{checkoutTime}}\n{{checkoutAddress}}
+        </text></view>
+  </mp-dialog>
 </view>
 
 

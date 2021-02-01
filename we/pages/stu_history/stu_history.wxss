@@ -9,6 +9,10 @@
   border-right: thin solid rgb(221, 221, 221);
   border-radius: 20rpx;
   background-color: white;
+} 
+.dialog_content{
+  text-align: left;
+  font-size: smaller;
 }
 /* 
   calendar
@@ -31,7 +35,7 @@
   background-color: white;
   color: #a9a9a9;
   padding-top: 30rpx;
-  height: 530rpx;
+  height: 560rpx;
 }
 /* 图例 */
 .legend_box{
@@ -107,7 +111,6 @@
   top:50%;
   transform: translateY(-50%);
 }
-
 .detail_chart{
   width: 100%;
   height: 48%;
