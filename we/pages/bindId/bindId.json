@@ -1,6 +1,7 @@
 {
   "usingComponents": {
-    "mp-form": "/miniprogram_npm/weui-miniprogram/form/form",
-    "mp-cell": "/miniprogram_npm/weui-miniprogram/cell/cell"
+    "van-cell": "@vant/weapp/cell/index",
+    "van-cell-group": "@vant/weapp/cell-group/index",
+    "van-field": "@vant/weapp/field/index"
   }
 }

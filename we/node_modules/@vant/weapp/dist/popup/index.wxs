@@ -1,0 +1,33 @@
+function overlayStyle(data) {
+  var style = '';
+
+  if (data.position === 'center') {
+    return [
+      'display: flex',
+      'justify-content: center',
+      'align-items: center',
+    ].join(';');
+  }
+
+  if (data.position === 'top') {
+    return ['display: flex', 'align-items: flex-start'].join(';');
+  }
+
+  if (data.position === 'bottom') {
+    return ['display: flex', 'align-items: flex-end'].join(';');
+  }
+
+  if (data.position === 'right') {
+    return ['display: flex', 'justify-content: flex-end'].join(';');
+  }
+
+  if (data.position === 'left') {
+    return ['display: flex', 'justify-content: flex-start'].join(';');
+  }
+
+  return style;
+}
+
+module.exports = {
+  overlayStyle: overlayStyle,
+};

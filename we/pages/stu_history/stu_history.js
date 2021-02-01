@@ -1,4 +1,5 @@
 // pages/stu_history/stu_history.js
+// "mp-dialog": "/miniprogram_npm/weui-miniprogram/dialog/dialog"
 const app = getApp()
 Page({
   /**

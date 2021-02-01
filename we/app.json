@@ -1,9 +1,9 @@
 {
   "pages":[
-    "pages/stu_history/stu_history",
-    "pages/stu_check/stu_check",
     "pages/start/start",
     "pages/bindId/bindId",
+    "pages/stu_check/stu_check",
+    "pages/stu_history/stu_history",
     "pages/stu_mine/stu_mine",
     "pages/tea_mine/tea_mine",
     "pages/tea_manage/tea_manage",
@@ -64,6 +64,5 @@
     }
   },
   
-  "style": "v2",
   "sitemapLocation": "sitemap.json"
 }

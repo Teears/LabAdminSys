@@ -1,0 +1,42 @@
+<wxs src="../wxs/utils.wxs" module="utils" />
+<wxs src="./index.wxs" module="computed" />
+
+<van-overlay
+  wx:if="{{ overlay }}"
+  show="{{ show }}"
+  z-index="{{ zIndex }}"
+  custom-style="{{ overlayStyle }}; {{ computed.overlayStyle({ position }) }}"
+  duration="{{ duration }}"
+  bind:click="onClickOverlay"
+>
+  <view
+    wx:if="{{ inited }}"
+    class="custom-class {{ classes }} {{ utils.bem('popup', [position, { withoverlay: true, round, safe: safeAreaInsetBottom, safeTop: safeAreaInsetTop }]) }}"
+    style="z-index: {{ zIndex }}; -webkit-transition-duration:{{ currentDuration }}ms; transition-duration:{{ currentDuration }}ms; {{ display ? '' : 'display: none;' }};{{ customStyle }}"
+    bind:transitionend="onTransitionEnd"
+    catchtap
+  >
+    <slot />
+    <van-icon
+      wx:if="{{ closeable }}"
+      name="{{ closeIcon }}"
+      class="close-icon-class van-popup__close-icon van-popup__close-icon--{{ closeIconPosition }}"
+      bind:tap="onClickCloseIcon"
+    />
+  </view>
+</van-overlay>
+
+<view
+    wx:elif="{{ inited }}"
+    class="custom-class {{ classes }} {{ utils.bem('popup', [position, { round, safe: safeAreaInsetBottom, safeTop: safeAreaInsetTop }]) }}"
+    style="z-index: {{ zIndex }}; -webkit-transition-duration:{{ currentDuration }}ms; transition-duration:{{ currentDuration }}ms; {{ display ? '' : 'display: none;' }};{{ customStyle }}"
+    bind:transitionend="onTransitionEnd"
+  >
+    <slot />
+    <van-icon
+      wx:if="{{ closeable }}"
+      name="{{ closeIcon }}"
+      class="close-icon-class van-popup__close-icon van-popup__close-icon--{{ closeIconPosition }}"
+      bind:tap="onClickCloseIcon"
+    />
+  </view>

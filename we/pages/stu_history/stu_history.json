@@ -2,7 +2,7 @@
   "usingComponents": {
     "chart": "plugin://echarts/chart",
     "calendar": "plugin://calendar/calendar",
-    "mp-dialog": "/miniprogram_npm/weui-miniprogram/dialog/dialog"
+    "van-popup": "@vant/weapp/popup/index"
   },
   "disableScroll":true
 }

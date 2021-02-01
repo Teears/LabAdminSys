@@ -1,4 +1,6 @@
 // pages/bindId/bindId.js
+// "mp-form": "/miniprogram_npm/weui-miniprogram/form/form",
+// "mp-cell": "/miniprogram_npm/weui-miniprogram/cell/cell"
 const app = getApp()
 Page({
   /**
@@ -26,24 +28,24 @@ Page({
   // 获取学号
   getStuNumber:function(e){
     this.setData({
-      'stuForm.stuNumber': e.detail.value
+      'stuForm.stuNumber': e.detail
     })
   },
   // 获取学生密码
   getStuPassword:function(e){
     this.setData({
-      'stuForm.stuPassword': e.detail.value
+      'stuForm.stuPassword': e.detail
     })
   },
   // 获取工号
   getTeaNumber:function(e){
     this.setData({
-      'teaForm.teaNumber': e.detail.value
+      'teaForm.teaNumber': e.detail
     })
   },
   getTeaPassword:function(e){
     this.setData({
-      'teaForm.teaPassword': e.detail.value
+      'teaForm.teaPassword': e.detail
     })
   },
   /* 
