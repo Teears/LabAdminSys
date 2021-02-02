@@ -1,4 +1,4 @@
-// pages/stu_qingjia.js
+// stu/pages/stu_shiyanshi/stu_shiyanshi.js
 Page({
 
   /**

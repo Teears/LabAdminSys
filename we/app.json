@@ -5,10 +5,28 @@
     "pages/bindId/bindId",
     "pages/stu_check/stu_check",
     "pages/stu_history/stu_history",
-    "pages/stu_qingjia/stu_qingjia",
+
     "pages/tea_mine/tea_mine",
     "pages/tea_manage/tea_manage",
-    "pages/tea_message/tea_message"
+    "pages/tea_message/tea_message",
+
+    "pages/feedback/feedback"
+  ],
+  "subpackages": [
+    {
+      "root": "stu",
+      "pages": [
+        "pages/stu_qingjia/stu_qingjia",
+        "pages/stu_shiyanshi/stu_shiyanshi",
+        "pages/stu_xiaoxi/stu_xiaoxi",
+        "pages/stu_userInfo/stu_userInfo"
+      ]
+    }, {
+      "root": "tea",
+      "pages": [
+        "pages/tea_userInfo/tea_userInfo"
+      ]
+    }
   ],
   "permission": {
     "scope.userLocation": {

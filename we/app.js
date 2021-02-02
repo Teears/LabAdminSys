@@ -41,6 +41,9 @@ App({
                   wx.setStorageSync('token', res.data.token)
                   wx.setStorageSync('roleId', res.data.roleId)
                   wx.setStorageSync('session_key', res.data.session_key)
+                  wx.setStorageSync('userName', res.data.userName)
+                  wx.setStorageSync('belong', res.data.belong)
+                  wx.setStorageSync('avatarUrl', res.data.avatarUrl)
                 } catch (e) {
                   console.log("同步保存出错")
                 }
