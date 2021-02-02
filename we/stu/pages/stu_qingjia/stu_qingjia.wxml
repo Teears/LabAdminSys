@@ -12,4 +12,7 @@
     </text>
   </view>
 </van-panel>
+<button bindtap="addBtn">
+  <icon class="jia_icon" class="iconfont icon-jia"></icon>
+</button>
 </view>
