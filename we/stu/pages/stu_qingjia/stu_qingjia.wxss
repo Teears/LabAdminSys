@@ -1,1 +1,25 @@
 /* stu/pages/stu_qingjia/stu_qingjia.wxss */
+.out_wrapper{
+  background-color: #F7F7F7;
+}
+.panel{
+  font-size: smaller;
+  padding: 30rpx;
+  margin: 5rpx;
+  margin-right: 15rpx;
+  margin-left: 15rpx;
+  border-radius: 15rpx;
+}
+.header{
+  color: #666699;
+}
+.days{
+  margin: 1rpx;
+}
+.tag{
+  float: right;
+}
+.content{
+  color: #999999;
+  word-break:break-all;
+}

@@ -1,2 +1,15 @@
 <!--stu/pages/stu_qingjia/stu_qingjia.wxml-->
-<text>stu/pages/stu_qingjia/stu_qingjia.wxml</text>
+<view class="out_wrapper">
+<van-panel custom-class="panel" wx:for="{{list}}" wx:key="*this">
+  <view class="header" slot="header">
+    <text class="title">{{item.title.type}}：</text>
+    <van-tag custom-class="days" plain round color="#666699" wx:for-item="item1" wx:for="{{item.title.days}}" wx:key="*this">{{item1}}</van-tag>
+    <van-tag custom-class="tag" plain type="{{item.tagType}}">{{item.tag}}</van-tag>
+  </view>
+  <view class="content">
+    <text>
+      申请时间：{{item.applyTime}}\n{{item.content}}
+    </text>
+  </view>
+</van-panel>
+</view>
