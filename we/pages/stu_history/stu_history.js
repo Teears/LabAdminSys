@@ -158,7 +158,7 @@ Page({
       timeout:10000,
       success:function(res){
         that.setData({
-          dialogTitle:e.detail.month+"."+e.detail.day,
+          dialogTitle:e.detail.month+"月"+e.detail.day+"日",
           checkinTime:res.data.checkinTime,
           checkinAddress:res.data.checkinAddress,
           checkoutTime:res.data.checkoutTime,

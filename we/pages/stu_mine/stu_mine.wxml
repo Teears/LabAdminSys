@@ -1,2 +1,17 @@
 <!--pages/stu_mine/stu_mine.wxml-->
-<text>pages/stu_mine/stu_mine.wxml</text>
+<view class="out_wrapper">
+  <view class="avatar_view">
+    <van-image round width="6rem" height="6rem" fit="cover" src="{{avatarUrl}}"/>
+    <text class="nameText" style="font-size: larger;font-weight: 700">{{stuName}}</text>
+    <text class="belongText" style="font-size: smaller">{{belong}}</text>
+  </view>
+  <van-cell-group custom-class="cell_group">
+    <van-cell title="请假" title-class="cell_title" is-link><icon class="iconfont icon-qingjia" url="/pages/stu_qingjia/stu_qingjia" /></van-cell>
+    <van-cell title="实验室" title-class="cell_title" is-link><icon class="iconfont icon-shiyanshi" /></van-cell>
+    <van-cell title="消息中心" title-class="cell_title" is-link><icon class="iconfont icon-xiaoxi" /></van-cell>
+  </van-cell-group>
+  <van-cell-group>
+    <van-cell title="个人信息" title-class="cell_title" is-link><icon class="iconfont icon-gerenxinxi" /></van-cell>
+    <van-cell title="反馈" title-class="cell_title" is-link><icon class="iconfont icon-fankui" /></van-cell>
+  </van-cell-group>
+</view>

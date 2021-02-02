@@ -1,13 +1,11 @@
-// pages/stu_mine/stu_mine.js
+// pages/stu_qingjia.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    avatarUrl:"https://img.yzcdn.cn/vant/cat.jpeg",
-    stuName:"张三",
-    belong:"实验室101"
+
   },
 
   /**
@@ -28,12 +26,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    if (typeof this.getTabBar === 'function' &&
-        this.getTabBar()) {
-        this.getTabBar().setData({
-          selected: 2
-        })
-      }
+
   },
 
   /**

@@ -8,23 +8,12 @@
     <template is="roundIcon" data="{{...stuIcon}}"></template>
   </view>
   <van-cell-group>
-    <van-field type="number" class="formCell" name="" value="{{stuNumber}}" bind:change="getStuNumber" label="账号：" placeholder="请输入学号"/>
-    <van-field type="password" class="formCell" name="" value="{{stuPassword}}" bind:change="getStuPassword" label="密码：" placeholder="默认密码为身份证后六位"/>
+    <van-field type="number" class="formCell" value="{{stuNumber}}" bind:change="getStuNumber" label="账号：" placeholder="请输入学号"/>
+    <van-field type="password" class="formCell" value="{{stuPassword}}" bind:change="getStuPassword" label="密码：" placeholder="默认密码为身份证后六位"/>
     <view class="btn-area">
       <button class="submitBtn" form-type="submit" bindtap="submitStuForm">确认绑定</button>
     </view>
   </van-cell-group>
-  <!-- <mp-form>
-    <mp-cell prop="stuNumber" title="账号：" ext-class="formCell">
-      <input bindinput="getStuNumber" placeholder="请输入学号" class="formInput"/>
-    </mp-cell>
-    <mp-cell prop="stuPassword" title="密码：" ext-class="formCell">
-      <input password="true" bindinput="getStuPassword" placeholder="默认密码为身份证后六位" class="formInput"/>
-    </mp-cell>
-    <view class="btn-area">
-      <button class="submitBtn" form-type="submit" bindtap="submitStuForm">确认绑定</button>
-    </view>
-  </mp-form> -->
 </view>
 </block>
 
@@ -35,23 +24,12 @@
     <template is="roundIcon" data="{{...teaIcon}}"></template>
   </view>
   <van-cell-group>
-    <van-field type="number" class="formCell" name="" value="{{teaNumber}}" bind:change="getteaNumber" label="账号：" placeholder="请输入学号"/>
-    <van-field type="password" class="formCell" name="" value="{{stuPassword}}" bind:change="getStuPassword" label="密码：" placeholder="默认密码为身份证后六位"/>
+    <van-field type="number" class="formCell" value="{{teaNumber}}" bind:change="getTeaNumber" label="账号：" placeholder="请输入工号"/>
+    <van-field type="password" class="formCell" value="{{teaPassword}}" bind:change="getTeaPassword" label="密码：" placeholder="默认密码为身份证后六位"/>
     <view class="btn-area">
-      <button class="submitBtn" form-type="submit" bindtap="submitStuForm">确认绑定</button>
+      <button class="submitBtn" form-type="submit" bindtap="submitTeaForm">确认绑定</button>
     </view>
   </van-cell-group>
-  <!-- <mp-form>
-    <mp-cell prop="teaNumber" title="账号：" ext-class="formCell">
-      <input bindinput="getTeaNumber" placeholder="请输入工号" class="formInput"/>
-    </mp-cell>
-    <mp-cell prop="teaPassword" title="密码：" ext-class="formCell">
-      <input bindinput="getTeaPassword" placeholder="默认密码为身份证后六位" class="formInput"/>
-    </mp-cell>
-    <view class="btn-area">
-      <button class="submitBtn" form-type="submit" size="primary" bindtap="submitTeaForm">确认绑定</button>
-    </view>
-  </mp-form> -->
 </view>
 </block>
 

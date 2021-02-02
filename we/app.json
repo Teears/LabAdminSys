@@ -1,10 +1,11 @@
 {
-  "pages":[
+  "pages": [
+    "pages/stu_mine/stu_mine",
     "pages/start/start",
     "pages/bindId/bindId",
     "pages/stu_check/stu_check",
     "pages/stu_history/stu_history",
-    "pages/stu_mine/stu_mine",
+    "pages/stu_qingjia/stu_qingjia",
     "pages/tea_mine/tea_mine",
     "pages/tea_manage/tea_manage",
     "pages/tea_message/tea_message"
@@ -14,11 +15,11 @@
       "desc": "你的位置信息将用于签到定位"
     }
   },
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#0d1327",
     "navigationBarTitleText": "",
-    "navigationBarTextStyle":"white"
+    "navigationBarTextStyle": "white"
   },
   "tabBar": {
     "custom": true,
@@ -26,32 +27,38 @@
     "selectedColor": "#D99993",
     "borderStyle": "black",
     "color": "#ffffff",
-    "list": [{
-      "pagePath": "pages/stu_history/stu_history",
-      "text": "历史",
-      "iconPath":"image/clock.png",
-      "selectedIconPath":"image/clock_on.png"
-    },{
-      "pagePath": "pages/stu_check/stu_check",
-      "text": "签到",
-      "iconPath":"image/check.png",
-      "selectedIconPath":"image/check_on.png"
-    },{
-      "pagePath": "pages/tea_message/tea_message",
-      "text": "消息",
-      "iconPath":"image/mail.png",
-      "selectedIconPath":"image/mail_on.png"
-    },{
-      "pagePath": "pages/tea_manage/tea_manage",
-      "text": "管理",
-      "iconPath":"image/manage.png",
-      "selectedIconPath":"image/manage_on.png"
-    },{
-      "pagePath": "pages/stu_mine/stu_mine",
-      "text": "个人",
-      "iconPath":"image/mine.png",
-      "selectedIconPath":"image/mine_on.png"
-    }]
+    "list": [
+      {
+        "pagePath": "pages/stu_history/stu_history",
+        "text": "历史",
+        "iconPath": "image/clock.png",
+        "selectedIconPath": "image/clock_on.png"
+      },
+      {
+        "pagePath": "pages/stu_check/stu_check",
+        "text": "签到",
+        "iconPath": "image/check.png",
+        "selectedIconPath": "image/check_on.png"
+      },
+      {
+        "pagePath": "pages/tea_message/tea_message",
+        "text": "消息",
+        "iconPath": "image/mail.png",
+        "selectedIconPath": "image/mail_on.png"
+      },
+      {
+        "pagePath": "pages/tea_manage/tea_manage",
+        "text": "管理",
+        "iconPath": "image/manage.png",
+        "selectedIconPath": "image/manage_on.png"
+      },
+      {
+        "pagePath": "pages/stu_mine/stu_mine",
+        "text": "个人",
+        "iconPath": "image/mine.png",
+        "selectedIconPath": "image/mine_on.png"
+      }
+    ]
   },
   "plugins": {
     "echarts": {
@@ -63,6 +70,5 @@
       "provider": "wx92c68dae5a8bb046"
     }
   },
-  
   "sitemapLocation": "sitemap.json"
 }

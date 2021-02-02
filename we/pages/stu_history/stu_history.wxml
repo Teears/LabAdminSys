@@ -24,7 +24,15 @@
     </view>
   </view>
 
-  <van-popup round custom-style="height: 40%;width:70%" show="{{dialogShow}}" bind:close="tapDialogButton">内容</van-popup>
+  <van-popup round custom-class="popup" show="{{dialogShow}}" bind:close="tapDialogButton">
+    <view class="popup_title">
+      {{dialogTitle}}
+    </view>
+    <view class="popup_content"><text decode="{{true}}">
+      签到：{{checkinTime}}\n{{checkinAddress}}\n
+      签退：{{checkoutTime}}\n{{checkoutAddress}}
+    </text></view>
+  </van-popup>
 
   <!-- <mp-dialog title="{{dialogTitle}}" show="{{dialogShow}}" buttons="{{oneButton}}" bindbuttontap="tapDialogButton">
         <view class="dialog_content"><text decode="{{true}}">

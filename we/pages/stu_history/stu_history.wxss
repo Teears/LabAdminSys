@@ -10,9 +10,22 @@
   border-radius: 20rpx;
   background-color: white;
 } 
-.dialog_content{
-  text-align: left;
-  font-size: smaller;
+.popup{
+  height: 500rpx;
+  width: 80%;
+  border-radius: 10rpx;
+  padding: 40rpx;
+}
+.popup_content{
+  color: #999999;
+  word-break:break-all;
+}
+.popup_title{
+  height: 60rpx;
+  text-align: center;
+  color: #666699;
+  font-size: x-large;
+  font-weight: 700;
 }
 /* 
   calendar
