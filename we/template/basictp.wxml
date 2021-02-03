@@ -8,8 +8,10 @@
 </template>
 
 <template name="quesheng">
-  <view class="zhanwei">
+  <view class="wrapper">
+    <view class="content">
     <image src="/image/taikong.png" mode="aspectFit" ></image>
-    <text>{{quesheng}}</text>
+    <text>{{queshengText}}</text>
+    </view>
   </view>
 </template>

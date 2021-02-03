@@ -1,46 +1,71 @@
 // stu/pages/stu_qingjia/stu_qingjia.js
 const app = getApp()
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    currentPage:1,
-    pageSize:10,
-    list:[]
+    queshengMark: 0,
+    queshengText: "您没有任何请假记录",
+    currentPage: 1,
+    pageSize: 10,
+    last: false,
+    list: [],
+    loading: false,
+    loadingFail: false
   },
 
-  getDayoffList:function(){
+  getDayoffList: function () {
     const that = this
-    wx.request({
-      // url: app.globalData.host+'/stu/dayDetail?currentPage='+that.data.currentPage+'&pageSize='+that.data.pageSize,
-      url: app.globalData.host+'/stu/dayoffList',
-      method:"GET",
-      "header": {
-        "content-type":"application/json; charset=utf-8",
-        "token":""
-      },
-      timeout:10000,
-      success:function(res){
-        var list = res.data.list
-        for(var i = 0;i < list.length;i++){
-          if(list[i].tag==0){
-            list[i]['tagType'] = "danger"
-            list[i].tag = "驳回"
-          }else if(list[i].tag==1){
-            list[i]['tagType'] = "success"
-            list[i].tag = "批准"
-          }else{
-            list[i]['tagType'] = "primary"
-            list[i].tag = "等待"
+    var promise = new Promise((resolve, reject) => {
+      wx.request({
+        // url: app.globalData.host+'/stu/dayDetail?currentPage='+that.data.currentPage+'&pageSize='+that.data.pageSize,
+        url: app.globalData.host + '/stu/dayoffList',
+        method: "GET",
+        "header": {
+          "content-type": "application/json; charset=utf-8",
+          "token": ""
+        },
+        timeout: 10000,
+        success: function (res) {
+          var list = res.data.list
+          for (var i = 0; i < list.length; i++) {
+            if (list[i].tag == 0) {
+              list[i]['tagType'] = "danger"
+              list[i].tag = "驳回"
+            } else if (list[i].tag == 1) {
+              list[i]['tagType'] = "success"
+              list[i].tag = "批准"
+            } else {
+              list[i]['tagType'] = "primary"
+              list[i].tag = "等待"
+            }
           }
+          that.setData({
+            list: that.data.list.concat(list),
+            currentPage: that.data.currentPage + 1,
+            last: res.data.last,
+            loading: false
+          })
+          resolve(list.length)
+        },
+        fail: function () {
+          that.setData({
+            loading: false,
+            loadingFail: true
+          })
+          reject()
         }
-        that.setData({
-          list:list,
-          currentPage:that.data.currentPage+1
-        })
-      }
+      })
+    })
+    return promise
+  },
+
+  addBtn: function () {
+    wx.navigateTo({
+      url: '/stu/pages/stu_addqingjia/stu_addqingjia',
     })
   },
 
@@ -48,55 +73,29 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getDayoffList()
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
+    const that = this
+    this.getDayoffList().then(res=>{
+      if(res==0){
+        that.setData({
+          queshengMark:1
+        })
+      }
+    })
   },
 
   /**
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
+    if (this.data.last == true) {
+      return
+    }
+    this.setData({
+      loadingFail: false,
+      loading: true
+    })
+    this.getDayoffList()
 
   }
+
 })

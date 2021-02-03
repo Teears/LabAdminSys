@@ -13,7 +13,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    queshengMark:0,
+    queshengMark:1,
     queshengText:"你尚未加入任何实验室",
     rank:"12",  //签到名次
     address:'',

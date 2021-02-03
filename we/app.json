@@ -1,9 +1,9 @@
 {
   "pages": [
     "pages/stu_mine/stu_mine",
+    "pages/stu_check/stu_check",
     "pages/start/start",
     "pages/bindId/bindId",
-    "pages/stu_check/stu_check",
     "pages/stu_history/stu_history",
 
     "pages/tea_mine/tea_mine",
@@ -17,6 +17,7 @@
       "root": "stu",
       "pages": [
         "pages/stu_qingjia/stu_qingjia",
+        "pages/stu_addqingjia/stu_addqingjia",
         "pages/stu_shiyanshi/stu_shiyanshi",
         "pages/stu_xiaoxi/stu_xiaoxi",
         "pages/stu_userInfo/stu_userInfo"

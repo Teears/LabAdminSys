@@ -1,6 +1,9 @@
 /* stu/pages/stu_qingjia/stu_qingjia.wxss */
+@import"/template/basictp.wxss";
 .out_wrapper{
   background-color: #F7F7F7;
+  width: 100%;
+  height: 100%;
 }
 .panel{
   font-size: smaller;
@@ -38,4 +41,18 @@ button{
 .jia_icon{
   font-size: xx-large;
   font-weight: 700;
+}
+.loading_text{
+  width: 100%;
+  color: #999999;
+  font-size: smaller;
+  text-align: center;
+  margin: 10rpx;
+  margin-bottom: 20rpx;
+}
+.loading{
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+  margin: 10rpx;
 }
