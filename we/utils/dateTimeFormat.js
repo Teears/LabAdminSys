@@ -1,5 +1,5 @@
-function enMonthFormat(){
-  var month = new Date().getMonth()+1
+function enMonthFormat(date){
+  var month = new Date(date).getMonth()+1
   switch(month){
     case 1:
       month = "Jan"
@@ -37,4 +37,17 @@ function enMonthFormat(){
     case 12:
       month = "Dec"
   }
+  return month
 }
+
+function monthAndDayformat(date) {
+  var date = new Date(date);
+  return `${date.getMonth() + 1}/${date.getDate()}`;
+}
+
+module.exports = {
+  monthAndDayformat: monthAndDayformat,
+  enMonthFormat: enMonthFormat
+}
+
+
