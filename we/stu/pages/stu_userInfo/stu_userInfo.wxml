@@ -1,2 +1,19 @@
 <!--stu/pages/stu_userInfo/stu_userInfo.wxml-->
-<text>stu/pages/stu_userInfo/stu_userInfo.wxml</text>
+<view class="out_wrapper">
+  <view class="cell_group">
+    <van-cell title="头像" center clickable bind:click="tapAvatar">
+      <van-image round width="3rem" height="3rem" fit="cover" src="{{avatarUrl}}" />
+    </van-cell>
+    <van-cell title="姓名" value="张小明" />
+    <van-cell title="性别" value="男" />
+  </view>
+  <view class="cell_group">
+    <van-cell title="学号" value="2017110323" clickable bind:click="tapStuNumber"/>
+    <van-cell title="手机号" value="18712344321" clickable bind:click="tapPhone"/>
+    <van-cell title="学院" value="计算机科学学院" />
+    <van-cell title="专业" value="网络工程" />
+    <van-cell title="实验室" value="102实验室" />
+  </view>
+  <van-button class="button" type="danger" block bindtap="dropout">退出实验室</van-button>
+  <van-dialog id="van-dialog" />
+</view>

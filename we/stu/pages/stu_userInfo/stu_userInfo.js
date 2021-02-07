@@ -1,13 +1,49 @@
 // stu/pages/stu_userInfo/stu_userInfo.js
+import Dialog from '@vant/weapp/dialog/dialog';
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    "avatarUrl": "https://img.yzcdn.cn/vant/cat.jpeg",
   },
 
+
+  dropout: function () {
+    Dialog.confirm({
+      title: '确定退出吗？',
+      message: '退出实验室后需要再次审核才能加入',
+    }).then(() => {
+      console.log("confirm")
+    })
+      .catch(() => {
+        console.log("cancel")
+      })
+  },
+
+  tapAvatar: function () {
+    wx.chooseImage({
+      count: 1,
+      sizeType: ['original', 'compressed'],
+      sourceType: ['album', 'camera'],
+      success(res) {
+        // tempFilePath可以作为img标签的src属性显示图片
+        const tempFilePaths = res.tempFilePaths[0]
+        console.log(tempFilePaths)
+        wx.navigateTo({
+          url: '/stu/pages/uploader/uploader?src=' + tempFilePaths
+        })
+      }
+    })
+  },
+  tapStuNumber: function () {
+
+  },
+  tapPhone: function () {
+
+  },
   /**
    * 生命周期函数--监听页面加载
    */

@@ -1,0 +1,21 @@
+/* stu/pages/uploader/uploader.wxss */
+.cropper-wrapper{
+  height: 100%;
+  width: 100%;
+}
+.cropper-buttons{
+  position: absolute;
+  bottom: 100rpx;
+  
+}
+.cancel{
+  display: inline-block;
+  margin-left: 100rpx;
+}
+.enter{
+  margin-right: 100rpx;
+  display: inline-block;
+}
+image{
+  
+}
