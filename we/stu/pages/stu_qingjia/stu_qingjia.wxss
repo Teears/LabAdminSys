@@ -3,7 +3,6 @@
 .out_wrapper{
   background-color: #F7F7F7;
   width: 100%;
-  height: 100%;
 }
 .panel{
   font-size: smaller;

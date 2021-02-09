@@ -5,17 +5,9 @@
 }
 .cropper-buttons{
   position: absolute;
-  bottom: 100rpx;
-  
+  bottom: 10rpx;
 }
-.cancel{
-  display: inline-block;
-  margin-left: 100rpx;
-}
-.enter{
-  margin-right: 100rpx;
-  display: inline-block;
-}
-image{
-  
+.btn{
+  margin: 110rpx;
+  width: 150rpx;
 }

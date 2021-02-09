@@ -1,6 +1,6 @@
 <template name="roundIcon">
   <view>
-    <view class="roundIcon">
+    <view class="tmp_roundIcon">
       <text >{{tpText}}</text>
       <image src="{{tpIcon}}" mode="aspectFit"></image>
     </view>
@@ -8,8 +8,8 @@
 </template>
 
 <template name="quesheng">
-  <view class="wrapper">
-    <view class="content">
+  <view class="tmp_wrapper">
+    <view class="tmp_content">
     <image src="/image/taikong.png" mode="aspectFit" ></image>
     <text>{{queshengText}}</text>
     </view>

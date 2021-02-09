@@ -4,6 +4,7 @@ import WeCropper from '../../../components/we-cropper/we-cropper.js'
 const device = wx.getSystemInfoSync() // 获取设备信息
 const width = device.windowWidth // 示例为一个与屏幕等宽的正方形裁剪框
 const height = device.windowHeight
+const app = getApp()
 Page({
 
 
@@ -21,37 +22,79 @@ Page({
       zoom: 8, // 缩放系数
       cut: {
         x: 10, // 裁剪框x轴起点
-        y: (height-width)/2+10, // 裁剪框y轴期起点
-        width: width-20, // 裁剪框宽度
-        height: width-20 // 裁剪框高度
+        y: (height - width) / 2 + 10, // 裁剪框y轴期起点
+        width: width - 20, // 裁剪框宽度
+        height: width - 20 // 裁剪框高度
       },
       src: '',
     }
   },
-  enterTap:function(){
+  upload: function (path) {
+    wx.showLoading({
+      title: '上传中...',
+    })
+    setTimeout(function () {
+      wx.hideLoading()
+    }, 20000)
+    wx.uploadFile({
+      url: app.globalData.host, //仅为示例，非真实的接口地址
+      filePath: path,
+      name: 'file',
+      header: {
+        "content-type": "multipart/form-data",
+        "token": ""
+      },
+      success: function(res){
+        console.log(res)
+        if(res.statusCode != 200){
+          wx.showToast({
+            title: '上传失败',
+            icon: "none",
+            duration: 2000
+          })
+          return
+        }
+        wx.setStorageSync('avatarUrl', res.data.avatarUrl)
+        wx.navigateBack({
+          delta: 1,
+        })
+      },
+      fail:function(){
+        wx.showToast({
+          title: '上传失败',
+          icon: "none",
+          duration: 2000
+        })
+      },
+      complete:function(){
+        wx.hideLoading()
+      }
+    })
+  },
+
+  enterTap: function () {
+    const that = this
     this.wecropper.getCropperImage((tempFilePath) => {
       // tempFilePath 为裁剪后的图片临时路径
       if (tempFilePath) {
-        wx.previewImage({
-          current: '',
-          urls: [tempFilePath]
-        })
+        that.upload(tempFilePath)
       } else {
         console.log('获取图片地址失败，请稍后重试')
       }
     })
   },
-  cancelTap:function(){
+  cancelTap: function () {
     wx.navigateBack({
       delta: 1,
     })
   },
+  
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     this.setData({
-      "cropperOpt.src" : options.src
+      "cropperOpt.src": options.src
     })
     const { cropperOpt } = this.data
     this.cropper = new WeCropper(cropperOpt)
@@ -69,7 +112,6 @@ Page({
         wx.hideToast()
       })
   },
-
   touchStart(e) {
     this.cropper.touchStart(e)
   },
@@ -78,53 +120,5 @@ Page({
   },
   touchEnd(e) {
     this.cropper.touchEnd(e)
-  },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
   }
 })

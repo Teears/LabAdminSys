@@ -39,10 +39,14 @@ Page({
     })
   },
   tapStuNumber: function () {
-
+    wx.navigateTo({
+      url: '/pages/bindId/bindId'
+    })
   },
   tapPhone: function () {
-
+    wx.navigateTo({
+      url: '/stu/pages/change_phone/change_phone'
+    })
   },
   /**
    * 生命周期函数--监听页面加载

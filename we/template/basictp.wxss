@@ -1,7 +1,7 @@
 /* 
 圆形icon标志
  */
-.roundIcon{
+.tmp_roundIcon{
   overflow: hidden;
   display: flex;
   flex-direction: column;
@@ -11,22 +11,22 @@
   height: 250rpx;
   /* border: thin solid rgb(221, 221, 221); */
 }
-.roundIcon image{
+.tmp_roundIcon image{
   width: auto;
 }
-.roundIcon text{
+.tmp_roundIcon text{
   font-size: 32rpx;
   margin-bottom: 20rpx;
 }
 /* 缺省页 */
-.wrapper{
+.tmp_wrapper{
   width: 100%;
   height: 100%;
   background-color: #F7F7F7;
   overflow: hidden;
   text-align: center;
 }
-.content{
+.tmp_content{
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -35,7 +35,7 @@
   color: gray;
   margin-top: 300rpx;
 }
-.content image{
+.tmp_content image{
   width: 400rpx;
   height: 300rpx;
 }

@@ -28,7 +28,7 @@ Page({
     wx.request({
       url: app.globalData.host + '/stu/shiyanshi',
         method: "GET",
-        "header": {
+        header: {
           "content-type": "application/json; charset=utf-8",
           "token": ""
         },

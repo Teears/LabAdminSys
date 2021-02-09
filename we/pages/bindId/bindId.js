@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    roleId:null,
+    roleId:0,
     stuForm:{
       stuNumber:"",
       stuPassword:""
