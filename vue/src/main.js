@@ -2,6 +2,7 @@ import Vue from 'vue'
 import App from './App.vue'
 import ElementUI from 'element-ui';
 import './theme/index.css';
+import './assets/iconfont/iconfont.css'
 
 Vue.use(ElementUI,{ size: 'small'});
 

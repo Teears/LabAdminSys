@@ -2,23 +2,28 @@
   <div id="app">
     <el-container>
 			<el-main>
-				
+				<login></login>
 			</el-main>
 			<el-footer>
-				这是 footer text
+				{{footerText}}
 			</el-footer>
 		</el-container>
   </div>
 </template>
 
 <script>
-// import HelloWorld from './components/HelloWorld.vue'
+import login from './components/Login.vue'
 
 export default {
   name: 'App',
   components: {
-    // HelloWorld
-  }
+    login
+  },
+	data(){
+		return{
+			footerText:"CopyRight@Teears 蜀ICP备2021003161号"
+		}
+	}
 }
 </script>
 
@@ -30,14 +35,17 @@ export default {
 #app,html,body,.el-container{
 	height:100%;
 }
+</style>
+
+<style scoped>
+.el-container{
+  background: url('./assets/back.jpg') no-repeat bottom;
+  background-size:cover;
+}
 .el-footer{
-	background-color: #233B6E;
 	color: #DCDFE6;
 	text-align: center;
 	line-height: 40px;
 	font-size: small;
 }
-</style>
-<style scoped>
-	background:url('')
 </style>

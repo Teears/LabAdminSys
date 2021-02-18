@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/stu_mine/stu_mine",
     "pages/start/start",
+    "pages/stu_mine/stu_mine",
     "pages/stu_check/stu_check",
     "pages/bindId/bindId",
     "pages/stu_history/stu_history",

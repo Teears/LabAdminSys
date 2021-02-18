@@ -20,9 +20,7 @@ App({
               method:"POST",
               url: that.globalData.host + '/login',
               data:{
-                code:res.code,
-                appid:that.globalData.appid,
-                appsecret:that.globalData.appsecret
+                code:res.code
               },
               header:{
                 "content-type":"application/x-www-form-urlencoded"
@@ -31,16 +29,15 @@ App({
               success:function(res){
                 //拿到openid等,判断登录成功则保存数据。
                 console.log("roleId："+res.data.roleId+"***session_key"+res.data.session_key)
-                that.globalData.session_key = res.data.session_key
+                that.globalData.session = res.data.session
                 that.globalData.roleId = res.data.roleId
                 try {
                   /* 
                   真机测试置为2
                   */
                   // wx.setStorageSync('roleId', "2")
-                  wx.setStorageSync('token', res.data.token)
                   wx.setStorageSync('roleId', res.data.roleId)
-                  wx.setStorageSync('session_key', res.data.session_key)
+                  wx.setStorageSync('session', res.data.session_key)
                   wx.setStorageSync('userName', res.data.userName)
                   wx.setStorageSync('belong', res.data.belong)
                   wx.setStorageSync('avatarUrl', res.data.avatarUrl)
@@ -77,6 +74,8 @@ App({
     /* 
     服务器地址
     */
-    host:"http://example.com",
+    // host:"http://example.com",
+    host:"http://localhost:8080",
+
   }
 })

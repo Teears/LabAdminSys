@@ -1,0 +1,26 @@
+<!--<?xml version="1.0" encoding="UTF-8"?>-->
+<!--<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >-->
+<!--<mapper namespace="ltd.syskaoqin.springboot.dao.mapper.UserMapper">-->
+<!--    <resultMap id ="UserMap" type="ltd.syskaoqin.springboot.dao.entity.User">-->
+<!--        <result column="id" property="id"/>-->
+<!--        <result column="openid" property="openid"/>-->
+<!--        <result column="nickname" property="nickname"/>-->
+<!--        <result column="avatarUrl" property="avatarUrl"/>-->
+<!--        <result column="phone" property="phone"/>-->
+<!--        <result column="stu_tea_id" property="bindId"/>-->
+<!--        <result column="role_id" property="roleId"/>-->
+<!--        <result column="create_time" property="createTime"/>-->
+<!--        <result column="latest_time" property="latestTime"/>-->
+<!--    </resultMap>-->
+
+<!--    <select id="findUserById" resultMap="UserMap">-->
+<!--        SELECT * FROM user WHERE id = #{id}-->
+<!--    </select>-->
+<!--    <insert id="insertUser" parameterType="User">-->
+<!--        insert into user(id, openid, nickname, avatarUrl, stu_tea_id, role_id, latest_time)-->
+<!--        values (#{id},#{openid},#{nickname},#{avatarUrl},#{bindId},#{RoleId},#{latestTime})-->
+<!--    </insert>-->
+<!--    <update id="updateUserLatestTime">-->
+<!--        update user set latest_time=#{latestTime} where id=#{id}-->
+<!--    </update>-->
+<!--</mapper>-->
