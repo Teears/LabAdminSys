@@ -1,4 +1,6 @@
 // pages/start/start.js
+import {wxp} from '../../utils/promise.js'
+
 const app = getApp()
 Page({
 
@@ -6,7 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    
+
   },
 
   /**
@@ -21,16 +23,30 @@ Page({
    */
   onReady: function () {
     var that = this
+    wxp.getSetting().then(res=>{
+      const scopeUserinfo = res.authSetting["scope.userInfo"]
+      console.log(scopeUserinfo)
+      if(scopeUserinfo != true){
+        wx.navigateTo({
+          url: '/pages/authLogin/authLogin',
+        })
+      }else{
+        that.jumppage()
+      }
+    })
+  },
+
+  jumppage:function(){
     app.userLogin().then(res =>{
-      if(res == 0 || res == 1){
+      if(res == 0){
         wx.redirectTo({
           url: '/pages/bindId/bindId'
         })
-      }else if(res == 2){
+      }else if(res == 1){
         wx.switchTab({
           url: '/pages/stu_check/stu_check',
         })
-      }else if(res == 3){
+      }else if(res == 2){
         wx.switchTab({
           url: '/pages/tea_manage/tea_manage',
         })
@@ -39,7 +55,6 @@ Page({
       }
     })
   },
-
   /**
    * 生命周期函数--监听页面显示
    */

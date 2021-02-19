@@ -8,6 +8,8 @@ Page({
    */
   data: {
     roleId:0,
+    changeCardText:"教师身份认定",
+    stuCard:true,
     stuForm:{
       stuNumber:"",
       stuPassword:""
@@ -143,6 +145,19 @@ submitTeaForm:function(){
       })
     }
   })
+},
+changeCard:function(){
+  if(this.data.stuCard == false){
+    this.setData({
+      stuCard:true,
+      changeCardText:"教师身份认定"
+    })
+  }else{
+    this.setData({
+      stuCard:false,
+      changeCardText:"学生身份认定"
+    })
+  }
 },
 
   /**

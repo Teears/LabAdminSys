@@ -1,0 +1,6 @@
+<!--pages/authLogin/authLogin.wxml-->
+<view class="out_wrapper">
+  <image src="../../image/basicprofile.png" mode="aspectFit"/>
+  <text>实验室考勤微信小程序</text>
+  <van-button open-type="getUserInfo" bindgetuserinfo="getUserInfo" round block color="linear-gradient(to right, #355C7D,#6C5B7B,#c06c84)" class="buttonView">微信一键登录</van-button>
+</view>

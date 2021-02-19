@@ -2,7 +2,7 @@
 <import src="/template/basictp.wxml"/>
 <view class="container">
 <!-- 学生卡片 -->
-<block wx:if="{{roleId == 0}}">
+<block wx:if="{{stuCard == true}}">
 <view class="roundCornerCard">
   <view class="templateIcon">
     <template is="roundIcon" data="{{...stuIcon}}"></template>
@@ -18,7 +18,7 @@
 </block>
 
 <!-- 教师卡片 -->
-<block wx:if="{{roleId == 1}}">
+<block wx:if="{{stuCard == false}}">
 <view class="roundCornerCard">
   <view class="templateIcon">
     <template is="roundIcon" data="{{...teaIcon}}"></template>
@@ -32,5 +32,11 @@
   </van-cell-group>
 </view>
 </block>
+<view class="change" bindtap="changeCard">
+  <view>{{changeCardText}}</view>
+  <view class="changeicon">
+    <van-icon name="arrow"/>
+  </view>
+</view>
 
 </view>

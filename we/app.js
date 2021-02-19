@@ -1,11 +1,13 @@
 // app.js
+
 App({
   onLaunch() {
+    
   },
   userLogin:function(){
+    var that = this
     var promise = new Promise((resolve,reject) =>{
       // 登录
-      var that = this
       wx.login({
         success: res => {
           wx.showLoading({
@@ -13,31 +15,28 @@ App({
             mask: true
           })
           if(res.code){
-            /* 
-            测试后台URL为/login，发送 res.code 到后台换取sessionKey 
-            */
             wx.request({
               method:"POST",
               url: that.globalData.host + '/login',
               data:{
-                code:res.code
+                code:res.code,
+                nickName: that.globalData.nickName,
+                avatarUrl: that.globalData.avatarUrl,
+                encryptedData:that.globalData.encryptedData,
+                iv:that.globalData.iv,
               },
               header:{
                 "content-type":"application/x-www-form-urlencoded"
               },
               timeout:10000,
               success:function(res){
-                //拿到openid等,判断登录成功则保存数据。
-                console.log("roleId："+res.data.roleId+"***session_key"+res.data.session_key)
+                // res = res.data
+                console.log(res)
                 that.globalData.session = res.data.session
                 that.globalData.roleId = res.data.roleId
                 try {
-                  /* 
-                  真机测试置为2
-                  */
-                  // wx.setStorageSync('roleId', "2")
                   wx.setStorageSync('roleId', res.data.roleId)
-                  wx.setStorageSync('session', res.data.session_key)
+                  wx.setStorageSync('session', res.data.session)
                   wx.setStorageSync('userName', res.data.userName)
                   wx.setStorageSync('belong', res.data.belong)
                   wx.setStorageSync('avatarUrl', res.data.avatarUrl)
@@ -68,9 +67,10 @@ App({
   },
 
   globalData: {
-    roleId: null,
-    code:null,
-    session_key:null,
+    encryptedData:'',
+    iv:'',
+    nickName:'',
+    avatarUrl:'',
     /* 
     服务器地址
     */

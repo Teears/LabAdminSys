@@ -40,3 +40,13 @@
   background-color: #3399CC;
   border-radius: 0%;
 }
+.change{
+  position: absolute;
+  top: 70%;
+  color: gray;
+  font-size: smaller;
+  display: inline-flex;
+}
+.changeicon{
+  padding-top: 5rpx;
+}

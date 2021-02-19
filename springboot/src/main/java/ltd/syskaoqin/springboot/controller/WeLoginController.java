@@ -1,7 +1,6 @@
 package ltd.syskaoqin.springboot.controller;
 
-import com.alibaba.fastjson.JSONObject;
-import ltd.syskaoqin.springboot.util.Openid;
+import ltd.syskaoqin.springboot.util.WechatUtil;
 import ltd.syskaoqin.springboot.util.result.Result;
 import ltd.syskaoqin.springboot.util.result.ResultUtils;
 import org.springframework.web.bind.annotation.*;
@@ -26,8 +25,13 @@ public class WeLoginController {
     public Result login(@RequestParam Map<String, String> param, HttpSession session){
         System.out.println(param);
         String code = param.get("code");
-        String openid = Openid.getOpenid(code);
-        System.out.println(openid);
+        String nickName = param.get("nickName");
+        String avatarUrl = param.get("avatarUrl");
+        String e
+        System.out.println(nickName);
+        System.out.println(avatarUrl);
+
+        String openid = WechatUtil.getOpenid(code);
         Map<String,String> data = new HashMap<>();
         data.put("roleId","1");
         data.put("session","thisissmocksessionkey");

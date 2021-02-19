@@ -1,6 +1,7 @@
 package ltd.syskaoqin.springboot.util;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Component;
+
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 
 /**
  * @author Teears
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Component;
  * @Description TODO
  * @createTime 2021年02月18日14:53
  */
-public class Openid {
+public class WechatUtil {
 
     private static String appid = "wxf0b3f4d6592571a9";
     private static String appsecret = "4153df76de8f96ea71cd951263504f1b";
@@ -24,7 +25,9 @@ public class Openid {
         url += "&grant_type=authorization_code&connect_redirect=1&useSSL=false";
         System.out.println(url);
         String res = HttpUtil.httpRequest(url,"GET", null);
-        System.out.println(res);
-        return res;
+        JSONObject resJson = JSON.parseObject(res);
+        System.out.println(resJson.getString("openid"));
+        return resJson.getString("openid");
     }
+
 }

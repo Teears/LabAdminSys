@@ -1,9 +1,10 @@
 {
   "pages": [
     "pages/start/start",
+    "pages/authLogin/authLogin",
+    "pages/bindId/bindId",
     "pages/stu_mine/stu_mine",
     "pages/stu_check/stu_check",
-    "pages/bindId/bindId",
     "pages/stu_history/stu_history",
     "pages/tea_mine/tea_mine",
     "pages/tea_manage/tea_manage",
