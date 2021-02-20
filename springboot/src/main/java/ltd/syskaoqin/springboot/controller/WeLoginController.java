@@ -1,8 +1,11 @@
 package ltd.syskaoqin.springboot.controller;
 
+import ltd.syskaoqin.springboot.dao.entity.User;
+import ltd.syskaoqin.springboot.service.UserService;
 import ltd.syskaoqin.springboot.util.WechatUtil;
 import ltd.syskaoqin.springboot.util.result.Result;
 import ltd.syskaoqin.springboot.util.result.ResultUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
@@ -19,19 +22,24 @@ import java.util.Map;
 @RestController
 @RequestMapping("/login")
 public class WeLoginController {
+//    @Autowired
+//    private UserService userService;
 
     @PostMapping(value = "")
     @ResponseBody
     public Result login(@RequestParam Map<String, String> param, HttpSession session){
         System.out.println(param);
         String code = param.get("code");
-        String nickName = param.get("nickName");
-        String avatarUrl = param.get("avatarUrl");
-        String e
-        System.out.println(nickName);
-        System.out.println(avatarUrl);
-
         String openid = WechatUtil.getOpenid(code);
+
+//        User user = userService.findUserById(openid);
+//        System.out.println(user);
+
+//        String nickName = param.get("nickName");
+//        String avatarUrl = param.get("avatarUrl");
+//        System.out.println(nickName);
+//        System.out.println(avatarUrl);
+
         Map<String,String> data = new HashMap<>();
         data.put("roleId","1");
         data.put("session","thisissmocksessionkey");

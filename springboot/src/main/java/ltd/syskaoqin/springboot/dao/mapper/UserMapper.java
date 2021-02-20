@@ -17,7 +17,7 @@ import java.util.List;
 @Mapper
 public interface UserMapper {
 
-    List<User> findAllUser();
+//    List<User> findAllUser();
 
     User findUserById(@Param("id") String id);
 

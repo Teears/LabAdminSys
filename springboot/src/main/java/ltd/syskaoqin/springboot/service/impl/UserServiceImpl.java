@@ -1,9 +1,11 @@
 package ltd.syskaoqin.springboot.service.impl;
 
 import ltd.syskaoqin.springboot.dao.entity.User;
+import ltd.syskaoqin.springboot.dao.mapper.UserMapper;
 import ltd.syskaoqin.springboot.service.UserService;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
 import java.util.List;
 
 /**
@@ -16,6 +18,8 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService {
 
+    @Resource
+    private UserMapper userMapper;
 
     @Override
     public List<User> findAllUser() {
@@ -24,11 +28,12 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findUserById(String id) {
-        return null;
+        return userMapper.findUserById(id);
     }
 
     @Override
     public int insertUser(User user) {
+
         return 0;
     }
 

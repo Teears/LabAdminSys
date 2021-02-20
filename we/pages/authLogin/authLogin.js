@@ -11,12 +11,12 @@ Page({
 
   getUserInfo(e) {   //授权个人信息
     console.log(e.detail);
-    let urserInfo = e.detail.rawData;
-    if (urserInfo) {
-      app.globalData.encryptedData = urserInfo.encryptedData
-      app.globalData.iv = urserInfo.iv
-      app.globalData.nickName = urserInfo.nickName
-      app.globalData.avatarUrl = urserInfo.avatarUrl
+    let detail = e.detail;
+    if (detail.rawData) {
+      app.globalData.encryptedData = detail.encryptedData
+      app.globalData.iv = detail.iv
+      app.globalData.nickName = detail.userInfo.nickName
+      app.globalData.avatarUrl = detail.userInfo.avatarUrl
       wx.navigateTo({
         url: '/pages/start/start',
       })
