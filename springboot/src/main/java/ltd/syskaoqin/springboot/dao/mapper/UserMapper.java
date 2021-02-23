@@ -21,7 +21,11 @@ public interface UserMapper {
 
     User findUserById(@Param("id") String id);
 
+    User findUserByopenid(@Param("openid") String openid);
+
     int insertUser(User user) throws DuplicateKeyException;
 
     int updateUserLatestTime(@Param("id") String id,@Param("latestTime") String latestTime);
+
+
 }

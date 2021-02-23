@@ -1,14 +1,17 @@
 package ltd.syskaoqin.springboot.controller;
 
-import ltd.syskaoqin.springboot.dao.entity.User;
+import com.alibaba.fastjson.JSONObject;
 import ltd.syskaoqin.springboot.service.UserService;
 import ltd.syskaoqin.springboot.util.WechatUtil;
 import ltd.syskaoqin.springboot.util.result.Result;
 import ltd.syskaoqin.springboot.util.result.ResultUtils;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.http.HttpSession;
+import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -20,20 +23,27 @@ import java.util.Map;
  * @createTime 2021年02月18日17:00
  */
 @RestController
-@RequestMapping("/login")
+@RequestMapping("/welogin")
 public class WeLoginController {
-//    @Autowired
-//    private UserService userService;
+    @Resource
+    private UserService userService;
 
     @PostMapping(value = "")
     @ResponseBody
-    public Result login(@RequestParam Map<String, String> param, HttpSession session){
+    public Result login(@RequestParam Map<String, String> param){
         System.out.println(param);
         String code = param.get("code");
-        String openid = WechatUtil.getOpenid(code);
+        JSONObject weJson = WechatUtil.getOpenid(code);
+        String openid = weJson.getString("openid");
+        Subject subject = SecurityUtils.getSubject();
+        UsernamePasswordToken token = new UsernamePasswordToken("WECHAT",openid);
+        try {
+            subject.login(token);
+            Boolean b = subject.hasRole("NotBind");
+            System.out.println("role"+b);
+        }catch (AuthenticationException e){
 
-//        User user = userService.findUserById(openid);
-//        System.out.println(user);
+        }
 
 //        String nickName = param.get("nickName");
 //        String avatarUrl = param.get("avatarUrl");

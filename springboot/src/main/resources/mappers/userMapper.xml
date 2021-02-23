@@ -17,11 +17,14 @@
 <select id="findUserById" resultMap="UserMap">
     SELECT * FROM user WHERE id = #{id}
 </select>
+<select id="findUserByopenid" resultMap="UserMap">
+    SELECT * FROM user WHERE openid = #{openid}
+</select>
 <insert id="insertUser" parameterType="ltd.syskaoqin.springboot.dao.entity.User">
     insert into user(id, openid, nickname, avatarUrl, stu_tea_id, role_id, latest_time)
     values (#{id},#{openid},#{nickname},#{avatarUrl},#{bindId},#{RoleId},#{latestTime})
 </insert>
-<update id="updateUserLatestTime">
+<update id="updateUserLatestTime" parameterType="ltd.syskaoqin.springboot.dao.entity.User">
     update user set latest_time=#{latestTime} where id=#{id}
 </update>
 

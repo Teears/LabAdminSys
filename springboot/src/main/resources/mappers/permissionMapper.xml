@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ltd.syskaoqin.springboot.dao.mapper.PermissionMapper">
+
+    <select id="findByid" resultType="ltd.syskaoqin.springboot.dao.entity.Permission">
+        SELECT * FROM s_perms WHERE id = #{id}
+    </select>
+    <select id="findByRoleId" resultType="ltd.syskaoqin.springboot.dao.entity.Permission">
+        SELECT s_perms.id, s_perms.name, url, type, s_perms.status FROM s_perms,s_role_perms
+        WHERE role_id = #{roleId} and s_perms.id = s_role_perms.perms_id
+    </select>
+
+</mapper>

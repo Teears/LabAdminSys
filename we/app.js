@@ -17,7 +17,7 @@ App({
           if(res.code){
             wx.request({
               method:"POST",
-              url: that.globalData.host + '/login',
+              url: that.globalData.host + '/welogin',
               data:{
                 code:res.code,
                 nickName: that.globalData.nickName,

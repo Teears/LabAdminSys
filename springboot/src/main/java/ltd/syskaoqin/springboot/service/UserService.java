@@ -15,6 +15,8 @@ public interface UserService {
 
     List<User> findAllUser();
 
+    User findUserByopenid(String openid);
+
     User findUserById(String id);
 
     int insertUser(User user);
