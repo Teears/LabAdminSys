@@ -21,11 +21,22 @@
     SELECT * FROM user WHERE openid = #{openid}
 </select>
 <insert id="insertUser" parameterType="ltd.syskaoqin.springboot.dao.entity.User">
-    insert into user(id, openid, nickname, avatarUrl, stu_tea_id, role_id, latest_time)
-    values (#{id},#{openid},#{nickname},#{avatarUrl},#{bindId},#{RoleId},#{latestTime})
+    insert into user(openid, nickname, avatarUrl,role_id)
+    values (#{openid},#{nickname},#{avatarUrl},#{roleId})
 </insert>
-<update id="updateUserLatestTime" parameterType="ltd.syskaoqin.springboot.dao.entity.User">
+<update id="updateUserLatestTime">
     update user set latest_time=#{latestTime} where id=#{id}
+</update>
+
+<!--<update id="updateBindId">-->
+<!--    update user set stu_tea_id=#{bindId} where id=#{id}-->
+<!--</update>-->
+<!--<update id="updateRoleId">-->
+<!--    update user set role_id=#{roleId} where id=#{id}-->
+<!--</update>-->
+
+<update id="updateBindAndRole" >
+    update user set role_id=#{roleId},stu_tea_id=#{bindId} where openid=#{openid}
 </update>
 
 </mapper>

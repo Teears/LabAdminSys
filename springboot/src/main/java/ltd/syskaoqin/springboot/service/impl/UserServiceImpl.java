@@ -6,6 +6,7 @@ import ltd.syskaoqin.springboot.service.UserService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -38,12 +39,28 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public int insertUser(User user) {
-
-        return 0;
+        return userMapper.insertUser(user);
     }
 
     @Override
-    public int updateUserLatestTime(String id, String latestTime) {
-        return 0;
+    public int updateUserLatestTime(String id) {
+        Long latestTime = System.currentTimeMillis();
+        return userMapper.updateUserLatestTime(id,latestTime);
     }
+
+    @Override
+    public int updateBindAndRole(String openid, String bindId, String roleId) {
+        return userMapper.updateBindAndRole(openid,bindId,roleId);
+    }
+
+//    @Override
+//    public int updateBindId(String id, String bindId) {
+//        return userMapper.updateBindId(id,bindId);
+//    }
+//
+//    @Override
+//    public int updateRoleId(String id, String roleId) {
+//        return userMapper.updateRoleId(id,roleId);
+//    }
+
 }

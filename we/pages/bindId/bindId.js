@@ -7,7 +7,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    roleId:0,
     changeCardText:"教师身份认定",
     stuCard:true,
     stuForm:{
@@ -61,18 +60,17 @@ Page({
     })
     wx.request({
       method:"POST",
-      url: app.globalData.host+'/stu/bindStu',
+      url: app.globalData.host+'/bindId/stu',
       header:{
-        "content-type":"application/x-www-form-urlencoded"
+        "content-type":"application/x-www-form-urlencoded",
+        'token': wx.getStorageSync('token')
       },
-      data:{
-        stuForm:that.stuForm
-      },
+      data:that.data.stuForm,
       timeout:10000,
       success:function(res){
+        res = res.data
         if(res.data.isBinded == 1){
           console.log("学生身份认定成功,roleId"+res.data.roleId)
-          app.globalData.roleId = res.data.roleId
           wx.setStorageSync('roleId', res.data.roleId)
           wx.hideLoading()
           wx.switchTab({
@@ -87,6 +85,7 @@ Page({
             duration:2000
           })
         }
+        wx.hideLoading()
       },
       fail:function(e){
         wx.hideLoading()
@@ -109,7 +108,7 @@ submitTeaForm:function(){
   })
   wx.request({
     method:"POST",
-    url: app.globalData.host+'/tea/bindTea',
+    url: app.globalData.host+'/bindId/tea',
     header:{
       "content-type":"application/x-www-form-urlencoded"
     },

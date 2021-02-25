@@ -8,6 +8,7 @@ App({
     var that = this
     var promise = new Promise((resolve,reject) =>{
       // 登录
+      console.log("avatarUrl"+that.globalData.avatarUrl)
       wx.login({
         success: res => {
           wx.showLoading({
@@ -30,16 +31,11 @@ App({
               },
               timeout:10000,
               success:function(res){
-                // res = res.data
+                res = res.data
                 console.log(res)
-                that.globalData.session = res.data.session
-                that.globalData.roleId = res.data.roleId
                 try {
                   wx.setStorageSync('roleId', res.data.roleId)
-                  wx.setStorageSync('session', res.data.session)
-                  wx.setStorageSync('userName', res.data.userName)
-                  wx.setStorageSync('belong', res.data.belong)
-                  wx.setStorageSync('avatarUrl', res.data.avatarUrl)
+                  wx.setStorageSync('token', res.data.token)
                 } catch (e) {
                   console.log("同步保存出错")
                 }

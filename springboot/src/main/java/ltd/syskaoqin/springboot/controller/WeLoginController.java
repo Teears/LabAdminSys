@@ -1,12 +1,13 @@
 package ltd.syskaoqin.springboot.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import ltd.syskaoqin.springboot.dao.entity.User;
 import ltd.syskaoqin.springboot.service.UserService;
+import ltd.syskaoqin.springboot.util.JWTUtil;
 import ltd.syskaoqin.springboot.util.WechatUtil;
 import ltd.syskaoqin.springboot.util.result.Result;
 import ltd.syskaoqin.springboot.util.result.ResultUtils;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.web.bind.annotation.*;
@@ -35,27 +36,30 @@ public class WeLoginController {
         String code = param.get("code");
         JSONObject weJson = WechatUtil.getOpenid(code);
         String openid = weJson.getString("openid");
-        Subject subject = SecurityUtils.getSubject();
-        UsernamePasswordToken token = new UsernamePasswordToken("WECHAT",openid);
-        try {
-            subject.login(token);
-            Boolean b = subject.hasRole("NotBind");
-            System.out.println("role"+b);
-        }catch (AuthenticationException e){
-
+        if(userService.findUserByopenid(openid) == null){
+            User user = new User();
+            String nickName = param.get("nickName");
+            String avatarUrl = param.get("avatarUrl");
+            user.setAvatarUrl(avatarUrl);
+            user.setOpenid(openid);
+            user.setNickname(nickName);
+            user.setRoleId("0");
+            if(userService.insertUser(user) == 0){
+                return ResultUtils.error(500,"系统错误");
+            }
         }
-
-//        String nickName = param.get("nickName");
-//        String avatarUrl = param.get("avatarUrl");
-//        System.out.println(nickName);
-//        System.out.println(avatarUrl);
-
+        UsernamePasswordToken token = new UsernamePasswordToken("WECHAT",openid);
+        Subject subject = SecurityUtils.getSubject();
+        subject.login(token);
         Map<String,String> data = new HashMap<>();
-        data.put("roleId","1");
-        data.put("session","thisissmocksessionkey");
-        data.put("username","张小芳");
-        data.put("belong","实验室102");
-        data.put("avatarUrl","https://img.yzcdn.cn/vant/cat.jpeg");
+        if(subject.hasRole("Student")){
+            data.put("roleId","1");
+        }else if(subject.hasRole("Teacher")){
+            data.put("roleId","2");
+        }else if(subject.hasRole("NotBind")){
+            data.put("roleId","0");
+        }
+        data.put("token",JWTUtil.sign(openid,openid));
         return ResultUtils.success(data);
     }
 

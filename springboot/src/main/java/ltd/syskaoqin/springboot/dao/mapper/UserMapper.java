@@ -23,9 +23,15 @@ public interface UserMapper {
 
     User findUserByopenid(@Param("openid") String openid);
 
-    int insertUser(User user) throws DuplicateKeyException;
+    int insertUser(User user);
 
-    int updateUserLatestTime(@Param("id") String id,@Param("latestTime") String latestTime);
+    int updateUserLatestTime(@Param("id") String id,@Param("latestTime") Long latestTime);
+
+//    int updateBindId(@Param("id") String id, @Param("bindId") String bindId);
+//
+//    int updateRoleId(@Param("id") String id, @Param("roleId") String roleId);
+
+    int updateBindAndRole(@Param("openid") String openid, @Param("bindId") String bindId,@Param("roleId") String roleId);
 
 
 }

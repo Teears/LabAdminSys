@@ -76,7 +76,7 @@ public class MyRealm extends AuthorizingRealm {
             if (user != null){
                 return new SimpleAuthenticationInfo(user.getId(), user.getOpenid(), "myRealm");
             }else {
-                throw new AuthenticationException("用户不存在") ;
+                return null;
             }
         }else {
             this.id = "a";

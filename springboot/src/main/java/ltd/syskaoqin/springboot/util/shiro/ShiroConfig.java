@@ -26,6 +26,7 @@ public class ShiroConfig {
         bean.setSecurityManager(securityManager());
         Map<String, String> map = new LinkedHashMap<>();
         map.put("/welogin/**", "anon");
+        map.put("/bindId/**", "anon");
         map.put("/**", "authc");
         bean.setFilterChainDefinitionMap(map);
         return bean;
