@@ -12,7 +12,10 @@
 .backgroundMain{
   background-color: #0D0847;
   border-radius: 20rpx;
-  height: 850rpx
+  height: 850rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .backgroundBack{
   background-image: linear-gradient(to bottom,#FF9966,#FF5E62);
@@ -20,20 +23,15 @@
   height: 850rpx
 }
 /* 正面 */
-/* 上下布局 */
-.bottom{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: center;
-  color: aliceblue;
-  padding-top: 20rpx;
+.iconview{
+  padding-top: 60rpx;
 }
 
-/* 下方提示文字样式 */
-.bottom text{
+.remindText{
+  padding-top: 60rpx;
+  color: white;
   margin: 30rpx;
-  font-size: xx-large  ;
+  font-size: xx-large;
 } 
 
 /* 
@@ -47,6 +45,7 @@
   padding-top: 30rpx;
   font-size: 300%;
   color: white;
+  padding-bottom: 60rpx;
 }
 .iconfont{
   font-size: 1300%;

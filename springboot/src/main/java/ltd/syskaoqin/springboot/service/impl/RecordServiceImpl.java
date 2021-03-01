@@ -36,7 +36,14 @@ public class RecordServiceImpl implements RecordService {
     }
 
     @Override
-    public int selectRecordCoundbyLabidAndCheckdate(String labId, String checkDate) {
-        return recordMapper.selectRecordCoundbyLabidAndCheckdate(labId,checkDate);
+    public int selectRecordCountByLabIdAndCheckDate(String labId, String checkDate) {
+        return recordMapper.selectRecordCountByLabIdAndCheckDate(labId,checkDate);
     }
+
+    @Override
+    public void updateRecordCheckout(String openid, String checkDate, String checkoutTime, String checkoutLocation) {
+        recordMapper.updateRecordCheckout(openid,checkDate,checkoutTime,checkoutLocation);
+    }
+
+
 }

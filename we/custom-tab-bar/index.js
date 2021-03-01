@@ -42,11 +42,11 @@ Component({
   },
   attached() {
     const roleId = wx.getStorageSync('roleId')
-    if(roleId == 2){
+    if(roleId == 1){
       this.setData({
         list: this.data.tabList[0].stuList
       })
-    }else if(roleId == 3){
+    }else if(roleId == 2){
       this.setData({
         list: this.data.tabList[0].teaList
       })

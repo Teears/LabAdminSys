@@ -32,7 +32,7 @@ public interface RecordMapper {
     Record findByOpenidAndDate(@Param("openid") String openid,@Param("checkDate") String checkDate);
 
     /**
-     * 签到时插入一条签到数据
+     * 签到时插入一条签到数据，可能是在签到时插入也可能是在签退时插入
      * @param record 插入record
      * @return 插入影响行数
      */
@@ -44,5 +44,14 @@ public interface RecordMapper {
      * @param checkDate 签到Date
      * @return 签到人数
      */
-    int selectRecordCoundbyLabidAndCheckdate(@Param("labId") String labId, @Param("checkDate") String checkDate);
+    int selectRecordCountByLabIdAndCheckDate(@Param("labId") String labId, @Param("checkDate") String checkDate);
+
+    /**
+     * 签退更新
+     * @param openid openid
+     * @param checkDate 当日
+     * @param checkoutTime 签退时间
+     * @param checkoutLocation 签退定位
+     */
+    void updateRecordCheckout(@Param("openid") String openid, @Param("checkDate")  String checkDate, @Param("checkoutTime") String checkoutTime,@Param("checkoutLocation") String checkoutLocation);
 }

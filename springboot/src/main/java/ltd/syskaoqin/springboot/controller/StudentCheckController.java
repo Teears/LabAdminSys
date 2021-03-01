@@ -45,13 +45,10 @@ public class StudentCheckController {
         record.setCheckinLocation(address);
         record.setCheckinTime(nowTime);
         record.setCheckDate(nowDate);
-        int rank = recordService.selectRecordCoundbyLabidAndCheckdate(labId,nowDate);
+        int rank = recordService.selectRecordCountByLabIdAndCheckDate(labId,nowDate);
         Map<String,String> data = new HashMap<>();
         if(recordService.insertRecord(record) > 0){
-            data.put("checkinOK","1");
             data.put("rank",String.valueOf(rank));
-        }else {
-            data.put("checkinOK","-1");
         }
         return ResultUtils.success(data);
     }
@@ -59,8 +56,23 @@ public class StudentCheckController {
     @PostMapping(value = "/checkout")
     @ResponseBody
     public Result checkout(@RequestParam Map<String, String> param, HttpServletRequest request){
-
-
+        String token = request.getHeader("token");
+        String openid = JWTUtil.getUsername(token);
+        String address = param.get("address");
+        String nowTime = TimeUtil.getNowTime();
+        String nowDate = TimeUtil.getNowDate();
+        if(recordService.findByOpenidAndDate(openid,nowDate) != null){
+            recordService.updateRecordCheckout(openid,nowDate,nowTime,address);
+        }else {
+            Record record = new Record();
+            String labId = labService.findLabByOpenid(openid).get(0).getId();
+            record.setOpenid(openid);
+            record.setLabId(labId);
+            record.setCheckDate(nowDate);
+            record.setCheckoutLocation(address);
+            record.setCheckoutTime(nowTime);
+            recordService.insertRecord(record);
+        }
         return ResultUtils.success();
     }
 
@@ -110,18 +122,7 @@ public class StudentCheckController {
             }
         }else if(TimeUtil.isTimeRange(nowTime,lab.getCheckoutStart(),lab.getCheckoutEnd())){
             //签退时间内
-            if(record.getCheckoutTime() != null){
-                data.put("checkinORout","-1");
-                data.put("queshengMark","1");
-                data.put("msg","您已错过签退");
-            }else {
-                data.put("checkinORout","0");
-                data.put("queshengMark","0");
-                data.put("turn_out","1");
-            }
-        }else {
-            //签退完成时间内
-            if(record.getCheckoutTime() != null){
+            if(record == null || record.getCheckoutTime() == null){
                 data.put("checkinORout","0");
                 data.put("queshengMark","0");
                 data.put("turn_out","0");
@@ -130,6 +131,10 @@ public class StudentCheckController {
                 data.put("queshengMark","0");
                 data.put("turn_out","1");
             }
+        }else {
+            //签退完成时间内
+            data.put("queshengMark","1");
+            data.put("msg","辛苦了一天，休息一下吧！");
         }
 
         return ResultUtils.success(data);

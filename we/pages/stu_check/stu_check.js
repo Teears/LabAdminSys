@@ -24,14 +24,37 @@ Page({
     rotateAngle:1
   },
 
-  /* 
+  checkinSetData:function(res){
+    wx.setStorageSync('rank', res.data.rank)
+      this.setData({
+        rank:res.data.rank,
+        turn_in:1
+    })
+  },
+  checkoutSetData:function(){
+      this.setData({
+        turn_out:1
+    })
+  },
+    /* 
     签到点击事件监听函数
   */
   checkin:function(){
+    console.log("checkin")
     if(this.data.turn_in == 1){
       return
     }
-    console.log("触发Page页面bind事件")
+    this.check('checkin',this.checkinSetData)
+  },
+
+  checkout:function(){
+    console.log("checkout")
+    if(this.data.turn_out == 1){
+      return
+    }
+    this.check('checkout',this.checkoutSetData)
+  },
+  check:function(checkurl,func){
     const that = this
     //检查位置授权
     wxp.getSetting().then(res=>{
@@ -47,7 +70,7 @@ Page({
           console.log("---------签到request----------")
           wxp.request({
             method:"POST",
-            url: app.globalData.host+'/stu/checkin',
+            url: app.globalData.host+'/stu/'+checkurl,
             header:{
               "content-type":"application/x-www-form-urlencoded",
               'token': wx.getStorageSync('token')
@@ -58,12 +81,7 @@ Page({
             },
             success:function(res){
               res = res.data
-              if(res.data.checkinOK == 1){
-                that.setData({
-                  rank:res.data.rank,
-                  turn_in:1
-                })
-              }
+              func(res)
             },
             fail:function(){
               wx.showToast({
@@ -76,54 +94,6 @@ Page({
         })
       }else{
         // 引导授权
-        console.log("if not auth")
-        wx.openSetting()
-      }
-    })
-
-  },
-
-  checkout:function(){
-    if(this.data.turn_out == 1){
-      return
-    }
-    wxp.getSetting().then(res=>{
-      const scopeAddress = res.authSetting["scope.userLocation"]
-      if(scopeAddress == true || scopeAddress == undefined){
-        console.log("if auth")
-        //如果已授权，获取地址信息
-        that.getAddress().then(res =>{
-           that.setData({
-            address:res
-          })
-        }).then((res)=>{
-          console.log("---------签到request----------")
-          wxp.request({
-            method:"POST",
-            url: app.globalData.host+'/stu/checkout',
-            header:{
-              "content-type":"application/x-www-form-urlencoded",
-              'token': wx.getStorageSync('token')
-            },
-            timeout:10000,
-            data:{
-              address:that.data.address
-            },
-            success:function(res){
-              that.setData({
-                turn_in:1
-              })
-            },
-            fail:function(){
-              wx.showToast({
-                title: '网络繁忙',
-                icon:"none",
-                duration: 2000
-              })
-            }
-          })
-        })
-      }else{
         console.log("if not auth")
         wx.openSetting()
       }
@@ -210,8 +180,14 @@ Page({
       if(res==1){
         that.getAddress().then(res =>{
           that.setData({
-            address:res
+            address:res,
+            rank:wx.getStorageSync('rank')
           })
+        })
+      }else{
+        that.setData({
+          queshengMark:1,
+          queshengText:"系统出错了..."
         })
       }
     })

@@ -3,10 +3,10 @@
 <view class="card">
   <view class="box wrapperMain" animation="{{animationMain}}">
     <view class="backgroundMain">
-      <icon class="iconfont icon-tuichu"></icon>
-      <view class="bottom">
-        <text class="remindText">点击签退</text>
+      <view class="iconview">
+        <icon class="iconfont icon-tuichu"></icon>
       </view>
+      <view class="remindText">点击签退</view>
     </view>
   </view>
 

@@ -40,6 +40,16 @@ public interface RecordService {
      * @param checkDate 当前日期
      * @return 已签到数
      */
-    int selectRecordCoundbyLabidAndCheckdate(String labId, String checkDate);
+    int selectRecordCountByLabIdAndCheckDate(String labId, String checkDate);
+
+    /**
+     * 签退更新
+     * @param openid openid
+     * @param checkDate 当日
+     * @param checkoutTime 签退时间
+     * @param checkoutLocation 签退定位
+     */
+    void updateRecordCheckout(String openid, String checkDate, String checkoutTime, String checkoutLocation);
+
 
 }

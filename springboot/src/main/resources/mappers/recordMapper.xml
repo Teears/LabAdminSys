@@ -2,6 +2,17 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="ltd.syskaoqin.springboot.dao.mapper.RecordMapper">
 
+<!--    <resultMap id ="LabMap" type="ltd.syskaoqin.springboot.dao.entity.Record">-->
+<!--        <result column="openid" property="openid"/>-->
+<!--        <result column="lab_id" property="labId"/>-->
+<!--        <result column="check_date" property="checkDate"/>-->
+<!--        <result column="checkin_time" property="checkinTime"/>-->
+<!--        <result column="checkout_time" property="checkoutTime"/>-->
+<!--        <result column="checkin_loc" property="checkinLocation"/>-->
+<!--        <result column="checkout_loc" property="checkoutLocation"/>-->
+<!--        <result column="status" property="status"/>-->
+<!--    </resultMap>-->
+
     <select id="findByOpenid" resultType="ltd.syskaoqin.springboot.dao.entity.Record">
         SELECT * FROM record WHERE openid = #{openid}
     </select>
@@ -12,8 +23,12 @@
         insert into record(openid, lab_id, check_date, checkin_time, checkout_time, checkin_loc, checkout_loc, status)
         values (#{openid},#{labId},#{checkDate},#{checkinTime},#{checkoutTime},#{checkinLocation},#{checkoutLocation},#{status})
     </insert>
-    <select id="selectRecordCoundbyLabidAndCheckdate">
+    <select id="selectRecordCountByLabIdAndCheckDate" resultType="Integer">
         select COUNT(*) from record where lab_id=#{labId} and check_date=#{checkDate}
     </select>
+    <update id="updateRecordCheckout">
+        update record set checkout_time=#{checkoutTime},checkout_loc=#{checkoutLocation}
+        where openid=#{openid} and check_date = #{checkDate}
+    </update>
 
 </mapper>
