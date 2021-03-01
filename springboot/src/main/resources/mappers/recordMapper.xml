@@ -8,5 +8,12 @@
     <select id="findByOpenidAndDate" resultType="ltd.syskaoqin.springboot.dao.entity.Record">
         SELECT * FROM record WHERE openid = #{openid} and check_date=#{checkDate}
     </select>
+    <insert id="insertRecord" parameterType="ltd.syskaoqin.springboot.dao.entity.Record">
+        insert into record(openid, lab_id, check_date, checkin_time, checkout_time, checkin_loc, checkout_loc, status)
+        values (#{openid},#{labId},#{checkDate},#{checkinTime},#{checkoutTime},#{checkinLocation},#{checkoutLocation},#{status})
+    </insert>
+    <select id="selectRecordCoundbyLabidAndCheckdate">
+        select COUNT(*) from record where lab_id=#{labId} and check_date=#{checkDate}
+    </select>
 
 </mapper>

@@ -16,7 +16,7 @@ import java.util.Map;
  * @author Teears
  * @version 1.0.0
  * @ClassName InitGlobalData
- * @Description TODO
+ * @Description TODO 启动时将数据库数据加载到内存,初始化诸如appid等如果嵌入代码会导致安全问题的常量，这个方法会在系统启动时执行
  * @createTime 2021年02月20日15:36
  */
 @Component

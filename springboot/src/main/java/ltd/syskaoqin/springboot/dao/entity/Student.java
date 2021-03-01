@@ -6,7 +6,7 @@ import lombok.Data;
  * @author Teears
  * @version 1.0.0
  * @ClassName Student
- * @Description 学生实体类，描述学生的基本信息
+ * @Description TODO 学生实体类，描述学生的基本信息
  * @createTime 2021年02月18日12:57
  */
 @Data

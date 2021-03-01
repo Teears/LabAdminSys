@@ -27,6 +27,16 @@ public class RecordServiceImpl implements RecordService {
 
     @Override
     public Record findByOpenidAndDate(String openid, String checkDate) {
-        return null;
+        return recordMapper.findByOpenidAndDate(openid,checkDate);
+    }
+
+    @Override
+    public int insertRecord(Record record) {
+        return recordMapper.insertRecord(record);
+    }
+
+    @Override
+    public int selectRecordCoundbyLabidAndCheckdate(String labId, String checkDate) {
+        return recordMapper.selectRecordCoundbyLabidAndCheckdate(labId,checkDate);
     }
 }

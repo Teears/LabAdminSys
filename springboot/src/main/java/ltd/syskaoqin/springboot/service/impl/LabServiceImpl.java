@@ -6,6 +6,7 @@ import ltd.syskaoqin.springboot.service.LabService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author Teears
@@ -20,7 +21,7 @@ public class LabServiceImpl implements LabService {
     private LabMapper labMapper;
 
     @Override
-    public Lab findLabByOpenid(String openid) {
+    public List<Lab> findLabByOpenid(String openid) {
         return labMapper.findLabByOpenid(openid);
     }
 }

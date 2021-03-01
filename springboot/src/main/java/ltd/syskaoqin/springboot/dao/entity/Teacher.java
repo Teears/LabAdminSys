@@ -6,7 +6,7 @@ import lombok.Data;
  * @author Teears
  * @version 1.0.0
  * @ClassName Teacher
- * @Description 教师实体类，描述了教师的基本信息
+ * @Description TODO 教师实体类，描述了教师的基本信息
  * @createTime 2021年02月18日12:50
  */
 @Data

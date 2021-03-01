@@ -18,7 +18,7 @@ import java.util.Map;
  * @author Teears
  * @version 1.0.0
  * @ClassName BindRole
- * @Description TODO
+ * @Description TODO 学生和教师身份绑定接口
  * @createTime 2021年02月22日20:22
  */
 @RestController

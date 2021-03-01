@@ -14,7 +14,7 @@ import javax.net.ssl.X509TrustManager;
  * @author Teears
  * @version 1.0.0
  * @ClassName SslUtils
- * @Description TODO
+ * @Description TODO 由于微信openid获取请求接口是https协议，需要手动绕过或者添加证书才能实现。
  * @createTime 2021年02月18日20:46
  */
 public class SslUtils {

@@ -20,7 +20,7 @@ import java.util.Map;
  * @author Teears
  * @version 1.0.0
  * @ClassName WeLoginController
- * @Description TODO
+ * @Description TODO 微信端登录接口
  * @createTime 2021年02月18日17:00
  */
 @RestController
@@ -32,7 +32,6 @@ public class WeLoginController {
     @PostMapping(value = "")
     @ResponseBody
     public Result login(@RequestParam Map<String, String> param){
-        System.out.println(param);
         String code = param.get("code");
         JSONObject weJson = WechatUtil.getOpenid(code);
         String openid = weJson.getString("openid");

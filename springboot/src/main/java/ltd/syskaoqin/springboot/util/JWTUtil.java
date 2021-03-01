@@ -8,6 +8,13 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTDecodeException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 
+/**
+ * @author Teears
+ * @version 1.0.0
+ * @ClassName HttpUtil
+ * @Description TODO token生成器
+ * @createTime 2021年02月21日16:05
+ */
 public class JWTUtil {
     // 过期时间10分钟
     private static final long EXPIRE_TIME = 30*60*1000;
@@ -48,26 +55,6 @@ public class JWTUtil {
             return null;
         }
     }
-
-    /**
-     * 判断token的时效性
-     */
-//    public static boolean isTimeout(String token, String secret){
-//        try {
-//            Algorithm algorithm = Algorithm.HMAC256(secret);
-//            JWTVerifier verifier = JWT.require(algorithm).build();
-//            DecodedJWT jwt = verifier.verify(token);
-//            if (jwt.getExpiresAt().before(new Date())) {
-//                System.out.println("token已过期");
-//                return false;
-//            }
-//            return true;
-//        } catch (Exception exception) {
-//            exception.printStackTrace();
-//            return false;
-//        }
-//    }
-
 
     /**
      * 生成签名,10min后过期

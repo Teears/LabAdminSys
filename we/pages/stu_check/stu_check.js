@@ -16,7 +16,7 @@ Page({
     cardId:1,
     queshengMark:0,
     queshengText:"你尚未加入任何实验室",
-    rank:"12",  //签到名次
+    rank:"0",  //签到名次
     address:'',
     turn_in:0,
     turn_out:0,
@@ -57,10 +57,13 @@ Page({
               address:that.data.address
             },
             success:function(res){
-              that.setData({
-                // rank:res.data.rank,
-                turn_in:1
-              })
+              res = res.data
+              if(res.data.checkinOK == 1){
+                that.setData({
+                  rank:res.data.rank,
+                  turn_in:1
+                })
+              }
             },
             fail:function(){
               wx.showToast({
@@ -212,13 +215,6 @@ Page({
         })
       }
     })
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-    
   },
 
   /**

@@ -22,7 +22,7 @@
 
     <select id="findLabByOpenid" resultMap="LabMap">
         select * from lab,
-        (select lab_id from user_lab where openid = #{openid})T
+        (select lab_id from user_lab where openid = #{openid} and status=1)T
         where T.lab_id = lab.id
     </select>
 

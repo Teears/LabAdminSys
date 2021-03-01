@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
 /**
  * @author Teears
@@ -23,10 +22,10 @@ public class UserServiceImpl implements UserService {
     @Resource
     private UserMapper userMapper;
 
-    @Override
-    public List<User> findAllUser() {
-        return null;
-    }
+//    @Override
+//    public List<User> findAllUser() {
+//        return null;
+//    }
 
     @Override
     public User findUserByopenid(String openid) {
@@ -44,16 +43,16 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int updateUserLatestTime(String openid) {
+    public void updateUserLatestTime(String openid) {
         Date date = new Date();
         SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String latestTime = df.format(date);
-        return userMapper.updateUserLatestTime(openid,latestTime);
+        userMapper.updateUserLatestTime(openid, latestTime);
     }
 
     @Override
-    public int updateBindAndRole(String openid, String bindId, String roleId) {
-        return userMapper.updateBindAndRole(openid,bindId,roleId);
+    public void updateBindAndRole(String openid, String bindId, String roleId) {
+        userMapper.updateBindAndRole(openid, bindId, roleId);
     }
 
 //    @Override

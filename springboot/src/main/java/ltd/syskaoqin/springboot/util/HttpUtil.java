@@ -18,7 +18,7 @@ import java.util.Arrays;
  * @author Teears
  * @version 1.0.0
  * @ClassName HttpUtil
- * @Description TODO
+ * @Description TODO 服务器向第三方服务器请求，微信用户信息解密,
  * @createTime 2021年02月18日16:39
  */
 public class HttpUtil {

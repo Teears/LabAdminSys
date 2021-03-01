@@ -2,7 +2,6 @@ package ltd.syskaoqin.springboot.controller;
 
 import ltd.syskaoqin.springboot.dao.entity.Lab;
 import ltd.syskaoqin.springboot.dao.entity.Record;
-import ltd.syskaoqin.springboot.dao.mapper.LabMapper;
 import ltd.syskaoqin.springboot.service.LabService;
 import ltd.syskaoqin.springboot.service.RecordService;
 import ltd.syskaoqin.springboot.util.JWTUtil;
@@ -13,8 +12,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,7 +19,7 @@ import java.util.Map;
  * @author Teears
  * @version 1.0.0
  * @ClassName StudentCheck
- * @Description TODO
+ * @Description TODO 学生签到页面接口，包括初始化界面，签到，签退。
  * @createTime 2021年02月22日20:20
  */
 @RestController
@@ -30,18 +27,33 @@ import java.util.Map;
 public class StudentCheckController {
     @Resource
     private LabService labService;
-    /**
-     *
-     */
     @Resource
     private RecordService recordService;
 
     @PostMapping(value = "/checkin")
     @ResponseBody
     public Result checkin(@RequestParam Map<String, String> param, HttpServletRequest request){
-
-
-        return ResultUtils.success();
+        String address = param.get("address");
+        String token = request.getHeader("token");
+        String openid = JWTUtil.getUsername(token);
+        String labId = labService.findLabByOpenid(openid).get(0).getId();
+        String nowTime = TimeUtil.getNowTime();
+        String nowDate = TimeUtil.getNowDate();
+        Record record = new Record();
+        record.setOpenid(openid);
+        record.setLabId(labId);
+        record.setCheckinLocation(address);
+        record.setCheckinTime(nowTime);
+        record.setCheckDate(nowDate);
+        int rank = recordService.selectRecordCoundbyLabidAndCheckdate(labId,nowDate);
+        Map<String,String> data = new HashMap<>();
+        if(recordService.insertRecord(record) > 0){
+            data.put("checkinOK","1");
+            data.put("rank",String.valueOf(rank));
+        }else {
+            data.put("checkinOK","-1");
+        }
+        return ResultUtils.success(data);
     }
 
     @PostMapping(value = "/checkout")
@@ -57,7 +69,7 @@ public class StudentCheckController {
     public Result load(HttpServletRequest request){
         String token = request.getHeader("token");
         String openid = JWTUtil.getUsername(token);
-        Lab lab = labService.findLabByOpenid(openid);
+        Lab lab = labService.findLabByOpenid(openid).get(0);
         Map<String,String> data = new HashMap<>();
         if(lab == null){
             data.put("checkinORout","-1");
@@ -65,11 +77,8 @@ public class StudentCheckController {
             data.put("msg","你尚未加入任何实验室");
             return ResultUtils.success(data);
         }
-        Date day=new Date();
-        SimpleDateFormat df = new SimpleDateFormat("HH:mm:ss");
-        String nowTime = df.format(day);
-        df = new SimpleDateFormat("yyyy-MM-dd");
-        String nowDate = df.format(day);
+        String nowTime = TimeUtil.getNowTime();
+        String nowDate = TimeUtil.getNowDate();
         Record record = recordService.findByOpenidAndDate(openid,nowDate);
 
         if(TimeUtil.isTimeRange(nowTime,"00:00:00",lab.getCheckinStart())){
@@ -122,6 +131,7 @@ public class StudentCheckController {
                 data.put("turn_out","1");
             }
         }
+
         return ResultUtils.success(data);
     }
 
