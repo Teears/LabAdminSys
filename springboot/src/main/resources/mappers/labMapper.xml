@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ltd.syskaoqin.springboot.dao.mapper.LabMapper">
+
+    <resultMap id ="LabMap" type="ltd.syskaoqin.springboot.dao.entity.Lab">
+        <result column="id" property="id"/>
+        <result column="lab_number" property="labNumber"/>
+        <result column="name" property="name"/>
+        <result column="room" property="room"/>
+        <result column="address" property="address"/>
+        <result column="seat" property="seat"/>
+        <result column="open_time" property="openTime"/>
+        <result column="close_time" property="closeTime"/>
+        <result column="should_checkin_time_a" property="checkinStart"/>
+        <result column="should_checkin_time_b" property="checkinEnd"/>
+        <result column="should_checkout_time_a" property="checkoutStart"/>
+        <result column="should_checkout_time_b" property="checkoutEnd"/>
+        <result column="basic_desc" property="basicDesc"/>
+        <result column="pic_url" property="picUrl"/>
+        <result column="rule_desc" property="ruleDesc"/>
+    </resultMap>
+
+    <select id="findLabByOpenid" resultMap="LabMap">
+        select * from lab,
+        (select lab_id from user_lab where openid = #{openid})T
+        where T.lab_id = lab.id
+    </select>
+
+</mapper>

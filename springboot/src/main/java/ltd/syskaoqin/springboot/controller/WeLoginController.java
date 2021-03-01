@@ -60,6 +60,7 @@ public class WeLoginController {
             data.put("roleId","0");
         }
         data.put("token",JWTUtil.sign(openid,openid));
+        userService.updateUserLatestTime(openid);
         return ResultUtils.success(data);
     }
 

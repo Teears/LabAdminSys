@@ -13,11 +13,13 @@ Page({
    * 页面的初始数据
    */
   data: {
+    cardId:1,
     queshengMark:0,
     queshengText:"你尚未加入任何实验室",
     rank:"12",  //签到名次
     address:'',
-    turn:0,
+    turn_in:0,
+    turn_out:0,
     shuaxinAnimation:null,
     rotateAngle:1
   },
@@ -26,6 +28,9 @@ Page({
     签到点击事件监听函数
   */
   checkin:function(){
+    if(this.data.turn_in == 1){
+      return
+    }
     console.log("触发Page页面bind事件")
     const that = this
     //检查位置授权
@@ -39,37 +44,32 @@ Page({
             address:res
           })
         }).then((res)=>{
-          /*  
-            向服务器发送位置，签到时间
-            接收签到名次
-          */
           console.log("---------签到request----------")
-          // wxp.request({
-          //   method:"POST",
-          //   url: app.globalData.host+'/stu/checkin',
-          //   header:{
-          //     "content-type":"application/x-www-form-urlencoded"
-          //   },
-          //   timeout:10000,
-          //   data:{
-          //     address:that.data.address,
-          //     time:'',
-          //     token:''
-          //   },
-          //   success:function(res){
-          //     that.setData({
-          //       rank:res.data.rank,
-          //       turn:1
-          //     })
-          //   },
-          //   fail:function(){
-          //     wx.showToast({
-          //       title: '网络繁忙',
-          //       icon:"none",
-          //       duration: 2000
-          //     })
-          //   }
-          // })
+          wxp.request({
+            method:"POST",
+            url: app.globalData.host+'/stu/checkin',
+            header:{
+              "content-type":"application/x-www-form-urlencoded",
+              'token': wx.getStorageSync('token')
+            },
+            timeout:10000,
+            data:{
+              address:that.data.address
+            },
+            success:function(res){
+              that.setData({
+                // rank:res.data.rank,
+                turn_in:1
+              })
+            },
+            fail:function(){
+              wx.showToast({
+                title: '网络繁忙',
+                icon:"none",
+                duration: 2000
+              })
+            }
+          })
         })
       }else{
         // 引导授权
@@ -78,6 +78,53 @@ Page({
       }
     })
 
+  },
+
+  checkout:function(){
+    if(this.data.turn_out == 1){
+      return
+    }
+    wxp.getSetting().then(res=>{
+      const scopeAddress = res.authSetting["scope.userLocation"]
+      if(scopeAddress == true || scopeAddress == undefined){
+        console.log("if auth")
+        //如果已授权，获取地址信息
+        that.getAddress().then(res =>{
+           that.setData({
+            address:res
+          })
+        }).then((res)=>{
+          console.log("---------签到request----------")
+          wxp.request({
+            method:"POST",
+            url: app.globalData.host+'/stu/checkout',
+            header:{
+              "content-type":"application/x-www-form-urlencoded",
+              'token': wx.getStorageSync('token')
+            },
+            timeout:10000,
+            data:{
+              address:that.data.address
+            },
+            success:function(res){
+              that.setData({
+                turn_in:1
+              })
+            },
+            fail:function(){
+              wx.showToast({
+                title: '网络繁忙',
+                icon:"none",
+                duration: 2000
+              })
+            }
+          })
+        })
+      }else{
+        console.log("if not auth")
+        wx.openSetting()
+      }
+    })
   },
 
   /* 
@@ -120,15 +167,50 @@ Page({
     })
   },
 
+  initPage:function(){
+    const that = this
+    var promise = new Promise((resolve,reject) =>{
+      wx.request({
+        url: app.globalData.host+'/stu/load',
+        method:"GET",
+        "header": {
+          "content-type":"application/json; charset=utf-8",
+          "token":wx.getStorageSync('token')
+        },
+        timeout:10000,
+        success:function(res){
+          res = res.data
+          console.log(res)
+          that.setData({
+            cardId:res.data.checkinORout,
+            queshengMark:res.data.queshengMark,
+            turn_in:res.data.turn_in,
+            turn_out:res.data.turn_out,
+            queshengText:res.data.msg,
+          })
+          return resolve(1)
+        },
+        fail:function(){
+          return reject()
+        }
+      })
+    })
+    return promise
+  },
+
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     const that = this
-    that.getAddress().then(res =>{
-      that.setData({
-        address:res
-      })
+    this.initPage().then(res=>{
+      if(res==1){
+        that.getAddress().then(res =>{
+          that.setData({
+            address:res
+          })
+        })
+      }
     })
   },
 

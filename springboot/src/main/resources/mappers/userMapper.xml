@@ -25,7 +25,7 @@
     values (#{openid},#{nickname},#{avatarUrl},#{roleId})
 </insert>
 <update id="updateUserLatestTime">
-    update user set latest_time=#{latestTime} where id=#{id}
+    update user set latest_time=#{latestTime} where openid=#{openid}
 </update>
 
 <!--<update id="updateBindId">-->

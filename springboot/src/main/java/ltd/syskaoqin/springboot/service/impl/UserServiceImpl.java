@@ -6,6 +6,7 @@ import ltd.syskaoqin.springboot.service.UserService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -43,9 +44,11 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int updateUserLatestTime(String id) {
-        Long latestTime = System.currentTimeMillis();
-        return userMapper.updateUserLatestTime(id,latestTime);
+    public int updateUserLatestTime(String openid) {
+        Date date = new Date();
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String latestTime = df.format(date);
+        return userMapper.updateUserLatestTime(openid,latestTime);
     }
 
     @Override

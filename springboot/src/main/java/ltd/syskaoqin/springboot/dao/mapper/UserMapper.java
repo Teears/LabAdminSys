@@ -25,7 +25,7 @@ public interface UserMapper {
 
     int insertUser(User user);
 
-    int updateUserLatestTime(@Param("id") String id,@Param("latestTime") Long latestTime);
+    int updateUserLatestTime(@Param("openid") String openid,@Param("latestTime") String latestTime);
 
 //    int updateBindId(@Param("id") String id, @Param("bindId") String bindId);
 //

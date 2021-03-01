@@ -13,7 +13,8 @@
       <view class="iconfont icon-shuaxin" animation="{{shuaxinAnimation}}" bindtap="shuaxinTap"></view>
     </view>
     <view>
-      <card-component rank="{{rank}}" turn="{{turn}}" bind:tap="checkin"></card-component>
+      <checkin-card-component wx:if="{{cardId == 1}}" rank="{{rank}}" turn="{{turn_in}}" bind:tap="checkin"></checkin-card-component>
+      <checkout-card-component wx:if="{{cardId == 0}}" turn="{{turn_out}}" bind:tap="checkout"></checkout-card-component>
     </view>
   </view>
 </view>

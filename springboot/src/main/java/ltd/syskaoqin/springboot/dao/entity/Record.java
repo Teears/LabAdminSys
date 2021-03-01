@@ -12,7 +12,7 @@ import lombok.Data;
 @Data
 public class Record {
     private String id;
-    private String stuId;
+    private String openid;
     private String labId;
     private String checkDate;
     private String checkinTime;

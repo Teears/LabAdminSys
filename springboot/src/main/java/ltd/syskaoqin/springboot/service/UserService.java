@@ -21,7 +21,7 @@ public interface UserService {
 
     int insertUser(User user);
 
-    int updateUserLatestTime(String id);
+    int updateUserLatestTime(String openid);
 //
 //    int updateBindId(String id, String bindId);
 //
