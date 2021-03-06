@@ -51,5 +51,27 @@ public interface RecordService {
      */
     void updateRecordCheckout(String openid, String checkDate, String checkoutTime, String checkoutLocation);
 
+    /**
+     * 清理请假和缺席的
+     * @param record
+     * @return
+     */
+    int insertCalculateRecord(Record record);
+
+    /**
+     * 找到为签到的
+     * @param checkDate
+     * @return
+     */
+    List<Record> selectNotCheck(String checkDate);
+
+    /**
+     * 根据主键更新签到状态
+     * @param openid openid
+     * @param checkDate checkDate yyyy-MM-dd
+     * @param status 0到勤(正常签到正常签退)，1缺席（未签到未签退），2迟到（未签到正常签退），3未签退（正常签到未签退），4请假
+     */
+    void updateRecordStatus(String openid, String checkDate, String status);
+
 
 }

@@ -30,5 +30,18 @@
         update record set checkout_time=#{checkoutTime},checkout_loc=#{checkoutLocation}
         where openid=#{openid} and check_date = #{checkDate}
     </update>
+    <insert id="insertCalculateRecord" parameterType="ltd.syskaoqin.springboot.dao.entity.Record">
+        insert into record(openid,lab_id,check_date,status)
+        values (#{openid},#{labId},#{checkDate},#{status})
+    </insert>
+    <select id="selectNotCheck" resultType="ltd.syskaoqin.springboot.dao.entity.Record">
+        select openid,lab_id from user_lab
+        where user_lab.status=1 and openid not in
+        (select openid from record where check_date=#{checkDate})
+    </select>
+    <update id="updateRecordStatus">
+        update record set status=#{status}
+        where openid=#{openid} and check_date = #{checkDate}
+    </update>
 
 </mapper>

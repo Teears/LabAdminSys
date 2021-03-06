@@ -8,4 +8,5 @@ package ltd.syskaoqin.springboot.controller;
  * @createTime 2021年02月22日20:20
  */
 public class StudentHistoryController {
+
 }

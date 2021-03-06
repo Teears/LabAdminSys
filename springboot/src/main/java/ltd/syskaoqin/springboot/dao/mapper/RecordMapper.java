@@ -54,4 +54,26 @@ public interface RecordMapper {
      * @param checkoutLocation 签退定位
      */
     void updateRecordCheckout(@Param("openid") String openid, @Param("checkDate")  String checkDate, @Param("checkoutTime") String checkoutTime,@Param("checkoutLocation") String checkoutLocation);
+
+    /**
+     * 插入缺少的数据，缺席或请假的
+     * @param record
+     * @return
+     */
+    int insertCalculateRecord(Record record);
+
+    /**
+     * 查询出今日未签到的人
+     * @param checkDate
+     * @return
+     */
+    List<Record> selectNotCheck(@Param("checkDate") String checkDate);
+
+    /**
+     * 根据主键更新签到状态
+     * @param openid openid
+     * @param checkDate checkDate yyyy-MM-dd
+     * @param status 0到勤(正常签到正常签退)，1缺席（未签到未签退），2迟到（未签到正常签退），3未签退（正常签到未签退），4请假
+     */
+    void updateRecordStatus(@Param("openid") String openid, @Param("checkDate") String checkDate, @Param("status") String status);
 }

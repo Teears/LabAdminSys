@@ -45,5 +45,18 @@ public class RecordServiceImpl implements RecordService {
         recordMapper.updateRecordCheckout(openid,checkDate,checkoutTime,checkoutLocation);
     }
 
+    @Override
+    public int insertCalculateRecord(Record record) {
+        return recordMapper.insertCalculateRecord(record);
+    }
 
+    @Override
+    public List<Record> selectNotCheck(String checkDate) {
+        return recordMapper.selectNotCheck(checkDate);
+    }
+
+    @Override
+    public void updateRecordStatus(String openid, String checkDate, String status) {
+        recordMapper.updateRecordStatus(openid,checkDate,status);
+    }
 }
