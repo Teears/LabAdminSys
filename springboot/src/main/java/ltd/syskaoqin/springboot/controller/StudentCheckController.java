@@ -23,7 +23,7 @@ import java.util.Map;
  * @createTime 2021年02月22日20:20
  */
 @RestController
-@RequestMapping("/stu")
+@RequestMapping("/stu/check")
 public class StudentCheckController {
     @Resource
     private LabService labService;
@@ -137,6 +137,7 @@ public class StudentCheckController {
             data.put("msg","辛苦了一天，休息一下吧！");
         }
 
+        System.out.println(data);
         return ResultUtils.success(data);
     }
 

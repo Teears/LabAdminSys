@@ -70,7 +70,7 @@ Page({
           console.log("---------签到request----------")
           wxp.request({
             method:"POST",
-            url: app.globalData.host+'/stu/'+checkurl,
+            url: app.globalData.host+'/stu/check/'+checkurl,
             header:{
               "content-type":"application/x-www-form-urlencoded",
               'token': wx.getStorageSync('token')
@@ -144,7 +144,7 @@ Page({
     const that = this
     var promise = new Promise((resolve,reject) =>{
       wx.request({
-        url: app.globalData.host+'/stu/load',
+        url: app.globalData.host+'/stu/check/load',
         method:"GET",
         "header": {
           "content-type":"application/json; charset=utf-8",

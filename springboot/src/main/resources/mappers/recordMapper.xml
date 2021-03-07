@@ -43,5 +43,22 @@
         update record set status=#{status}
         where openid=#{openid} and check_date = #{checkDate}
     </update>
+    <select id="selectOnesStatus" resultType="java.util.HashMap">
+        select status, count(*) from record where openid=#{openid} GROUP BY status
+    </select>
+    <select id="calculateFinishRate" resultType="Double">
+        select countB/countA as finishRate
+        from (select openid,count(*) as countA from record GROUP BY openid)A LEFT OUTER JOIN
+        (select openid,count(*) as countB from record where status=0 GROUP BY openid)B on A.openid=B.openid
+        where A.openid=#{openid}
+    </select>
+    <select id="calculateSurpass" resultType="Integer">
+        select R from
+            (select A.openid,rank() over(order by countB/countA desc) as R
+             from (select openid,count(*) as countA from record where lab_id=#{labId} GROUP BY openid)A LEFT OUTER JOIN
+                  (select openid,count(*) as countB from record where status=0 GROUP BY openid)B on A.openid=B.openid
+            ) as C
+        where C.openid=#{openid}
+    </select>
 
 </mapper>

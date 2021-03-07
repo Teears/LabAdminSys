@@ -1,6 +1,8 @@
 package ltd.syskaoqin.springboot.util;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -49,4 +51,17 @@ public class TimeUtil {
         return df.format(day);
     }
 
+    public static int subNowDate(String str) throws ParseException {
+        SimpleDateFormat sdf =new SimpleDateFormat("yyyy-MM-dd");
+        Date date1=sdf.parse(str);
+        Calendar c1= Calendar.getInstance();
+        c1.setTime(date1);
+
+
+        Date date2=new Date();
+        Calendar c2 = Calendar.getInstance();
+        c2.setTime(date2);
+
+        return c2.get(Calendar.DAY_OF_YEAR) - c1.get(Calendar.DAY_OF_YEAR);
+    }
 }

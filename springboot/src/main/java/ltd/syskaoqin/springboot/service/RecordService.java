@@ -3,6 +3,7 @@ package ltd.syskaoqin.springboot.service;
 import ltd.syskaoqin.springboot.dao.entity.Record;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Teears
@@ -73,5 +74,25 @@ public interface RecordService {
      */
     void updateRecordStatus(String openid, String checkDate, String status);
 
+    /**
+     * 获取某人到目前为止的签到情况
+     * @param openid
+     * @return
+     */
+    Map<Integer,Integer> selectOnesStatus(String openid);
 
+    /**
+     * 计算某个学生的到勤率
+     * @param openid
+     * @return
+     */
+    Double calculateFinishRate(String openid);
+
+    /**
+     * 查询该学生在所有学生中的到勤率排行
+     * @param openid
+     * @param labId
+     * @return
+     */
+    int calculateSurpass(String openid, String labId);
 }

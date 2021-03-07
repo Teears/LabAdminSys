@@ -26,6 +26,7 @@ public class ScheduleTask {
 
     @Scheduled(cron="0 0 23 * * ?")
     public void calculateRecord(){
+        System.out.println("每天23点清算签到状态");
         String nowDate = TimeUtil.getNowDate();
         //1、查找出已加入实验室但今日没有的签到记录
         List<Record> list = recordService.selectNotCheck(nowDate);
@@ -42,6 +43,6 @@ public class ScheduleTask {
             }
             recordService.insertCalculateRecord(record);
         }
-        System.out.println("每天23点清算签到状态");
+
     }
 }

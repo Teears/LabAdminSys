@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Teears
@@ -76,4 +77,26 @@ public interface RecordMapper {
      * @param status 0到勤(正常签到正常签退)，1缺席（未签到未签退），2迟到（未签到正常签退），3未签退（正常签到未签退），4请假
      */
     void updateRecordStatus(@Param("openid") String openid, @Param("checkDate") String checkDate, @Param("status") String status);
+
+    /**
+     * 获取某人到目前为止的签到情况
+     * @param openid
+     * @return
+     */
+    Map<Integer,Integer> selectOnesStatus(@Param("openid") String openid);
+
+    /**
+     * 计算某个学生的到勤率
+     * @param openid
+     * @return
+     */
+    Double calculateFinishRate(@Param("openid") String openid);
+
+    /**
+     * 查询该学生在所有学生中的到勤率排行
+     * @param openid
+     * @param labId
+     * @return
+     */
+    int calculateSurpass(@Param("openid") String openid, @Param("labId") String labId);
 }

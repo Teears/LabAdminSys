@@ -3,7 +3,7 @@
 <mapper namespace="ltd.syskaoqin.springboot.dao.mapper.DayOffMapper">
 
     <select id="selectByOpenidAndDate" resultType="Integer">
-        select * from dayoff_apply where openid=#{openid} and is_pass=1 and dayoff_time like #{dayOffTime}
+        select COUNT(*) from dayoff_apply where openid=#{openid} and is_pass=1 and dayoff_time like #{dayOffTime}
     </select>
 
 </mapper>

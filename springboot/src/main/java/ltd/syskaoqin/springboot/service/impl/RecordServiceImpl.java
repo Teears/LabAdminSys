@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Teears
@@ -58,5 +59,20 @@ public class RecordServiceImpl implements RecordService {
     @Override
     public void updateRecordStatus(String openid, String checkDate, String status) {
         recordMapper.updateRecordStatus(openid,checkDate,status);
+    }
+
+    @Override
+    public Map<Integer, Integer> selectOnesStatus(String openid) {
+        return recordMapper.selectOnesStatus(openid);
+    }
+
+    @Override
+    public Double calculateFinishRate(String openid) {
+        return recordMapper.calculateFinishRate(openid);
+    }
+
+    @Override
+    public int calculateSurpass(String openid, String labId) {
+        return recordMapper.calculateSurpass(openid,labId);
     }
 }

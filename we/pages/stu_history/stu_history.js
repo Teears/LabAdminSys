@@ -11,8 +11,8 @@ Page({
     detailOption:'',
     total:'',
 
-    startDate:"2020-01",
-    endDate:"2020-01",
+    startDate:"2020-12",
+    endDate:"2021-03",
     daysInfo: "",
 
     dialogTitle:"",
@@ -29,19 +29,20 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log("load is running")
     const that = this
     //初始化图表信息 和 日历页数
     wx.request({
-      method:"POST",
-      url: app.globalData.host+'/stu/historyInit',
-      header:{
-        "content-type":"application/x-www-form-urlencoded"
+      "url": app.globalData.host+'/stu/history/load',
+      "method":"GET",
+      "header":{
+        "content-type":"application/json; charset=utf-8",
+        "token":wx.getStorageSync('token')
       },
       timeout:10000,
-      data:{
-        token:''
-      },
       success:function(res){
+        res = res.data
+        console.log(res)
         that.setData({
           total:res.data.total,
           surpassOption:{
@@ -149,7 +150,7 @@ Page({
     const that = this
     wx.request({
       // url: app.globalData.host+'/stu/dayDetail?year='+e.detail.year+'&month='+e.detail.month+'&day='+e.detail.day,
-      url: app.globalData.host+'/stu/dayDetail',
+      url: app.globalData.host+'/stu/history/detail',
       method:"GET",
       "header": {
         "content-type":"application/json; charset=utf-8",
@@ -173,7 +174,7 @@ Page({
     const that = this
     wx.request({
       // url: app.globalData.host+'/stu/daysInfo?month='+currentMonth+"&year="+currentYear,
-      url: app.globalData.host+'/stu/daysInfo',
+      url: app.globalData.host+'/stu/history/daysInfo',
       method:"GET",
       "header": {
         "content-type":"application/json; charset=utf-8",
