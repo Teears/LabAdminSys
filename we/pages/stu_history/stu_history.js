@@ -88,7 +88,7 @@ Page({
             yAxis: {
               type: 'category',
               show:false,
-              data:['到勤','迟到/早退','缺席','请假']
+              data:['到勤','迟到/未签退','缺席','请假']
             },
             series:[{
               name:'detail',
