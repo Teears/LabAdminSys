@@ -5,5 +5,12 @@
     <select id="selectByOpenidAndDate" resultType="Integer">
         select COUNT(*) from dayoff_apply where openid=#{openid} and is_pass=1 and dayoff_time like #{dayOffTime}
     </select>
+    <select id="selectDayOffListByOpenid" resultType="ltd.syskaoqin.springboot.dao.entity.DayOff">
+        SELECT * FROM `dayoff_apply` where openid = #{openid}
+    </select>
+    <insert id="insertDayOff" parameterType="ltd.syskaoqin.springboot.dao.entity.DayOff">
+        insert into dayoff_apply(openid, dayoff_time, contact, reason, type)
+        values (#{openid},#{dayOffTime},#{contact},#{reason},#{type})
+    </insert>
 
 </mapper>

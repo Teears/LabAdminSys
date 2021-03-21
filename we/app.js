@@ -36,6 +36,7 @@ App({
                 try {
                   wx.setStorageSync('roleId', res.data.roleId)
                   wx.setStorageSync('token', res.data.token)
+                  wx.setStorageSync('avatarUrl', res.data.avatarUrl)
                 } catch (e) {
                   console.log("同步保存出错")
                 }

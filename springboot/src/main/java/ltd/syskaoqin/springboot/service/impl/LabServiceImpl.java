@@ -21,7 +21,7 @@ public class LabServiceImpl implements LabService {
     private LabMapper labMapper;
 
     @Override
-    public List<Lab> findLabByOpenid(String openid) {
+    public Lab findLabByOpenid(String openid) {
         return labMapper.findLabByOpenid(openid);
     }
 }

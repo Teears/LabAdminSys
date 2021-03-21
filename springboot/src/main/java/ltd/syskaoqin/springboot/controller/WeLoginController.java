@@ -35,6 +35,7 @@ public class WeLoginController {
         String code = param.get("code");
         JSONObject weJson = WechatUtil.getOpenid(code);
         String openid = weJson.getString("openid");
+        Map<String,String> data = new HashMap<>();
         if(userService.findUserByopenid(openid) == null){
             User user = new User();
             String nickName = param.get("nickName");
@@ -46,11 +47,13 @@ public class WeLoginController {
             if(userService.insertUser(user) == 0){
                 return ResultUtils.error(500,"系统错误");
             }
+            data.put("avatarUrl",avatarUrl);
+        }else {
+            data.put("avatarUrl",userService.findUserByopenid(openid).getAvatarUrl());
         }
         UsernamePasswordToken token = new UsernamePasswordToken("WECHAT",openid);
         Subject subject = SecurityUtils.getSubject();
         subject.login(token);
-        Map<String,String> data = new HashMap<>();
         if(subject.hasRole("Student")){
             data.put("roleId","1");
         }else if(subject.hasRole("Teacher")){

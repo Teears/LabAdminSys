@@ -29,12 +29,23 @@ Page({
   },
   confirmCalendar: function (e) {
     var display = []
+    var day = ""
     for (var i = 0; i < e.detail.length; i++) {
       display.push(e.detail[i].getMonth() + 1 + "/" + e.detail[i].getDate())
+      var month = e.detail[i].getMonth() + 1
+      var date = e.detail[i].getDate()
+      if ( month < 10 ) {
+        month = '0' + month
+      }
+      if ( date < 10 ) {
+        date= '0' + date
+      }
+      day = day + e.detail[i].getFullYear()+"-"+month+"-"+date+","
     }
+    day = day.substring(0, day.length - 1)
     this.setData({
       calendarShow: false,
-      day: e.detail,
+      day: day,
       dayDisplay: display,
       dayLength: e.detail.length
     })
@@ -59,7 +70,6 @@ Page({
   },
 
   submit: function () {
-    console.log(this.data.dayoffType + this.data.day + this.data.phone + this.data.desc)
     const that = this
     wx.showLoading({
       title: '请稍后...',
@@ -69,7 +79,7 @@ Page({
     },10000)
     wx.request({
       method: "POST",
-      url: app.globalData.host + '/stu/dayoffAply',
+      url: app.globalData.host + '/stu/dayOff/addDayOff',
       data: {
         dayoffType: that.data.dayoffType,
         day: that.data.day,
@@ -77,7 +87,8 @@ Page({
         desc: that.data.desc
       },
       header: {
-        "content-type": "application/x-www-form-urlencoded"
+        "content-type": "application/x-www-form-urlencoded",
+        "token": wx.getStorageSync('token')
       },
       timeout: 10000,
       success: function (res) {
@@ -97,6 +108,6 @@ Page({
         })
       }
     })
-  },
+  }
   
 })

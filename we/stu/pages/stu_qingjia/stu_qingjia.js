@@ -21,15 +21,15 @@ Page({
     const that = this
     var promise = new Promise((resolve, reject) => {
       wx.request({
-        // url: app.globalData.host+'/stu/dayDetail?currentPage='+that.data.currentPage+'&pageSize='+that.data.pageSize,
-        url: app.globalData.host + '/stu/dayoffList',
+        url: app.globalData.host+'/stu/dayOff/dayOffList?currentPage='+that.data.currentPage+'&pageSize='+that.data.pageSize,
         method: "GET",
         "header": {
           "content-type": "application/json; charset=utf-8",
-          "token": ""
+          "token": wx.getStorageSync('token')
         },
         timeout: 10000,
         success: function (res) {
+          res = res.data
           var list = res.data.list
           for (var i = 0; i < list.length; i++) {
             if (list[i].tag == 0) {
@@ -46,7 +46,7 @@ Page({
           that.setData({
             list: that.data.list.concat(list),
             currentPage: that.data.currentPage + 1,
-            last: res.data.last,
+            last: res.data.isLastPage,
             loading: false
           })
           resolve(list.length)
@@ -95,7 +95,6 @@ Page({
       loading: true
     })
     this.getDayoffList()
-
   }
 
 })

@@ -1,4 +1,5 @@
 // pages/stu_mine/stu_mine.js
+const app = getApp()
 Page({
 
   /**
@@ -14,10 +15,37 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      avatarUrl:wx.getStorageSync('avatarUrl'),
-      stuName:wx.getStorageSync('userName'),
-      belong:wx.getStorageSync('belong')
+    var avatarUrl=wx.getStorageSync('avatarUrl')
+    var stuName=wx.getStorageSync('stuName')
+    var belong=wx.getStorageSync('belong')
+    if(stuName!=""&&belong!=""){
+      this.setData({
+        avatarUrl:avatarUrl,
+        stuName:stuName,
+        belong:belong
+      })
+      return
+    }
+    const that = this
+    wx.request({
+      url: app.globalData.host+'/stu/mine/getNameAndBelong',
+      method:"GET",
+      "header": {
+        "content-type":"application/json; charset=utf-8",
+        "token":wx.getStorageSync('token')
+      },
+      timeout:10000,
+      success:function(res){
+        console.log(res)
+        res = res.data
+        that.setData({
+          avatarUrl:avatarUrl,
+          stuName:res.data.stuName,
+          belong:res.data.belong
+        })
+        wx.setStorageSync('stuName', res.data.stuName)
+        wx.setStorageSync('belong', res.data.belong)
+      }
     })
   },
 

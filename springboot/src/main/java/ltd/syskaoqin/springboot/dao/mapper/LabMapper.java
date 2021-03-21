@@ -21,5 +21,5 @@ public interface LabMapper {
      * @param openid openid
      * @return 返回实验室
      */
-    List<Lab> findLabByOpenid(@Param("openid") String openid);
+    Lab findLabByOpenid(@Param("openid") String openid);
 }

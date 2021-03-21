@@ -4,7 +4,9 @@
   <template wx:if="{{queshengMark == 1}}" is="quesheng" data="{{queshengText}}"></template>
   <van-panel custom-class="panel" wx:for="{{list}}">
     <view class="header" slot="header">
-      <text class="title">{{item.title.type}}：</text>
+      <!-- <text class="title">{{item.title.type}}：</text> -->
+      <text class="title" wx:if="{{item.title.type == 0}}">事假：</text>
+      <text class="title" wx:else >病假：</text>
       <van-tag custom-class="days" plain round color="#666699" wx:for-item="item1" wx:for="{{item.title.days}}">
         {{item1}}</van-tag>
       <van-tag custom-class="tag" plain type="{{item.tagType}}">{{item.tag}}</van-tag>
