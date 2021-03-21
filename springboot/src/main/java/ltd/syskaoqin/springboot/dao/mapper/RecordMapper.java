@@ -1,8 +1,10 @@
 package ltd.syskaoqin.springboot.dao.mapper;
 
 import ltd.syskaoqin.springboot.dao.entity.Record;
+import org.apache.ibatis.annotations.MapKey;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.ResultType;
 
 import java.util.List;
 import java.util.Map;
@@ -83,7 +85,7 @@ public interface RecordMapper {
      * @param openid
      * @return
      */
-    Map<Integer,Integer> selectOnesStatus(@Param("openid") String openid);
+    List<Map<String,Integer>> selectOnesStatus(@Param("openid") String openid);
 
     /**
      * 计算某个学生的到勤率
@@ -99,4 +101,12 @@ public interface RecordMapper {
      * @return
      */
     int calculateSurpass(@Param("openid") String openid, @Param("labId") String labId);
+
+    /**
+     * 获取某月的签到记录，但只提取date、status
+     * @param yearMonthStr
+     * @param openid
+     * @return
+     */
+    List<Map<String,Integer>> findDaysInfo(@Param("yearMonthStr") String yearMonthStr,@Param("openid") String openid);
 }

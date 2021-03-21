@@ -2,21 +2,21 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="ltd.syskaoqin.springboot.dao.mapper.RecordMapper">
 
-<!--    <resultMap id ="LabMap" type="ltd.syskaoqin.springboot.dao.entity.Record">-->
-<!--        <result column="openid" property="openid"/>-->
-<!--        <result column="lab_id" property="labId"/>-->
-<!--        <result column="check_date" property="checkDate"/>-->
-<!--        <result column="checkin_time" property="checkinTime"/>-->
-<!--        <result column="checkout_time" property="checkoutTime"/>-->
-<!--        <result column="checkin_loc" property="checkinLocation"/>-->
-<!--        <result column="checkout_loc" property="checkoutLocation"/>-->
-<!--        <result column="status" property="status"/>-->
-<!--    </resultMap>-->
+    <resultMap id ="RecordMap" type="ltd.syskaoqin.springboot.dao.entity.Record">
+        <result column="openid" property="openid"/>
+        <result column="lab_id" property="labId"/>
+        <result column="check_date" property="checkDate"/>
+        <result column="checkin_time" property="checkinTime"/>
+        <result column="checkout_time" property="checkoutTime"/>
+        <result column="checkin_loc" property="checkinLocation"/>
+        <result column="checkout_loc" property="checkoutLocation"/>
+        <result column="status" property="status"/>
+    </resultMap>
 
     <select id="findByOpenid" resultType="ltd.syskaoqin.springboot.dao.entity.Record">
         SELECT * FROM record WHERE openid = #{openid}
     </select>
-    <select id="findByOpenidAndDate" resultType="ltd.syskaoqin.springboot.dao.entity.Record">
+    <select id="findByOpenidAndDate" resultMap="RecordMap">
         SELECT * FROM record WHERE openid = #{openid} and check_date=#{checkDate}
     </select>
     <insert id="insertRecord" parameterType="ltd.syskaoqin.springboot.dao.entity.Record">
@@ -43,8 +43,8 @@
         update record set status=#{status}
         where openid=#{openid} and check_date = #{checkDate}
     </update>
-    <select id="selectOnesStatus" resultType="java.util.HashMap">
-        select status, count(*) from record where openid=#{openid} GROUP BY status
+    <select id="selectOnesStatus" resultType="java.util.Map">
+        select status as 'key', count(*) as 'value' from record where openid=#{openid} GROUP BY status
     </select>
     <select id="calculateFinishRate" resultType="Double">
         select countB/countA as finishRate
@@ -60,5 +60,7 @@
             ) as C
         where C.openid=#{openid}
     </select>
-
+    <select id="findDaysInfo" resultType="java.util.Map">
+        select RIGHT(check_date,2) as 'day',status from record where openid=#{openid} and check_date like #{yearMonthStr}
+    </select>
 </mapper>

@@ -131,8 +131,8 @@ Page({
     })
   
     //初始化当前页日历
-    const currentYear = new Date().getFullYear
-    const currentMonth = new Date().getMonth+1
+    const currentYear = new Date().getFullYear()
+    const currentMonth = new Date().getMonth()+1
     that.getDaysInfo(currentMonth,currentYear)
   },
 
@@ -149,15 +149,15 @@ Page({
   dayClick:function(e){
     const that = this
     wx.request({
-      // url: app.globalData.host+'/stu/dayDetail?year='+e.detail.year+'&month='+e.detail.month+'&day='+e.detail.day,
-      url: app.globalData.host+'/stu/history/detail',
+      url: app.globalData.host+'/stu/history/detail?year='+e.detail.year+'&month='+e.detail.month+'&day='+e.detail.day,
       method:"GET",
       "header": {
         "content-type":"application/json; charset=utf-8",
-        "token":""
+        "token":wx.getStorageSync('token')
       },
       timeout:10000,
       success:function(res){
+        res = res.data
         that.setData({
           dialogTitle:e.detail.month+"月"+e.detail.day+"日",
           checkinTime:res.data.checkinTime,
@@ -173,17 +173,39 @@ Page({
   getDaysInfo:function(currentMonth,currentYear){
     const that = this
     wx.request({
-      // url: app.globalData.host+'/stu/daysInfo?month='+currentMonth+"&year="+currentYear,
-      url: app.globalData.host+'/stu/history/daysInfo',
+      url: app.globalData.host+"/stu/history/daysInfo?month="+currentMonth+"&year="+currentYear,
       method:"GET",
       "header": {
         "content-type":"application/json; charset=utf-8",
-        "token":""
+        "token":wx.getStorageSync('token')
       },
       timeout:10000,
       success:function(res){
+        var daysInfo = []
+        res.data.data.forEach(function(map){
+          switch(map.status) {
+            case 0:
+              var color = "#99CC33"
+              break
+            case 1:
+              var color = "#CC3333"
+              break
+            case 4:
+              var color = "#666666"
+              break
+            default:
+              var color = "#FF9966"
+          } 
+          var temp = {
+            "month": "current",
+            "color": "white",
+            "day": parseInt(map.day),
+            "background": color
+          }
+          daysInfo.push(temp)
+        })
         that.setData({
-          daysInfo:res.data.daysInfo
+          daysInfo:daysInfo
         })
       }
     })

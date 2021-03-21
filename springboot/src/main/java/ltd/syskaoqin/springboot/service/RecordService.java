@@ -79,7 +79,7 @@ public interface RecordService {
      * @param openid
      * @return
      */
-    Map<Integer,Integer> selectOnesStatus(String openid);
+    List<Map<String,Integer>> selectOnesStatus(String openid);
 
     /**
      * 计算某个学生的到勤率
@@ -95,4 +95,14 @@ public interface RecordService {
      * @return
      */
     int calculateSurpass(String openid, String labId);
+
+    /**
+     * 获取某月的签到记录，但只提取date、status
+     * @param currentMonth
+     * @param currentYear
+     * @param openid
+     * @return
+     */
+    List<Map<String,Integer>> findDaysInfo(String currentMonth,String currentYear,String openid);
+
 }

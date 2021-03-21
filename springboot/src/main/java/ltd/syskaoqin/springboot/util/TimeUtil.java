@@ -64,4 +64,14 @@ public class TimeUtil {
 
         return c2.get(Calendar.DAY_OF_YEAR) - c1.get(Calendar.DAY_OF_YEAR);
     }
+
+    public static String add0(String str){
+        if(str.length()==1){
+            return "0"+str;
+        }else if(str.length() == 0){
+            return "00";
+        }else {
+            return str;
+        }
+    }
 }

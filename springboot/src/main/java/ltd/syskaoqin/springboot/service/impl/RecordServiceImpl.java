@@ -62,7 +62,7 @@ public class RecordServiceImpl implements RecordService {
     }
 
     @Override
-    public Map<Integer, Integer> selectOnesStatus(String openid) {
+    public List<Map<String,Integer>> selectOnesStatus(String openid) {
         return recordMapper.selectOnesStatus(openid);
     }
 
@@ -74,5 +74,11 @@ public class RecordServiceImpl implements RecordService {
     @Override
     public int calculateSurpass(String openid, String labId) {
         return recordMapper.calculateSurpass(openid,labId);
+    }
+
+    @Override
+    public List<Map<String,Integer>> findDaysInfo(String currentMonth, String currentYear, String openid) {
+        String yearMonthStr = currentYear+'-'+currentMonth+"-%";
+        return recordMapper.findDaysInfo(yearMonthStr,openid);
     }
 }
