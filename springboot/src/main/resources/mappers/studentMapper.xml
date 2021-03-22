@@ -6,5 +6,4 @@
         SELECT * FROM student WHERE stu_number=#{stuNumber}
     </select>
 
-
 </mapper>

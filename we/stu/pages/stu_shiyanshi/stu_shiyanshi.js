@@ -1,4 +1,5 @@
 // stu/pages/stu_shiyanshi/stu_shiyanshi.js
+const app = getApp()
 Page({
 
   /**
@@ -7,10 +8,10 @@ Page({
   data: {
     tab:[{
       tabTitle:"简介",
-      tabContent:'<center><h4>xxxx实验室介绍</h4></center><br><p>&emsp;&emsp;xxx实验室成立于2016年，隶属于四川师范大学计算机科学学院，xxx配备有先进的xx设备，可以容纳20位学生行xx实验，这是乱写的乱写的乱写的乱写为实验人员提供xxx保障。</p><p>&emsp;&emsp;这是第二段内容我们试试能否用HTML解析<img src="https://img.yzcdn.cn/vant/cat.jpeg" width="100%"/></p><p>&nbsp;&nbsp;&nbsp;&nbsp;负责人：张三</p><p>&nbsp;&nbsp;&nbsp;&nbsp;联系方式：18712344321</p>'
+      tabContent:''
     },{
       tabTitle:"管理规定",
-      tabContent:"xxxxxxxxxxxxx保障用电安全，xxxxxxxxxxxxxxxxxxx不能携带危险物品,xxxxxxxxxxxx禁止携带有气味的食物进入xxxx。xxxxxxxxxxxxx在微信小程序进行签到xxxxxxxx"
+      tabContent:''
     }]
   },
 
@@ -19,23 +20,38 @@ Page({
    */
   onLoad: function (options) {
     const that = this
+    var belong=wx.getStorageSync('belong')
+    if(belong == ""){
+      return
+    }
     wx.showLoading({
       title: '加载中...',
     })
     setTimeout(function(){
       wx.hideLoading()
-    },10000)
+    },5000)
     wx.request({
-      url: app.globalData.host + '/stu/shiyanshi',
+      url: app.globalData.host + '/stu/mine/shiyanshi',
         method: "GET",
         header: {
           "content-type": "application/json; charset=utf-8",
-          "token": ""
+          "token": wx.getStorageSync('token')
         },
         timeout: 10000,
         success: function (res) {
+          res = res.data
+          console.log(res)
+          var name=res.data.name
+          var content1=res.data.basicDesc
+          var imgUrl=res.data.imgUrl
+          var phone=res.data.phone
+          var teaName=res.data.teaName
+          var content2=res.data.ruleDesc
+          var createTime=res.data.createTime
           that.setData({
-            tab:res.tab
+            ['tab[0].tabContent']:'<center><h4>'+name+'实验室介绍</h4></center><br><p>&emsp;&emsp;'+content1+'</p><img src="'+imgUrl+'" width="100%"/></p><p>&nbsp;&nbsp;&nbsp;&nbsp;负责人：'+teaName+'</p><p>&nbsp;&nbsp;&nbsp;&nbsp;联系方式：'+phone+'</p>',
+
+            ['tab[1].tabContent']:'<center><h4>实验室守则</h4></center><br>'+content2+'<br><h4>'+createTime+'</h4>'
           })
         },
         fail:function(){

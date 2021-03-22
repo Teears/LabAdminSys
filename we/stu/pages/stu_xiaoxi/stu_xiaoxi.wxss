@@ -31,9 +31,11 @@
   margin: 10rpx;
   margin-bottom: 20rpx;
 }
-.loading{
-  width: 100%;
-  display: inline-block;
-  text-align: center;
-  margin: 10rpx;
+.label_view{
+  width: 450rpx;
+  color: #999999;
+  font-size: small;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; 
 }

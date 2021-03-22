@@ -26,4 +26,5 @@ public class Lab {
     private String basicDesc;
     private String picUrl;
     private String ruleDesc;
+    private String reviseTime;
 }

@@ -8,12 +8,7 @@ Page({
   data: {
     queshengMark: 0,
     queshengText: "暂时未收到任何消息",
-    currentPage: 1,
-    pageSize: 10,
-    last: false,
     list: [],
-    loading: false,
-    loadingFail: false,
     dialogShow: false,
     index:''
   },
@@ -22,28 +17,22 @@ Page({
     const that = this
     var promise = new Promise((resolve, reject) => {
       wx.request({
-        // url: app.globalData.host+'/stu/dayDetail?currentPage='+that.data.currentPage+'&pageSize='+that.data.pageSize,
-        url: app.globalData.host + '/stu/message',
+        url: app.globalData.host + '/message/stu/getmessage',
         method: "GET",
         "header": {
           "content-type": "application/json; charset=utf-8",
-          "token": ""
+          "token": wx.getStorageSync('token')
         },
         timeout: 10000,
         success: function (res) {
+          res = res.data
+          console.log(res)
           that.setData({
-            list: that.data.list.concat(res.data.list),
-            currentPage: that.data.currentPage + 1,
-            last: res.data.last,
-            loading: false
+            list: res.data,
           })
-          resolve(res.data.list.length)
+          resolve(res.data.length)
         },
         fail: function () {
-          that.setData({
-            loading: false,
-            loadingFail: true
-          })
           reject()
         }
       })
@@ -52,6 +41,17 @@ Page({
   },
   showPopup(e){
     var index = e.currentTarget.dataset.index
+    if(this.data.list[index].dot == true){
+      wx.request({
+        url: app.globalData.host + '/message/setreaded?id='+this.data.list[index].id,
+        method: "GET",
+        "header": {
+          "content-type": "application/json; charset=utf-8",
+          "token": wx.getStorageSync('token')
+        },
+        timeout: 10000
+      })
+    }
     var newIndexList = 'list['+index+'].dot'
     this.setData({
       index:index,
@@ -77,18 +77,5 @@ Page({
         })
       }
     })
-  },
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-    if (this.data.last == true) {
-      return
-    }
-    this.setData({
-      loadingFail: false,
-      loading: true
-    })
-    this.getMessageList()
   }
 })

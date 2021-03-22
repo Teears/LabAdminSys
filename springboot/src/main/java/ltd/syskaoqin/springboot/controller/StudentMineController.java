@@ -1,9 +1,8 @@
 package ltd.syskaoqin.springboot.controller;
 
-import ltd.syskaoqin.springboot.service.LabService;
-import ltd.syskaoqin.springboot.service.StudentService;
-import ltd.syskaoqin.springboot.service.UserAndLabService;
-import ltd.syskaoqin.springboot.service.UserService;
+import ltd.syskaoqin.springboot.dao.entity.Lab;
+import ltd.syskaoqin.springboot.dao.entity.Teacher;
+import ltd.syskaoqin.springboot.service.*;
 import ltd.syskaoqin.springboot.util.JWTUtil;
 import ltd.syskaoqin.springboot.util.result.Result;
 import ltd.syskaoqin.springboot.util.result.ResultUtils;
@@ -33,6 +32,8 @@ public class StudentMineController {
     LabService labService;
     @Resource
     StudentService studentService;
+    @Resource
+    TeacherService teacherService;
 
     @GetMapping(value = "/getNameAndBelong")
     @ResponseBody
@@ -44,6 +45,26 @@ public class StudentMineController {
         String stuName = studentService.findStudentByStuNumber(userService.findUserByopenid(openid).getBindId()).getName();
         data.put("stuName",stuName);
         data.put("belong",belong);
+        return ResultUtils.success(data);
+    }
+
+    @GetMapping(value = "/shiyanshi")
+    @ResponseBody
+    public Result getLabDesc(HttpServletRequest request){
+        String token = request.getHeader("token");
+        String openid = JWTUtil.getUsername(token);
+        Lab lab = labService.findLabByOpenid(openid);
+        Map<String,String> data = new HashMap<>();
+        data.put("name",lab.getName());
+        data.put("basicDesc",lab.getBasicDesc());
+        data.put("ruleDesc",lab.getRuleDesc());
+        data.put("imgUrl",lab.getPicUrl());
+        data.put("createTime",lab.getReviseTime());
+
+        Teacher teacher = teacherService.findTeacherByLabId(lab.getId());
+        data.put("phone",teacher.getPhone());
+        data.put("teaName",teacher.getName());
+
         return ResultUtils.success(data);
     }
 }
