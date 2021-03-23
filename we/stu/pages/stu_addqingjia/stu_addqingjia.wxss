@@ -16,11 +16,6 @@
   color: rgb(190, 190, 190);
 }
 
-/* .desc_view{
-  background-color: red;
-  display: flex;
-  flex-direction: column;
-} */
 .text_maxlength{
   font-size: smaller;
   color: rgb(190, 190, 190);

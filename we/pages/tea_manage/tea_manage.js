@@ -1,25 +1,58 @@
 // pages/tea_manage/tea_manage.js
+const app = getApp()
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    gradientColor: {
+      '0%': '#0093E9',
+      '100%': '#80D0C7'
+    },
+    list:[]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    const that = this
+    wx.request({
+      url: app.globalData.host+'/tea/managelist',
+      method:"GET",
+      "header": {
+        "content-type":"application/json; charset=utf-8",
+        "token":wx.getStorageSync('token')
+      },
+      timeout:10000,
+      success:function(res){
+        res = res.data
+        that.setData({
+          list:res.data
+        })
+      }
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  tapSet:function(e){
+    var index = e.currentTarget.dataset.index
+    wx.navigateTo({
+      url: '/tea/pages/tea_setLab/tea_setLab?labId=' + this.data.list[index].labId,
+    })
+  },
+  tapEdit:function(e){
+    var index = e.currentTarget.dataset.index
+    wx.navigateTo({
+      url: '/tea/pages/tea_editLab/tea_editLab?labId=' + this.data.list[index].labId,
+    })
+  },
+  tapBottom:function(e){
+    var index = e.currentTarget.dataset.index
+    wx.navigateTo({
+      url: '/tea/pages/tea_manageLab/tea_manageLab?labId=' + this.data.list[index].labId,
+    })
   },
 
   /**
@@ -32,40 +65,5 @@ Page({
           selected: 1
         })
       }
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
   }
 })
