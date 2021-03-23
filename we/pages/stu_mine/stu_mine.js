@@ -39,10 +39,11 @@ Page({
         console.log(res)
         res = res.data
         that.setData({
-          avatarUrl:avatarUrl,
+          avatarUrl:res.data.avatarUrl,
           stuName:res.data.stuName,
           belong:res.data.belong
         })
+        wx.setStorageSync('avatarUrl', res.data.avatarUrl)
         wx.setStorageSync('stuName', res.data.stuName)
         wx.setStorageSync('belong', res.data.belong)
       }

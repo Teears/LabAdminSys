@@ -20,4 +20,11 @@ public interface TeacherMapper {
      * @return Teacher
      */
     Teacher findTeacherByLabId(@Param("labId") String labId);
+
+    /**
+     * 通过工号查找教师
+     * @param teaNumber teaNumber
+     * @return teacher
+     */
+    Teacher findTeacherByTeaNumber(@Param("teaNumber") String teaNumber);
 }

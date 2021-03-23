@@ -3,6 +3,7 @@ package ltd.syskaoqin.springboot.controller;
 import ltd.syskaoqin.springboot.dao.entity.Lab;
 import ltd.syskaoqin.springboot.dao.entity.Student;
 import ltd.syskaoqin.springboot.dao.entity.Teacher;
+import ltd.syskaoqin.springboot.dao.entity.User;
 import ltd.syskaoqin.springboot.service.*;
 import ltd.syskaoqin.springboot.util.JWTUtil;
 import ltd.syskaoqin.springboot.util.result.Result;
@@ -40,9 +41,11 @@ public class StudentMineController {
         String openid = JWTUtil.getUsername(token);
         Map<String,String> data = new HashMap<>();
         String belong = labService.findLabByOpenid(openid).getLabNumber();
-        String stuName = studentService.findStudentByStuNumber(userService.findUserByopenid(openid).getBindId()).getName();
+        User user = userService.findUserByopenid(openid);
+        String stuName = studentService.findStudentByStuNumber(user.getBindId()).getName();
         data.put("stuName",stuName);
         data.put("belong",belong);
+        data.put("avatarUrl",user.getAvatarUrl());
         return ResultUtils.success(data);
     }
 

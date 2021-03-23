@@ -8,4 +8,7 @@
         SELECT openid FROM user_lab_tea where lab_id=#{labId} and status=1))
     </select>
 
+    <select id="findTeacherByTeaNumber" resultType="ltd.syskaoqin.springboot.dao.entity.Teacher">
+        SELECT * FROM teacher WHERE tea_number=#{teaNumber}
+    </select>
 </mapper>

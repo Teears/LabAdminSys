@@ -1,11 +1,16 @@
 package ltd.syskaoqin.springboot.controller;
 
 import ltd.syskaoqin.springboot.dao.entity.Student;
+import ltd.syskaoqin.springboot.dao.entity.Teacher;
 import ltd.syskaoqin.springboot.service.StudentService;
+import ltd.syskaoqin.springboot.service.TeacherService;
 import ltd.syskaoqin.springboot.service.UserService;
 import ltd.syskaoqin.springboot.util.JWTUtil;
 import ltd.syskaoqin.springboot.util.result.Result;
 import ltd.syskaoqin.springboot.util.result.ResultUtils;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.subject.Subject;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -26,6 +31,8 @@ public class BindRoleController {
     @Resource
     private StudentService studentService;
     @Resource
+    private TeacherService teacherService;
+    @Resource
     private UserService userService;
 
     @PostMapping(value = "/stu")
@@ -43,8 +50,34 @@ public class BindRoleController {
             userService.updateBindAndRole(openid,stu.getStuNumber(),"1");
             data.put("roleId","1");
             data.put("isBinded","1");
+            UsernamePasswordToken aToken = new UsernamePasswordToken("WECHAT",openid);
+            Subject subject = SecurityUtils.getSubject();
+            subject.logout();
+            subject.login(aToken);
         }
         return ResultUtils.success(data);
     }
 
+    @PostMapping(value = "/tea")
+    @ResponseBody
+    public Result bindIdTea(@RequestParam Map<String, String> param, HttpServletRequest request){
+        String teaNumber = param.get("teaNumber");
+        String teaPassword = param.get("teaPassword");
+        String token = request.getHeader("token");
+        String openid = JWTUtil.getUsername(token);
+        Teacher teacher = teacherService.findTeacherByTeaNumber(teaNumber);
+        Map<String,String> data = new HashMap<>();
+        if (teacher == null || !teaPassword.equals(teacher.getSecret())){
+            data.put("isBinded","0");
+        }else {
+            userService.updateBindAndRole(openid,teacher.getTeaNumber(),"2");
+            data.put("roleId","2");
+            data.put("isBinded","1");
+            UsernamePasswordToken aToken = new UsernamePasswordToken("WECHAT",openid);
+            Subject subject = SecurityUtils.getSubject();
+            subject.logout();
+            subject.login(aToken);
+        }
+        return ResultUtils.success(data);
+    }
 }

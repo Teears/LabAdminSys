@@ -23,4 +23,9 @@ public class TeacherServiceImpl implements TeacherService {
     public Teacher findTeacherByLabId(String labId) {
         return teacherMapper.findTeacherByLabId(labId);
     }
+
+    @Override
+    public Teacher findTeacherByTeaNumber(String teaNumber) {
+        return teacherMapper.findTeacherByTeaNumber(teaNumber);
+    }
 }

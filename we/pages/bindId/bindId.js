@@ -70,11 +70,11 @@ Page({
       success:function(res){
         res = res.data
         if(res.data.isBinded == 1){
-          console.log("学生身份认定成功,roleId"+res.data.roleId)
+          wx.clearStorageSync()
           wx.setStorageSync('roleId', res.data.roleId)
           wx.hideLoading()
-          wx.switchTab({
-            url: '/pages/stu_check/stu_check',
+          wx.navigateTo({
+            url: '/pages/start/start',
           })
         }else if(res.data.isBinded == 0){
           console.log("学生身份认定失败")
@@ -110,20 +110,19 @@ submitTeaForm:function(){
     method:"POST",
     url: app.globalData.host+'/bindId/tea',
     header:{
-      "content-type":"application/x-www-form-urlencoded"
+      "content-type":"application/x-www-form-urlencoded",
+      'token': wx.getStorageSync('token')
     },
-    data:{
-      teaForm:that.teaForm
-    },
+    data:that.data.teaForm,
     timeout:10000,
     success:function(res){
+      res = res.data
       if(res.data.isBinded == 1){
-        console.log("教师身份认定成功,roleId"+res.data.roleId)
-        app.globalData.roleId = res.data.roleId
+        wx.clearStorageSync()
         wx.setStorageSync('roleId', res.data.roleId)
         wx.hideLoading()
-        wx.switchTab({
-          url: '/pages/tea_manage/tea_manage',
+        wx.navigateTo({
+          url: '/pages/start/start',
         })
       }else if(res.data.isBinded == 0){
         console.log("教师身份认定失败")
@@ -145,6 +144,8 @@ submitTeaForm:function(){
     }
   })
 },
+
+
 changeCard:function(){
   if(this.data.stuCard == false){
     this.setData({
@@ -164,7 +165,7 @@ changeCard:function(){
    */
   onLoad: function (options) {
     this.setData({
-      roleId: app.globalData.roleId
+      roleId: wx.getStorageSync('roleId')
     })
   }
 
