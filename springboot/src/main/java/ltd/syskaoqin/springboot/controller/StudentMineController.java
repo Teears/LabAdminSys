@@ -1,15 +1,13 @@
 package ltd.syskaoqin.springboot.controller;
 
 import ltd.syskaoqin.springboot.dao.entity.Lab;
+import ltd.syskaoqin.springboot.dao.entity.Student;
 import ltd.syskaoqin.springboot.dao.entity.Teacher;
 import ltd.syskaoqin.springboot.service.*;
 import ltd.syskaoqin.springboot.util.JWTUtil;
 import ltd.syskaoqin.springboot.util.result.Result;
 import ltd.syskaoqin.springboot.util.result.ResultUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -66,5 +64,31 @@ public class StudentMineController {
         data.put("teaName",teacher.getName());
 
         return ResultUtils.success(data);
+    }
+
+    @GetMapping(value = "/getbindinfo")
+    @ResponseBody
+    public Result getBindInfo(HttpServletRequest request){
+        String token = request.getHeader("token");
+        String openid = JWTUtil.getUsername(token);
+        Map<String,String> data = new HashMap<>();
+        Student student = studentService.findStudentByOpenid(openid);
+        data.put("sex",student.getSex());
+        data.put("stuNum",student.getStuNumber());
+        data.put("phone",student.getPhone());
+        data.put("dept",student.getDepartment());
+        data.put("major",student.getMajor());
+        return ResultUtils.success(data);
+    }
+
+    @PostMapping(value = "/exitlab")
+    @ResponseBody
+    public Result stuExitLab(@RequestParam Map<String, String> param){
+        String stuNum = param.get("stuNum");
+        if(studentService.deleteStudent(stuNum) > 0){
+            return ResultUtils.success();
+        }else {
+            return ResultUtils.error(-200,"操作失败");
+        }
     }
 }

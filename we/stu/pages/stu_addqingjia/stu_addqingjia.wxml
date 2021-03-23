@@ -29,5 +29,5 @@
     </view>
   </van-cell-group>
 
-  <van-button custom-class="enterBtn" type="primary" size="small" block bindtap="submit">提  交</van-button>
+  <van-button custom-class="enterBtn" type="primary" size="middle" block bindtap="submit">提  交</van-button>
 </view>

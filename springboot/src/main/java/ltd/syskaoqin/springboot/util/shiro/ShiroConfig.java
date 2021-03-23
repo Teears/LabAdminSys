@@ -29,6 +29,7 @@ public class ShiroConfig {
         map.put("/bindId/**", "anon");
         map.put("/stu/**", "anon");
         map.put("/message/**", "anon");
+        map.put("/feedback/**", "anon");
         map.put("/**", "authc");
         bean.setFilterChainDefinitionMap(map);
         return bean;

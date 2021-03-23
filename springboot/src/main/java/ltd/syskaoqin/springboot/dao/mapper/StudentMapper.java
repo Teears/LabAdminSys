@@ -19,4 +19,18 @@ public interface StudentMapper {
      * @return Student
      */
     Student findStudentByStuNumber(@Param("stuNumber") String stuNumber);
+
+    /**
+     * 通过openid找到学生基本信息
+     * @param openid openid
+     * @return Student
+     */
+    Student findStudentByOpenid(@Param("openid") String openid);
+
+    /**
+     * 通过学号删除学生，在学生退出实验室时调用
+     * @param stuNum
+     * @return
+     */
+    int deleteStudent(@Param("stuNum") String stuNum);
 }

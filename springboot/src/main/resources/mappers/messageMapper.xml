@@ -2,11 +2,6 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="ltd.syskaoqin.springboot.dao.mapper.MessageMapper">
 
-<!--    <resultMap id ="RecordMap" type="ltd.syskaoqin.springboot.dao.entity.Record">-->
-<!--        <result column="openid" property="openid"/>-->
-<!--        <result column="message_id" property="labId"/>-->
-<!--    </resultMap>-->
-
     <select id="stuGetMessageList" resultType="ltd.syskaoqin.springboot.dao.entity.Message">
         select * from message where create_time>#{date} and type='1' or (type='0' and lab_id in
         (select lab_id from user_lab where openid=#{openid})) ORDER BY create_time DESC

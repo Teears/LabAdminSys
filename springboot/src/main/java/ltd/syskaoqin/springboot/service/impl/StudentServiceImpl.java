@@ -23,4 +23,14 @@ public class StudentServiceImpl implements StudentService {
     public Student findStudentByStuNumber(String stuNumber) {
         return studentMapper.findStudentByStuNumber(stuNumber);
     }
+
+    @Override
+    public Student findStudentByOpenid(String openid) {
+        return studentMapper.findStudentByOpenid(openid);
+    }
+
+    @Override
+    public int deleteStudent(String stuNum) {
+        return studentMapper.deleteStudent(stuNum);
+    }
 }

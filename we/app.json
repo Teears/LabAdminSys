@@ -1,15 +1,14 @@
 {
   "pages": [
-    "pages/start/start",
-    "pages/stu_check/stu_check",
-    "pages/authLogin/authLogin",
-    "pages/bindId/bindId",
     "pages/stu_mine/stu_mine",
+    "pages/start/start",
+    "pages/bindId/bindId",
+    "pages/authLogin/authLogin",
+    "pages/stu_check/stu_check",
     "pages/stu_history/stu_history",
-    "pages/tea_mine/tea_mine",
     "pages/tea_manage/tea_manage",
     "pages/tea_message/tea_message",
-    "pages/feedback/feedback"
+    "pages/tea_mine/tea_mine"
   ],
   "subpackages": [
     {
@@ -18,16 +17,21 @@
         "pages/stu_userInfo/stu_userInfo",
         "pages/stu_qingjia/stu_qingjia",
         "pages/stu_addqingjia/stu_addqingjia",
-        "pages/stu_shiyanshi/stu_shiyanshi",
-        "pages/stu_xiaoxi/stu_xiaoxi",
-        "pages/uploader/uploader",
-        "pages/change_phone/change_phone"
+        "pages/stu_shiyanshi/stu_shiyanshi"
       ]
     },
     {
       "root": "tea",
       "pages": [
         "pages/tea_userInfo/tea_userInfo"
+      ]
+    },
+    {
+      "root": "common",
+      "pages": [
+        "pages/feedback/feedback",
+        "pages/xiaoxi/xiaoxi",
+        "pages/uploader/uploader"
       ]
     }
   ],

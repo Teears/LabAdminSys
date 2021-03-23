@@ -1,0 +1,10 @@
+<!--common/pages/feedback/feedback.wxml-->
+<view class="out_wrapper">
+  <view class="middle_text">我们将会收到您的匿名反馈</view>
+  <view class="desc_view">
+    <van-field value="{{ desc }}" type="textarea" maxlength="500" border="{{false}}" placeholder="请输入" autosize bind:change="changeDesc" />
+    <view class="text_maxlength">{{descLength}}/500</view>
+  </view>
+
+  <van-button custom-class="enterBtn" type="primary" size="middle" block bindtap="submit">提  交</van-button>
+</view>

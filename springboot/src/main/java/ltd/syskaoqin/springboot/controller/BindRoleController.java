@@ -1,6 +1,5 @@
 package ltd.syskaoqin.springboot.controller;
 
-import com.alibaba.fastjson.JSONObject;
 import ltd.syskaoqin.springboot.dao.entity.Student;
 import ltd.syskaoqin.springboot.service.StudentService;
 import ltd.syskaoqin.springboot.service.UserService;
