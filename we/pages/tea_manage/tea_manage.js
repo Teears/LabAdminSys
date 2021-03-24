@@ -7,6 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    loading:false,
     gradientColor: {
       '0%': '#0093E9',
       '100%': '#80D0C7'
@@ -18,6 +19,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    console.log("load tea_manage")
+    this.initData()
+  },
+
+  initData:function(){
     const that = this
     wx.request({
       url: app.globalData.host+'/tea/managelist',
@@ -32,6 +38,9 @@ Page({
         that.setData({
           list:res.data
         })
+      },
+      complete:function(){
+        wx.stopPullDownRefresh()
       }
     })
   },
@@ -65,5 +74,9 @@ Page({
           selected: 1
         })
       }
+  },
+
+  onPullDownRefresh: function () {
+    this.initData()
   }
 })

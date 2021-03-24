@@ -4,17 +4,17 @@
   <van-cell-group title="签到">
     <view class="out">
       <input class="field" placeholder="请输入" disabled value="{{checkinTime1}}" bindtap="changeCheckinStart"/>
-      <text>开始 — </text>
+      <view>开始 - </view>
       <input class="field" placeholder="请输入" disabled value="{{checkinTime2}}" bindtap="changeCheckinEnd"/>
-      <text>结束</text>
+      <view>结束</view>
     </view>
   </van-cell-group>
   <van-cell-group title="签退">
     <view class="out">
       <input class="field" placeholder="请输入" disabled value="{{checkoutTime1}}" bindtap="changeCheckoutStart"/>
-      <text>开始 — </text>
+      <view>开始 - </view>
       <input class="field" placeholder="请输入" disabled value="{{checkoutTime2}}" bindtap="changeCheckoutEnd"/>
-      <text>结束</text>
+      <view>结束</view>
     </view>
   </van-cell-group>
   

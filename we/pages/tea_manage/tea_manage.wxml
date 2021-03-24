@@ -2,7 +2,10 @@
 <view class="out_wrapper">
   <view class="card gradient" wx:for="{{list}}" wx:key="key">
     <view class="top">
-      <van-icon name="setting-o" size="30px" bindtap="tapSet" data-index="{{index}}"/>
+      <view class="time" bindtap="tapSet" data-index="{{index}}">
+          <view>{{item.checkin}}</view>
+          <view>{{item.checkout}}</view>
+      </view>
       <text bindtap="tapEdit" data-index="{{index}}">{{item.labNum}}实验室</text>
     </view>
     <view class="bottom" bindtap="tapBottom" data-index="{{index}}">

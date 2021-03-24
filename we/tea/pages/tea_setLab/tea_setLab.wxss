@@ -11,13 +11,18 @@
   justify-content: space-around;
   vertical-align: middle;
   background-color: white;
-  height: 150rpx;
+  height: 100rpx;
+  padding-top: 25rpx;
+}
+.out view{
+  padding-top:20rpx;
 }
 .field{
   border: thin solid gray;
   width: 200rpx;
   height:75rpx;
   border-radius: 10rpx;
+  padding-left: 15rpx;
 }
 .enterBtn{
   background-color: #66CC99;

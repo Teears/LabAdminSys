@@ -1,4 +1,5 @@
 // tea/pages/tea_setLab/tea_setLab.js
+const app = getApp()
 Page({
 
   /**
@@ -16,7 +17,41 @@ Page({
   },
 
   submit:function(){
-    console.log(this.data)
+    const that = this
+    wx.showLoading({
+      title: '请稍后...',
+    })
+    wx.request({
+      method: "POST",
+      url: app.globalData.host + '/tea/manage/setlab',
+      data: {
+        labId: that.data.labId,
+        checkinTime1:that.data.checkinTime1,
+        checkinTime2:that.data.checkinTime2,
+        checkoutTime1:that.data.checkoutTime1,
+        checkoutTimr2:that.data.checkoutTimr2,
+      },
+      header: {
+        "content-type": "application/x-www-form-urlencoded",
+        "token": wx.getStorageSync('token')
+      },
+      timeout: 10000,
+      success: function (res) {
+        wx.hideLoading()
+        wx.showToast({
+          title: '修改成功',
+          duration: 2000
+        })
+      },
+      fail:function(){
+        wx.hideLoading()
+        wx.showToast({
+          title: '网络繁忙',
+          icon: "none",
+          duration: 2000
+        })
+      }
+    })
   },
 
   changeCheckinStart: function () {

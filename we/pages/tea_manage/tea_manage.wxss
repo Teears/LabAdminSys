@@ -1,4 +1,10 @@
 /* pages/tea_manage/tea_manage.wxss */
+.loading{
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+  margin: 10rpx;
+}
 .out_wrapper{
   background-color: #f7f7f7;
   height: 100%;
@@ -20,7 +26,6 @@
   background-color: #abd0e9;
   background-image: linear-gradient(135deg, #b2d6ee 0%, #afb2e7 100%);
 }
-
 .top{
   display: flex;
   flex-direction: row;
@@ -29,6 +34,12 @@
   padding-bottom: 10;
   border-bottom: thin solid rgb(221, 221, 221);
   padding-bottom: 10rpx;
+}
+.time{
+  display: flex;
+  flex-direction: column;
+  margin-left: 15rpx;
+  font-size: x-small;
 }
 
 .bottom{
