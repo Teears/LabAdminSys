@@ -30,7 +30,8 @@ public class ShiroConfig {
         map.put("/stu/**", "anon");
         map.put("/message/**", "anon");
         map.put("/feedback/**", "anon");
-        map.put("/**", "authc");
+        map.put("/**", "anon");
+//        map.put("/**", "authc");
         bean.setFilterChainDefinitionMap(map);
         return bean;
     }

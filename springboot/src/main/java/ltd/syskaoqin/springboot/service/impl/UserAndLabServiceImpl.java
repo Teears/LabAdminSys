@@ -20,9 +20,14 @@ public class UserAndLabServiceImpl implements UserAndLabService {
     private UserAndLabMapper userAndLabMapper;
 
     @Override
-    public UserAndLab selectByOpenid(String openid) {
-        return userAndLabMapper.selectByOpenid(openid);
+    public UserAndLab selectByStuOpenid(String openid) {
+        return userAndLabMapper.selectByStuOpenid(openid);
     }
+
+//    @Override
+//    public UserAndLab selectByTeaOpenid(String openid) {
+//        return userAndLabMapper.selectByTeaOpenid(openid);
+//    }
 
     @Override
     public int calculateLabTotal(String labId) {

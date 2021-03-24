@@ -1,13 +1,14 @@
 package ltd.syskaoqin.springboot.controller;
 
-import ltd.syskaoqin.springboot.dao.entity.Lab;
 import ltd.syskaoqin.springboot.dao.entity.Student;
-import ltd.syskaoqin.springboot.dao.entity.Teacher;
 import ltd.syskaoqin.springboot.dao.entity.User;
 import ltd.syskaoqin.springboot.service.*;
 import ltd.syskaoqin.springboot.util.JWTUtil;
 import ltd.syskaoqin.springboot.util.result.Result;
 import ltd.syskaoqin.springboot.util.result.ResultUtils;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authz.annotation.RequiresRoles;
+import org.apache.shiro.subject.Subject;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -40,7 +41,7 @@ public class StudentMineController {
         String token = request.getHeader("token");
         String openid = JWTUtil.getUsername(token);
         Map<String,String> data = new HashMap<>();
-        String belong = labService.findLabByOpenid(openid).getLabNumber();
+        String belong = labService.findLabByStuOpenid(openid).getLabNumber();
         User user = userService.findUserByopenid(openid);
         String stuName = studentService.findStudentByStuNumber(user.getBindId()).getName();
         data.put("stuName",stuName);
@@ -49,29 +50,13 @@ public class StudentMineController {
         return ResultUtils.success(data);
     }
 
-    @GetMapping(value = "/shiyanshi")
-    @ResponseBody
-    public Result getLabDesc(HttpServletRequest request){
-        String token = request.getHeader("token");
-        String openid = JWTUtil.getUsername(token);
-        Lab lab = labService.findLabByOpenid(openid);
-        Map<String,String> data = new HashMap<>();
-        data.put("name",lab.getName());
-        data.put("basicDesc",lab.getBasicDesc());
-        data.put("ruleDesc",lab.getRuleDesc());
-        data.put("imgUrl",lab.getPicUrl());
-        data.put("createTime",lab.getReviseTime());
-
-        Teacher teacher = teacherService.findTeacherByLabId(lab.getId());
-        data.put("phone",teacher.getPhone());
-        data.put("teaName",teacher.getName());
-
-        return ResultUtils.success(data);
-    }
-
+//    @RequiresRoles("Student")
     @GetMapping(value = "/getbindinfo")
     @ResponseBody
     public Result getBindInfo(HttpServletRequest request){
+        Subject subject = SecurityUtils.getSubject();
+        System.out.println(subject.hasRole("Student"));
+
         String token = request.getHeader("token");
         String openid = JWTUtil.getUsername(token);
         Map<String,String> data = new HashMap<>();

@@ -19,5 +19,12 @@ public interface LabService {
      * @param openid openid
      * @return 实验室对象列表
      */
-    Lab findLabByOpenid(String openid);
+    Lab findLabByStuOpenid(String openid);
+
+    /**
+     * 通过labId查找Lab
+     * @param labId labId
+     * @return Lab
+     */
+    Lab findLabByLabId(String labId);
 }

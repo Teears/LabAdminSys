@@ -1,0 +1,12 @@
+<!--components/shiyanshiInfo/shiyanshiInfo.wxml-->
+<view class="out_wrapper">
+  <van-tabs animated swipeable sticky color="#666699">
+    <van-tab wx:for="{{tab}}" title="{{item.tabTitle}}">
+      <view class="tab_content">
+        <rich-text nodes="{{item.tabContent}}"></rich-text>
+        <view class="bottom"></view>
+      </view>
+    </van-tab>
+  </van-tabs>
+  
+</view>

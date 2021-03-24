@@ -1,2 +1,2 @@
 <!--tea/pages/tea_editLab/tea_editLab.wxml-->
-<text>tea/pages/tea_editLab/tea_editLab.wxml</text>
+<shiyanshiInfo-component labId="{{labId}}"></shiyanshiInfo-component>

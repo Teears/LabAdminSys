@@ -20,10 +20,14 @@
         <result column="rule_desc" property="ruleDesc"/>
     </resultMap>
 
-    <select id="findLabByOpenid" resultMap="LabMap">
+    <select id="findLabByStuOpenid" resultMap="LabMap">
         select * from lab,
         (select lab_id from user_lab where openid = #{openid} and status=1)T
         where T.lab_id = lab.id
+    </select>
+
+    <select id="findLabByLabId" resultMap="LabMap">
+        select * from lab where id=#{labId}
     </select>
 
 </mapper>

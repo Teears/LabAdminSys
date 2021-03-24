@@ -36,7 +36,7 @@ public class StudentCheckController {
         String address = param.get("address");
         String token = request.getHeader("token");
         String openid = JWTUtil.getUsername(token);
-        String labId = labService.findLabByOpenid(openid).getId();
+        String labId = labService.findLabByStuOpenid(openid).getId();
         String nowTime = TimeUtil.getNowTime();
         String nowDate = TimeUtil.getNowDate();
         Record record = new Record();
@@ -65,7 +65,7 @@ public class StudentCheckController {
             recordService.updateRecordCheckout(openid,nowDate,nowTime,address);
         }else {
             Record record = new Record();
-            String labId = labService.findLabByOpenid(openid).getId();
+            String labId = labService.findLabByStuOpenid(openid).getId();
             record.setOpenid(openid);
             record.setLabId(labId);
             record.setCheckDate(nowDate);
@@ -81,7 +81,7 @@ public class StudentCheckController {
     public Result load(HttpServletRequest request){
         String token = request.getHeader("token");
         String openid = JWTUtil.getUsername(token);
-        Lab lab = labService.findLabByOpenid(openid);
+        Lab lab = labService.findLabByStuOpenid(openid);
         Map<String,String> data = new HashMap<>();
         if(lab == null){
             data.put("checkinORout","-1");

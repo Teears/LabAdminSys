@@ -14,11 +14,18 @@ import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface UserAndLabMapper {
     /**
-     * 获取用户当前加入的实验室
+     * 获取学生当前加入的实验室
      * @param openid openid
      * @return 当前加入的实验室以及加入时间等
      */
-    UserAndLab selectByOpenid(@Param("openid") String openid);
+    UserAndLab selectByStuOpenid(@Param("openid") String openid);
+
+//    /**
+//     * 获取教师当前加入的实验室
+//     * @param openid openid
+//     * @return 当前加入的实验室以及加入时间等
+//     */
+//    UserAndLab selectByTeaOpenid(@Param("openid") String openid);
 
     /**
      * 获取加入这个实验室的学生人数，需要减去一个教师人数

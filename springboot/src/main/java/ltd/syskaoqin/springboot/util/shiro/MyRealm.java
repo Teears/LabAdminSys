@@ -49,6 +49,7 @@ public class MyRealm extends AuthorizingRealm {
         Role role = roleService.findByid(user.getRoleId());
         if(role != null){
             simpleAuthorizationInfo.addRole(role.getName());
+            System.out.println("授权role"+role.getName());
             permissions = permissionService.findByRoleId(role.getId());
         }else{
             return null;

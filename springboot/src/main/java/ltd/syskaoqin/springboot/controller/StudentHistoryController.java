@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import javax.xml.crypto.Data;
-import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
@@ -39,7 +37,7 @@ public class StudentHistoryController {
     public Result load(HttpServletRequest request) throws ParseException {
         String token = request.getHeader("token");
         String openid = JWTUtil.getUsername(token);
-        UserAndLab userAndLab = userAndLabService.selectByOpenid(openid);
+        UserAndLab userAndLab = userAndLabService.selectByStuOpenid(openid);
 
         int total = TimeUtil.subNowDate(userAndLab.getCreateTime());
         Date endDate = new Date();
