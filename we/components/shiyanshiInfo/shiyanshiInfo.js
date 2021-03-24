@@ -25,9 +25,9 @@ Component({
     }]
   },
 
-  attached:function(){
+  ready:function(){
     const that = this
-    console.log(that.properties.labId)
+    console.log("实验室编号"+that.properties.labId)
     wx.showLoading({
       title: '加载中...',
     })

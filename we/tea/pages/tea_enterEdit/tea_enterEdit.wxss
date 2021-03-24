@@ -1,0 +1,26 @@
+/* tea/pages/tea_enterEdit/tea_enterEdit.wxss */
+.out_wrapper{
+  padding: 10rpx;
+  padding-top: 0rpx;
+  height: 100%;
+  background-color: #F7F7F7;
+}
+.last_view{
+  background-color: white;
+  text-align: center;
+  padding: 10rpx;
+  padding-top: 25rpx;
+}
+.text_maxlength{
+  font-size: smaller;
+  color: rgb(190, 190, 190);
+  text-align: right;
+  background-color: white;
+}
+.enterBtn{
+  background-color: #66CC99;
+  font-size: smaller;
+  font-weight: 500;
+  color: #F7F7F7;
+  margin-top: 60rpx;
+}

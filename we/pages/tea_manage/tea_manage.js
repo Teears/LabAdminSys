@@ -19,7 +19,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log("load tea_manage")
     this.initData()
   },
 
@@ -34,6 +33,7 @@ Page({
       },
       timeout:10000,
       success:function(res){
+        console.log(res)
         res = res.data
         that.setData({
           list:res.data
