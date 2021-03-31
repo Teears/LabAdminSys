@@ -20,7 +20,7 @@
 
   <van-cell-group title="该图片将在介绍页展示">
     <view class="last_view">
-      <van-uploader file-list="{{fileList}}" bind:after-read="afterRead" />
+      <van-uploader file-list="{{fileList}}" bind:after-read="afterRead" deletable="{{false}}"/>
     </view>
   </van-cell-group>
 

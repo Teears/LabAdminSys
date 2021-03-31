@@ -22,20 +22,15 @@ Component({
         "selectedIconPath":"/image/mine_on.png"
       }],
       teaList: [{
-        "pagePath": "/pages/tea_message/tea_message",
-        "text": "消息",
-        "iconPath":"/image/mail.png",
-        "selectedIconPath":"/image/mail_on.png"
-      },{
         "pagePath": "/pages/tea_manage/tea_manage",
-        "text": "管理",
+        "text": "实验室",
         "iconPath":"/image/manage.png",
         "selectedIconPath":"/image/manage_on.png"
       },{
-        "pagePath": "/pages/stu_mine/stu_mine",
-        "text": "个人",
-        "iconPath":"/image/mine.png",
-        "selectedIconPath":"/image/mine_on.png"
+        "pagePath": "/pages/tea_mine/tea_mine",
+        "text": "功能",
+        "iconPath":"/image/function.png",
+        "selectedIconPath":"/image/function_on.png"
       }]
     }],
     list: []
