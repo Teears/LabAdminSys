@@ -1,0 +1,13 @@
+.out_wrapper{
+  height: 100%;
+  padding: 10rpx;
+  background-color: #F7F7F7;
+}
+.cell_group{
+  padding-bottom: 20rpx;
+}
+.button{
+  margin-top: 100rpx;
+  margin-right: 30rpx;
+  margin-left: 30rpx;
+}

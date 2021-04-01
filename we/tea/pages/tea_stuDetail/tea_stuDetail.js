@@ -1,66 +1,44 @@
 // tea/pages/tea_stuDetail/tea_stuDetail.js
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    avatarUrl: "",
+    name:"",
+    sex:"",
+    stuNum:"",
+    phone:"",
+    dept:"",
+    major:""
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+    const that = this
+    wx.request({
+      url: app.globalData.host + '/tea/getStuDetail',
+      method: "GET",
+      "header": {
+        "content-type": "application/json; charset=utf-8",
+        "token": wx.getStorageSync('token')
+      },
+      timeout: 10000,
+      success: function (res) {
+        res = res.data
+        that.setData({
+          avatarUrl: res.data.avatarUrl,
+          sex:res.data.sex,
+          stuNum:res.data.stuNum,
+          phone:res.data.phone,
+          dept:res.data.dept,
+          major:res.data.major
+        })
+      }
+    })
   }
 })

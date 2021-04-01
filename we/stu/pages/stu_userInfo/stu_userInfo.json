@@ -2,7 +2,6 @@
   "usingComponents": {
     "van-cell": "@vant/weapp/cell/index",
     "van-image": "@vant/weapp/image/index",
-    "van-cell-group": "@vant/weapp/cell-group/index",
     "van-button": "@vant/weapp/button/index",
     "van-dialog": "@vant/weapp/dialog/index"
   },

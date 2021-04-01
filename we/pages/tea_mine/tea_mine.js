@@ -1,25 +1,48 @@
 // pages/tea_mine/tea_mine.js
+const app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    avatarUrl:'',
+    teaNum:''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+    var avatarUrl=wx.getStorageSync('avatarUrl')
+    var teaName=wx.getStorageSync('teaName')
+    if(teaName!=""&&avatarUrl!=""){
+      this.setData({
+        avatarUrl:avatarUrl,
+        teaName:teaName,
+      })
+      return
+    }
+    const that = this
+    wx.request({
+      url: app.globalData.host+'/tea/mine/getTeaMine',
+      method:"GET",
+      "header": {
+        "content-type":"application/json; charset=utf-8",
+        "token":wx.getStorageSync('token')
+      },
+      timeout:10000,
+      success:function(res){
+        console.log(res)
+        res = res.data
+        that.setData({
+          avatarUrl:res.data.avatarUrl,
+          teaName:res.data.teaName
+        })
+        wx.setStorageSync('avatarUrl', res.data.avatarUrl)
+        wx.setStorageSync('teaName', res.data.teaName)
+      }
+    })
   },
 
   /**
@@ -27,45 +50,10 @@ Page({
    */
   onShow: function () {
     if (typeof this.getTabBar === 'function' &&
-        this.getTabBar()) {
-        this.getTabBar().setData({
-          selected: 1
-        })
-      }
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+      this.getTabBar()) {
+      this.getTabBar().setData({
+        selected: 1
+      })
+    }
   }
 })
