@@ -26,11 +26,14 @@ Page({
         timeout: 10000,
         success: function (res) {
           res = res.data
-          console.log(res)
           that.setData({
             list: res.data,
           })
-          resolve(res.data.length)
+          if(res.data == null || res.data == undefined){
+            resolve(0)
+          }else{
+            resolve(res.data.length)
+          }
         },
         fail: function () {
           reject()

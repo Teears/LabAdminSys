@@ -23,7 +23,7 @@
   上方头像
 */
 .avatar_view{
-  height: 35%;
+  height: 32%;
   display: flex;
   flex-direction: column;
   justify-content: center;
