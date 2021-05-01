@@ -81,4 +81,9 @@ public class RecordServiceImpl implements RecordService {
         String yearMonthStr = currentYear+'-'+currentMonth+"-%";
         return recordMapper.findDaysInfo(yearMonthStr,openid);
     }
+
+    @Override
+    public Map<String, Integer> checkinCheckoutBoth(String labId, String checkDate) {
+        return recordMapper.checkinCheckoutBoth(labId,checkDate);
+    }
 }

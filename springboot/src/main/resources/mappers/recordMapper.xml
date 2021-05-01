@@ -63,4 +63,10 @@
     <select id="findDaysInfo" resultType="java.util.Map">
         select RIGHT(check_date,2) as 'day',status from record where openid=#{openid} and check_date like #{yearMonthStr}
     </select>
+
+    <select id="checkinCheckoutBoth" resultType="java.util.Map">
+        select COUNT(checkin_time) as checkin,COUNT(checkout_time) as checkout,
+               COUNT(checkin_time and checkout_time) as checkboth
+        from record where lab_id=#{labId} and check_date=#{checkDate}
+    </select>
 </mapper>

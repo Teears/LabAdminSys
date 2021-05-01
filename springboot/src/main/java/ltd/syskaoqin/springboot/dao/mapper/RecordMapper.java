@@ -109,4 +109,13 @@ public interface RecordMapper {
      * @return
      */
     List<Map<String,Integer>> findDaysInfo(@Param("yearMonthStr") String yearMonthStr,@Param("openid") String openid);
+
+    /**
+     * 获取某天某个实验室签到、签退、既签到又签退的数量
+     * @param labId labid
+     * @param checkDate checkDate
+     * @return checkin checkout both
+     */
+    Map<String,Integer> checkinCheckoutBoth(@Param("labId") String labId, @Param("checkDate") String checkDate);
+
 }

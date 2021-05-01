@@ -30,4 +30,19 @@
         select * from lab where id=#{labId}
     </select>
 
+    <select id="findLabByTeaOpenid" resultMap="LabMap">
+        select * from lab where id in
+        (select lab_id from user_lab_tea where
+        openid=#{openid} and `status`=1)
+    </select>
+
+    <select id="countStuInLab" resultType="Integer">
+        select COUNT(*) from user_lab where lab_id=#{labId} and `status`=1
+    </select>
+
+    <update id="updateCheckTime">
+        update lab set should_checkin_time_a=#{checkin1},should_checkin_time_b=#{checkin2},
+                       should_checkout_time_a=#{checkout1},should_checkout_time_b=#{checkout2}
+        where id=#{labId}
+    </update>
 </mapper>

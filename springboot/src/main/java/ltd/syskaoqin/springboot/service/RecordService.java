@@ -105,4 +105,11 @@ public interface RecordService {
      */
     List<Map<String,Integer>> findDaysInfo(String currentMonth,String currentYear,String openid);
 
+    /**
+     * 获取某天某个实验室签到、签退、既签到又签退的数量
+     * @param labId 实验室编号
+     * @param checkDate 签到日期
+     * @return checkin checkout both
+     */
+    Map<String,Integer> checkinCheckoutBoth(String labId, String checkDate);
 }

@@ -6,6 +6,8 @@ import ltd.syskaoqin.springboot.service.LabService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author Teears
@@ -27,5 +29,20 @@ public class LabServiceImpl implements LabService {
     @Override
     public Lab findLabByLabId(String labId) {
         return labMapper.findLabByLabId(labId);
+    }
+
+    @Override
+    public List<Lab> findLabByTeaOpenid(String openid) {
+        return labMapper.findLabByTeaOpenid(openid);
+    }
+
+    @Override
+    public int countStuInLab(String labId) {
+        return labMapper.countStuInLab(labId);
+    }
+
+    @Override
+    public void updateCheckTime(String labId, String checkin1, String checkin2, String checkout1, String checkout2) {
+        labMapper.updateCheckTime(labId,checkin1,checkin2,checkout1,checkout2);
     }
 }

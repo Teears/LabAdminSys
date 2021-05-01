@@ -12,24 +12,34 @@ Page({
     checkinTime1:'',
     checkinTime2:'',
     checkoutTime1:'',
-    checkoutTimr2:'',
+    checkoutTime2:'',
     currentTime:"12:30"
   },
 
   submit:function(){
+    if(!(this.data.checkinTime1<this.data.checkinTime2&&
+      this.data.checkinTime2<this.data.checkoutTime1&&
+      this.data.checkoutTime1<this.data.checkoutTime2)){
+      wx.showToast({
+        title: '内容不符合要求',
+        icon: "none",
+        duration: 2000
+      })
+      return
+    }
     const that = this
     wx.showLoading({
       title: '请稍后...',
     })
     wx.request({
       method: "POST",
-      url: app.globalData.host + '/tea/manage/setlab',
+      url: app.globalData.host + '/tea/setlab',
       data: {
         labId: that.data.labId,
         checkinTime1:that.data.checkinTime1,
         checkinTime2:that.data.checkinTime2,
         checkoutTime1:that.data.checkoutTime1,
-        checkoutTimr2:that.data.checkoutTimr2,
+        checkoutTime2:that.data.checkoutTime2,
       },
       header: {
         "content-type": "application/x-www-form-urlencoded",
