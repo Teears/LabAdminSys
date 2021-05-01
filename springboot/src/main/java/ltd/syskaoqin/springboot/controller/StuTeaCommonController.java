@@ -59,4 +59,5 @@ public class StuTeaCommonController {
 
         return ResultUtils.success(data);
     }
+
 }

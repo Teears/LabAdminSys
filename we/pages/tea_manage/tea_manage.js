@@ -33,7 +33,6 @@ Page({
       },
       timeout:10000,
       success:function(res){
-        console.log(res)
         res = res.data
         that.setData({
           list:res.data

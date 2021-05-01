@@ -1,12 +1,12 @@
 {
   "pages": [
-    "pages/tea_manage/tea_manage",
     "pages/start/start",
-    "pages/bindId/bindId",
-    "pages/authLogin/authLogin",
-    "pages/stu_check/stu_check",
     "pages/stu_history/stu_history",
     "pages/stu_mine/stu_mine",
+    "pages/authLogin/authLogin",
+    "pages/bindId/bindId",
+    "pages/tea_manage/tea_manage",
+    "pages/stu_check/stu_check",
     "pages/tea_mine/tea_mine"
   ],
   "subpackages": [

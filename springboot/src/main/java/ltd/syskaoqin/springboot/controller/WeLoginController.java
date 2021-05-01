@@ -63,6 +63,7 @@ public class WeLoginController {
         }
         data.put("token",JWTUtil.sign(openid,openid));
         userService.updateUserLatestTime(openid);
+        System.out.println(data);
         return ResultUtils.success(data);
     }
 

@@ -27,6 +27,7 @@ Page({
       const scopeUserinfo = res.authSetting["scope.userInfo"]
       console.log(scopeUserinfo)
       if(scopeUserinfo != true){
+      // if(app.globalData.avatarUrl == ''){
         wx.navigateTo({
           url: '/pages/authLogin/authLogin',
         })

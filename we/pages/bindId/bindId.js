@@ -77,7 +77,6 @@ Page({
             url: '/pages/start/start',
           })
         }else if(res.data.isBinded == 0){
-          console.log("学生身份认定失败")
           wx.hideLoading()
           wx.showToast({
             title: '认定失败，请检查输入',

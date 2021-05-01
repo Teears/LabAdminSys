@@ -71,8 +71,8 @@ App({
     /* 
     服务器地址
     */
-    host:"http://example.com",
-    // host:"http://localhost:8080",
+    // host:"http://example.com",
+    host:"http://localhost:8080",
     backgroundImgUrl:"https://img.imgdb.cn/item/605886ed8322e6675c9b4d0e.png"
 
   }

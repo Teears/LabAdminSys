@@ -35,8 +35,8 @@ Component({
       wx.hideLoading()
     },5000)
     wx.request({
-      // url: app.globalData.host + '/common/shiyanshiInfo?labId='+that.properties.labId,
-        url: app.globalData.host + '/common/shiyanshiInfo',
+      url: app.globalData.host + '/common/shiyanshiInfo?labId='+that.properties.labId,
+        // url: app.globalData.host + '/common/shiyanshiInfo',
         method: "GET",
         header: {
           "content-type": "application/json; charset=utf-8",
