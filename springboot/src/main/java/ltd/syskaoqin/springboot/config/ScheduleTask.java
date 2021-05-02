@@ -14,7 +14,7 @@ import java.util.List;
  * @author Teears
  * @version 1.0.0
  * @ClassName ScheduleTask
- * @Description TODO
+ * @Description TODO 定时任务，清算签到状态
  * @createTime 2021年03月01日21:47
  */
 @Component

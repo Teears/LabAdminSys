@@ -9,14 +9,16 @@ import ltd.syskaoqin.springboot.util.TimeUtil;
 import ltd.syskaoqin.springboot.util.result.Result;
 import ltd.syskaoqin.springboot.util.result.ResultUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.io.File;
+import java.io.IOException;
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @RequestMapping("/tea/")
@@ -58,7 +60,7 @@ public class TeacherManageController {
 
     @PostMapping(value = "/setlab")
     @ResponseBody
-    public Result bindIdStu(@RequestParam Map<String, String> param, HttpServletRequest request){
+    public Result setLab(@RequestParam Map<String, String> param, HttpServletRequest request){
         String labId = param.get("labId");
         String checkinTime1 = param.get("checkinTime1");
         String checkinTime2 = param.get("checkinTime2");
@@ -68,4 +70,41 @@ public class TeacherManageController {
 
         return ResultUtils.success();
     }
+
+    @PostMapping(value = "/editlab")
+    @ResponseBody
+    public Result editLab(@RequestParam("file") MultipartFile file, @RequestParam Map<String, String> param, HttpServletRequest request) throws IOException {
+
+        System.out.println(file);
+        System.out.println(param);
+        System.out.println(request);
+        return ResultUtils.success();
+    }
+
+//    CommonsMultipartResolver multipartResolver=new CommonsMultipartResolver(
+//            request.getSession().getServletContext());
+//        if(multipartResolver.isMultipart(request))
+//    {
+//        //将request变成多部分request
+//        MultipartHttpServletRequest multiRequest=(MultipartHttpServletRequest)request;
+//        //获取multiRequest 中所有的文件名
+//        Iterator iter=multiRequest.getFileNames();
+//        while(iter.hasNext())
+//        {
+//            //一次遍历所有文件
+//            MultipartFile file=multiRequest.getFile(iter.next().toString());
+//            if(file!=null)
+//            {
+//                String path="D:/GP/img"+file.getOriginalFilename();
+//                //上传
+//                file.transferTo(new File(path));
+//                System.out.println(file.getOriginalFilename());
+////                    files.setFileName(file.getOriginalFilename());
+////                    //设置文件名 后期改为具体路径？
+////                    //文件处理类，在数据库中保存文件路径
+////                    filesService.save(files);
+//            }
+//        }
+//    }
+
 }

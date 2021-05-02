@@ -53,6 +53,15 @@ public interface LabMapper {
      * @param checkout1 签退开始时间
      * @param checkout2 签退结束时间
      */
-    void updateCheckTime(@Param("labId") String labId,@Param("checkin1") String checkin1,@Param("checkin2") String checkin2,
-                         @Param("checkout1") String checkout1,@Param("checkout2") String checkout2);
+    void updateCheckTime(@Param("labId") String labId,@Param("checkin1") String checkin1,
+                         @Param("checkin2") String checkin2, @Param("checkout1") String checkout1,
+                         @Param("checkout2") String checkout2);
+
+    /**
+     * 更新实验室基本信息
+     * @param desc 实验室介绍
+     * @param rule 实验室守则
+     * @param picUrl 图片地址
+     */
+    void updateLabInfo(@Param("desc") String desc, @Param("rule") String rule,@Param("picUrl") String picUrl);
 }
