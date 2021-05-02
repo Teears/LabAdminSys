@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    phone: "",
+    labId:"",
     desc: "",
     descLength: 0,
     rule:"",
@@ -15,11 +15,6 @@ Page({
     fileList:[]
   },
 
-  changePhone: function (e) {
-    this.setData({
-      phone: e.detail
-    })
-  },
   changeDesc: function (e) {
     this.setData({
       desc: e.detail,
@@ -46,11 +41,11 @@ Page({
     console.log(this.data)
     const that = this
     wx.uploadFile({
-      url: app.globalData.host + '/common/uploader', // 仅为示例，非真实的接口地址
+      url: app.globalData.host + '/tea/editlab', // 仅为示例，非真实的接口地址
       filePath: that.data.fileList[0].url,
       name: that.data.fileList[0].name,
       formData: { 
-        phone: that.data.phone,
+        labId:that.data.labId,
         desc: that.data.desc,
         rule:that.data.rule,
       },
@@ -64,6 +59,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      labId:options.labId
+    })
   }
 })

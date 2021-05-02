@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.dao.DuplicateKeyException;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Teears
@@ -62,5 +63,10 @@ public interface UserMapper {
      */
     int updateBindAndRole(@Param("openid") String openid, @Param("bindId") String bindId,@Param("roleId") String roleId);
 
-
+    /**
+     * 获取学生用户的头像和姓名
+     * @param openid openid
+     * @return map
+     */
+    Map<String,String> findAvatarName(@Param("openid") String openid);
 }

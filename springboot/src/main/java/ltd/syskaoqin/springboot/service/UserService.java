@@ -2,6 +2,8 @@ package ltd.syskaoqin.springboot.service;
 
 import ltd.syskaoqin.springboot.dao.entity.User;
 
+import java.util.Map;
+
 /**
  * @author Teears
  * @version 1.0.0
@@ -51,4 +53,11 @@ public interface UserService {
      * @param roleId 未绑定0，学生1，教师2
      */
     void updateBindAndRole(String openid, String bindId, String roleId);
+
+    /**
+     * 获取学生用户的头像和姓名
+     * @param openid openid
+     * @return map
+     */
+    Map<String,String> findAvatarName(String openid);
 }

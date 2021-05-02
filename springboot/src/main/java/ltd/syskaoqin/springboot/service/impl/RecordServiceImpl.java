@@ -86,4 +86,9 @@ public class RecordServiceImpl implements RecordService {
     public Map<String, Integer> checkinCheckoutBoth(String labId, String checkDate) {
         return recordMapper.checkinCheckoutBoth(labId,checkDate);
     }
+
+    @Override
+    public List<Map<String, Integer>> getCheckList(String labId, String checkDate) {
+        return recordMapper.getCheckList(labId,checkDate);
+    }
 }

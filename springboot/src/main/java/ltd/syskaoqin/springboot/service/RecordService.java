@@ -112,4 +112,12 @@ public interface RecordService {
      * @return checkin checkout both
      */
     Map<String,Integer> checkinCheckoutBoth(String labId, String checkDate);
+
+    /**
+     * 获取某个实验室当天的签到列表
+     * @param labId labId
+     * @param checkDate checkDate
+     * @return List
+     */
+    List<Map<String,Integer>> getCheckList(String labId,String checkDate);
 }

@@ -10,7 +10,7 @@ Page({
 
   enterEdit:function(){
     wx.navigateTo({
-      url: '/tea/pages/tea_enterEdit/tea_enterEdit',
+      url: '/tea/pages/tea_enterEdit/tea_enterEdit?labId='+ this.data.labId,
     })
   },
 

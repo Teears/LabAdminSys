@@ -118,4 +118,11 @@ public interface RecordMapper {
      */
     Map<String,Integer> checkinCheckoutBoth(@Param("labId") String labId, @Param("checkDate") String checkDate);
 
+    /**
+     * 获取某个实验室当天的签到列表
+     * @param labId labId
+     * @param checkDate checkDate
+     * @return List
+     */
+    List<Map<String,Integer>> getCheckList(@Param("labId") String labId,@Param("checkDate") String checkDate);
 }

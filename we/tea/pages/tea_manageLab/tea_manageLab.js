@@ -57,8 +57,8 @@ Page({
   getCheckinList:function(date){
     const that = this
     wx.request({
-      // url: app.globalData.host + '/tea/manage/getCheckinList?labId='+that.data.labId+'&checkDate='+date,
-      url: app.globalData.host + '/tea/manage/getCheckinList',
+      url: app.globalData.host + '/tea/manage/getCheckinList?labId='+that.data.labId+'&checkDate='+that.data.date,
+      // url: app.globalData.host + '/tea/manage/getCheckinList',
       method: "GET",
       "header": {
         "content-type": "application/json; charset=utf-8",
@@ -76,8 +76,8 @@ Page({
   getStatisticList:function(){
     const that = this
     wx.request({
-      // url: app.globalData.host + '/tea/manage/getStatisticList?labId='+that.data.labId,
-      url: app.globalData.host + '/tea/manage/getStatisticList',
+      url: app.globalData.host + '/tea/manage/getStatisticList?labId='+that.data.labId,
+      // url: app.globalData.host + '/tea/manage/getStatisticList',
       method: "GET",
       "header": {
         "content-type": "application/json; charset=utf-8",

@@ -1,8 +1,5 @@
 <!--tea/pages/tea_enterEdit/tea_enterEdit.wxml-->
 <view class="out_wrapper">
-  <van-cell-group title="负责人联系方式" custom-class="custom_cell">
-    <van-field value="{{phone}}" type="number" placeholder="手机号" bind:change="changePhone" />
-  </van-cell-group>
 
   <van-cell-group title="实验室介绍">
     <view>

@@ -69,4 +69,11 @@
                COUNT(checkin_time and checkout_time) as checkboth
         from record where lab_id=#{labId} and check_date=#{checkDate}
     </select>
+
+    <select id="getCheckList" resultType="java.util.Map">
+        select avatarUrl,name,checkin_time as checkinTime,checkin_loc as checkinLoc,
+        checkout_time as checkoutTime,checkout_loc as checkoutLoc,`status` as tag from
+        record,user,student where check_date=#{checkDate} and lab_id=#{labId}
+        and record.openid=user.openid and user.stu_tea_id=student.stu_number
+    </select>
 </mapper>

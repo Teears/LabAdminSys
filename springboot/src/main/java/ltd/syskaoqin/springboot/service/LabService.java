@@ -51,4 +51,20 @@ public interface LabService {
      * @param checkout2 签退结束时间
      */
     void updateCheckTime(String labId,String checkin1,String checkin2, String checkout1,String checkout2);
+
+    /**
+     * 更新实验室基本信息
+     * @param labId 实验室id
+     * @param desc 实验室介绍
+     * @param rule 实验室守则
+     * @param picUrl 图片地址
+     */
+    void updateLabInfo(String labId, String desc,String rule,String picUrl);
+
+    /**
+     * 获取某个实验室的学生列表
+     * @param labId labId
+     * @return List<openid>
+     */
+    List<String> findStuListInLab(String labId);
 }

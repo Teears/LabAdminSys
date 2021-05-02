@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import javax.annotation.Resource;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Map;
 
 /**
  * @author Teears
@@ -53,6 +54,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public void updateBindAndRole(String openid, String bindId, String roleId) {
         userMapper.updateBindAndRole(openid, bindId, roleId);
+    }
+
+    @Override
+    public Map<String, String> findAvatarName(String openid) {
+        return userMapper.findAvatarName(openid);
     }
 
 //    @Override

@@ -45,4 +45,12 @@
                        should_checkout_time_a=#{checkout1},should_checkout_time_b=#{checkout2}
         where id=#{labId}
     </update>
+
+    <update id="updateLabInfo">
+        update lab set basic_desc=#{desc},rule_desc=#{rule},pic_url=#{picUrl} where id=#{labId}
+    </update>
+
+    <select id="findStuListInLab" resultType="String">
+        SELECT openid from user_lab where lab_id=#{labId} and status="1"
+    </select>
 </mapper>

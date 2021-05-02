@@ -45,4 +45,14 @@ public class LabServiceImpl implements LabService {
     public void updateCheckTime(String labId, String checkin1, String checkin2, String checkout1, String checkout2) {
         labMapper.updateCheckTime(labId,checkin1,checkin2,checkout1,checkout2);
     }
+
+    @Override
+    public void updateLabInfo(String labId, String desc, String rule, String picUrl) {
+        labMapper.updateLabInfo(labId,desc,rule,picUrl);
+    }
+
+    @Override
+    public List<String> findStuListInLab(String labId) {
+        return labMapper.findStuListInLab(labId);
+    }
 }

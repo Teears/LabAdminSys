@@ -59,9 +59,17 @@ public interface LabMapper {
 
     /**
      * 更新实验室基本信息
+     * @param labId 实验室id
      * @param desc 实验室介绍
      * @param rule 实验室守则
      * @param picUrl 图片地址
      */
-    void updateLabInfo(@Param("desc") String desc, @Param("rule") String rule,@Param("picUrl") String picUrl);
+    void updateLabInfo(@Param("labId") String labId,@Param("desc") String desc,
+                       @Param("rule") String rule,@Param("picUrl") String picUrl);
+    /**
+     * 获取某个实验室的学生列表
+     * @param labId labId
+     * @return List<openid>
+     */
+    List<String> findStuListInLab(@Param("labId") String labId);
 }
