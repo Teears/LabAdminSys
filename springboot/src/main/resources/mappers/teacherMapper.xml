@@ -11,4 +11,8 @@
     <select id="findTeacherByTeaNumber" resultType="ltd.syskaoqin.springboot.dao.entity.Teacher">
         SELECT * FROM teacher WHERE tea_number=#{teaNumber}
     </select>
+
+    <select id="findTeaName" resultType="java.util.Map">
+        SELECT name from user,student where openid=#{openid} and stu_tea_id=stu_number
+    </select>
 </mapper>

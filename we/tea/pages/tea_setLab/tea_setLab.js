@@ -33,7 +33,7 @@ Page({
     })
     wx.request({
       method: "POST",
-      url: app.globalData.host + '/tea/setlab',
+      url: app.globalData.host + '/tea/manage/setlab',
       data: {
         labId: that.data.labId,
         checkinTime1:that.data.checkinTime1,

@@ -84,7 +84,7 @@ Page({
   onLoad: function (options) {
     const that = this
     wx.request({
-      url: app.globalData.host + '/tea/qingjia/getqingjia',
+      url: app.globalData.host + '/tea/dayOff/getDayOffList',
       method: "GET",
       "header": {
         "content-type": "application/json; charset=utf-8",

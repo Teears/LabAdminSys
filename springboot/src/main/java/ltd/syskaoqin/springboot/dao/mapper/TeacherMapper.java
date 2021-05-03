@@ -4,6 +4,8 @@ import ltd.syskaoqin.springboot.dao.entity.Teacher;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.Map;
+
 /**
  * @author Teears
  * @version 1.0.0
@@ -27,4 +29,11 @@ public interface TeacherMapper {
      * @return teacher
      */
     Teacher findTeacherByTeaNumber(@Param("teaNumber") String teaNumber);
+
+    /**
+     * 获取教师Name作为补充
+     * @param openid openid
+     * @return name
+     */
+    Map<String,String> findTeaName(@Param("openid") String openid);
 }

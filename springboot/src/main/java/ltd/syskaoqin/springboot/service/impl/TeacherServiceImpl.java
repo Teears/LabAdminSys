@@ -6,6 +6,7 @@ import ltd.syskaoqin.springboot.service.TeacherService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.Map;
 
 /**
  * @author Teears
@@ -27,5 +28,10 @@ public class TeacherServiceImpl implements TeacherService {
     @Override
     public Teacher findTeacherByTeaNumber(String teaNumber) {
         return teacherMapper.findTeacherByTeaNumber(teaNumber);
+    }
+
+    @Override
+    public Map<String,String> findTeaName(String openid) {
+        return teacherMapper.findTeaName(openid);
     }
 }

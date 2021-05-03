@@ -25,7 +25,7 @@ Page({
     }
     const that = this
     wx.request({
-      url: app.globalData.host+'/tea/mine/getTeaMine',
+      url: app.globalData.host+'/tea/mine/getTeaName',
       method:"GET",
       "header": {
         "content-type":"application/json; charset=utf-8",
@@ -36,11 +36,11 @@ Page({
         console.log(res)
         res = res.data
         that.setData({
-          avatarUrl:res.data.avatarUrl,
-          teaName:res.data.teaName
+          // avatarUrl:res.data.avatarUrl,
+          teaName:res.data.name
         })
-        wx.setStorageSync('avatarUrl', res.data.avatarUrl)
-        wx.setStorageSync('teaName', res.data.teaName)
+        // wx.setStorageSync('avatarUrl', res.data.avatarUrl)
+        wx.setStorageSync('teaName', res.data.name)
       }
     })
   },

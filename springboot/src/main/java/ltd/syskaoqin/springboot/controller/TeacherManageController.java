@@ -29,7 +29,7 @@ import java.util.*;
  * @createTime 2021年02月22日20:22
  */
 @RestController
-@RequestMapping("/tea/")
+@RequestMapping("/tea/manage")
 public class TeacherManageController {
 
     @Resource
@@ -41,7 +41,7 @@ public class TeacherManageController {
 
     @GetMapping(value = "/managelist")
     @ResponseBody
-    public Result totalManageList(HttpServletRequest request) throws ParseException {
+    public Result totalManageList(HttpServletRequest request) {
         String token = request.getHeader("token");
         String openid = JWTUtil.getUsername(token);
         List<Lab> labList = labService.findLabByTeaOpenid(openid);
@@ -103,7 +103,7 @@ public class TeacherManageController {
         return ResultUtils.success();
     }
 
-    @GetMapping(value = "/manage/getCheckinList")
+    @GetMapping(value = "/getCheckinList")
     @ResponseBody
     public Result getCheckinList(@RequestParam String labId,@RequestParam String checkDate){
         List<Map<String,Integer>> list = recordService.getCheckList(labId,checkDate);
@@ -111,7 +111,7 @@ public class TeacherManageController {
         return ResultUtils.success(list);
     }
 
-    @GetMapping(value = "/manage/getStatisticList")
+    @GetMapping(value = "/getStatisticList")
     @ResponseBody
     public Result getStatisticList(@RequestParam String labId){
         List<String> openidList = labService.findStuListInLab(labId);

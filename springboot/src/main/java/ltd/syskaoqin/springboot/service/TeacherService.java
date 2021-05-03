@@ -2,6 +2,8 @@ package ltd.syskaoqin.springboot.service;
 
 import ltd.syskaoqin.springboot.dao.entity.Teacher;
 
+import java.util.Map;
+
 /**
  * @author Teears
  * @version 1.0.0
@@ -25,4 +27,10 @@ public interface TeacherService {
      */
     Teacher findTeacherByTeaNumber(String teaNumber);
 
+    /**
+     * 获取教师Name作为补充
+     * @param openid openid
+     * @return name
+     */
+    Map<String,String> findTeaName(String openid);
 }

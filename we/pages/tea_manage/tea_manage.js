@@ -25,7 +25,7 @@ Page({
   initData:function(){
     const that = this
     wx.request({
-      url: app.globalData.host+'/tea/managelist',
+      url: app.globalData.host+'/tea/manage/managelist',
       method:"GET",
       "header": {
         "content-type":"application/json; charset=utf-8",

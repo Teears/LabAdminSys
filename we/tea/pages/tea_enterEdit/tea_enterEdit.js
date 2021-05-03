@@ -41,7 +41,7 @@ Page({
     console.log(this.data)
     const that = this
     wx.uploadFile({
-      url: app.globalData.host + '/tea/editlab', // 仅为示例，非真实的接口地址
+      url: app.globalData.host + '/tea/manage/editlab', // 仅为示例，非真实的接口地址
       filePath: that.data.fileList[0].url,
       name: that.data.fileList[0].name,
       formData: { 
