@@ -7,7 +7,7 @@
 		<el-form :model="userForm">
 			<el-input placeholder="请输入职工号" prefix-icon="iconfont iconzhanghao" v-model="userForm.userNumber" size="medium"></el-input>
 			<el-input placeholder="请输入密码" prefix-icon="iconfont iconmima" v-model="userForm.password" show-password size="medium"></el-input>
-			<el-button type="primary" round>登 录</el-button>
+			<el-button type="primary" round @click="login">登 录</el-button>
 		</el-form>
 		<div class="footer">
 			<el-popover
@@ -32,6 +32,11 @@ export default {
 				password:''
 			},
 			erweimaUrl:"https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg"
+		}
+	},
+	methods:{
+		login(){
+			this.$router.replace({path:'/main'})
 		}
 	}
 }
