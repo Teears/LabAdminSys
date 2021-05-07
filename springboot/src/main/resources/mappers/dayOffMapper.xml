@@ -24,5 +24,13 @@
         where C.openid=user_lab.openid and user_lab.lab_id=lab.id
         ORDER BY applyDate desc
     </select>
-
+    <update id="setAgree">
+        update dayoff_apply set is_pass=1,pass_time=CURRENT_TIMESTAMP,pass_id=#{openid} where id=#{id}
+    </update>
+    <update id="setRefuse">
+        update dayoff_apply set is_pass=0,pass_time=CURRENT_TIMESTAMP,pass_id=#{openid} where id=#{id}
+    </update>
+    <update id="setReverse">
+        update dayoff_apply set is_pass=2,pass_time=CURRENT_TIMESTAMP,pass_id=#{openid} where id=#{id}
+    </update>
 </mapper>

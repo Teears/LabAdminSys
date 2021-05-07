@@ -43,5 +43,26 @@ public interface DayOffService {
      * @return
      */
     List<Map<String,String>> findTeaDayOffList(String openid);
+
+    /**
+     * 教师批准请假
+     * @param openid openid
+     * @param id id
+     */
+    void setAgree(String openid,String id);
+
+    /**
+     * 教师拒绝请假
+     * @param openid openid
+     * @param id id
+     */
+    void setRefuse(String openid,String id);
+
+    /**
+     * 教师撤回请假
+     * @param openid openid
+     * @param id id
+     */
+    void setReverse(String openid,String id);
 }
 

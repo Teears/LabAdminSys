@@ -46,4 +46,18 @@ public class DayOffServiceImpl implements DayOffService {
         return dayOffMapper.findTeaDayOffList(openid);
     }
 
+    @Override
+    public void setAgree(String openid, String id) {
+        dayOffMapper.setAgree(openid,id);
+    }
+
+    @Override
+    public void setRefuse(String openid, String id) {
+        dayOffMapper.setRefuse(openid,id);
+    }
+
+    @Override
+    public void setReverse(String openid, String id) {
+        dayOffMapper.setReverse(openid,id);
+    }
 }

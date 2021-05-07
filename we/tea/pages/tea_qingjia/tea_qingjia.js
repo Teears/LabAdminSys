@@ -13,8 +13,8 @@ Page({
     const that = this
     var index = e.currentTarget.dataset.index
     wx.request({
-      // url: app.globalData.host + '/tea/qingjia/agree?id='+that.data.dayOffList[inedx].id,
-      url: app.globalData.host + '/tea/qingjia/agree',
+      url: app.globalData.host + '/tea/dayOff/agree?id='+that.data.dayOffList[index].id,
+      // url: app.globalData.host + '/tea/qingjia/agree',
       method: "GET",
       "header": {
         "content-type": "application/json; charset=utf-8",
@@ -26,7 +26,7 @@ Page({
           return
         }
         var str = 'dayOffList['+index+'].isPass'
-        this.setData({
+        that.setData({
           [str]:1
         })
       }
@@ -36,8 +36,8 @@ Page({
     const that = this
     var index = e.currentTarget.dataset.index
     wx.request({
-      // url: app.globalData.host + '/tea/qingjia/refuse?id='+that.data.dayOffList[inedx].id,
-      url: app.globalData.host + '/tea/qingjia/refuse',
+      url: app.globalData.host + '/tea/dayOff/refuse?id='+that.data.dayOffList[index].id,
+      // url: app.globalData.host + '/tea/qingjia/refuse',
       method: "GET",
       "header": {
         "content-type": "application/json; charset=utf-8",
@@ -49,7 +49,7 @@ Page({
           return
         }
         var str = 'dayOffList['+index+'].isPass'
-        this.setData({
+        that.setData({
           [str]:0
         })
       }
@@ -59,8 +59,8 @@ Page({
     const that = this
     var index = e.currentTarget.dataset.index
     wx.request({
-      // url: app.globalData.host + '/tea/qingjia/reverse?id='+that.data.dayOffList[inedx].id,
-      url: app.globalData.host + '/tea/qingjia/reverse',
+      url: app.globalData.host + '/tea/dayOff/reverse?id='+that.data.dayOffList[index].id,
+      // url: app.globalData.host + '/tea/dayOff/reverse',
       method: "GET",
       "header": {
         "content-type": "application/json; charset=utf-8",
@@ -72,7 +72,7 @@ Page({
           return
         }
         var str = 'dayOffList['+index+'].isPass'
-        this.setData({
+        that.setData({
           [str]:2
         })
       }

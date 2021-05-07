@@ -45,4 +45,25 @@ public interface DayOffMapper {
      * @return
      */
     List<Map<String,String>> findTeaDayOffList(@Param("openid") String openid);
+
+    /**
+     * 教师批准请假
+     * @param openid 教师的openid
+     * @param id id
+     */
+    void setAgree(@Param("openid") String openid,@Param("id") String id);
+
+    /**
+     * 教师拒绝请假
+     * @param openid 教师的openid
+     * @param id id
+     */
+    void setRefuse(@Param("openid") String openid,@Param("id") String id);
+
+    /**
+     * 教师撤回请假
+     * @param openid 教师的openid
+     * @param id id
+     */
+    void setReverse(@Param("openid") String openid,@Param("id") String id);
 }

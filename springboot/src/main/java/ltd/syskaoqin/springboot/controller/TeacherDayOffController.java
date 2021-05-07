@@ -4,10 +4,7 @@ import ltd.syskaoqin.springboot.service.DayOffService;
 import ltd.syskaoqin.springboot.util.JWTUtil;
 import ltd.syskaoqin.springboot.util.result.Result;
 import ltd.syskaoqin.springboot.util.result.ResultUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -35,5 +32,32 @@ public class TeacherDayOffController {
         String openid = JWTUtil.getUsername(token);
         List<Map<String,String>> dayOffList = dayOffService.findTeaDayOffList(openid);
         return ResultUtils.success(dayOffList);
+    }
+
+    @GetMapping(value = "/agree")
+    @ResponseBody
+    public Result setAgree(HttpServletRequest request,@RequestParam String id) {
+        String token = request.getHeader("token");
+        String openid = JWTUtil.getUsername(token);
+        dayOffService.setAgree(openid,id);
+        return ResultUtils.success();
+    }
+
+    @GetMapping(value = "/refuse")
+    @ResponseBody
+    public Result setRefuse(HttpServletRequest request,@RequestParam String id) {
+        String token = request.getHeader("token");
+        String openid = JWTUtil.getUsername(token);
+        dayOffService.setRefuse(openid,id);
+        return ResultUtils.success();
+    }
+
+    @GetMapping(value = "/reverse")
+    @ResponseBody
+    public Result setReverse(HttpServletRequest request,@RequestParam String id) {
+        String token = request.getHeader("token");
+        String openid = JWTUtil.getUsername(token);
+        dayOffService.setReverse(openid,id);
+        return ResultUtils.success();
     }
 }
