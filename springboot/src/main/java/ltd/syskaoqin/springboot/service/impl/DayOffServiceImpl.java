@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Teears
@@ -38,6 +39,11 @@ public class DayOffServiceImpl implements DayOffService {
     @Override
     public void insertDayOff(DayOff dayOff) {
         dayOffMapper.insertDayOff(dayOff);
+    }
+
+    @Override
+    public List<Map<String, String>> findTeaDayOffList(String openid) {
+        return dayOffMapper.findTeaDayOffList(openid);
     }
 
 }

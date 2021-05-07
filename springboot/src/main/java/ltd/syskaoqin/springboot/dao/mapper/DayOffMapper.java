@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Param;
 import org.springframework.dao.DuplicateKeyException;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Teears
@@ -37,4 +38,11 @@ public interface DayOffMapper {
      * @throws DuplicateKeyException 主键重复，重复请假
      */
     void insertDayOff(DayOff dayOff)  throws DuplicateKeyException;
+
+    /**
+     * 教师获取学生请假列表
+     * @param openid 教师openid
+     * @return
+     */
+    List<Map<String,String>> findTeaDayOffList(@Param("openid") String openid);
 }

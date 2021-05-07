@@ -6,6 +6,7 @@ import ltd.syskaoqin.springboot.dao.entity.DayOff;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Teears
@@ -35,5 +36,12 @@ public interface DayOffService {
      * @param dayOff
      */
     void insertDayOff(DayOff dayOff);
+
+    /**
+     * 教师获取学生请假列表
+     * @param openid 教师openid
+     * @return
+     */
+    List<Map<String,String>> findTeaDayOffList(String openid);
 }
 

@@ -1,5 +1,7 @@
 package ltd.syskaoqin.springboot.controller;
 
+import ltd.syskaoqin.springboot.service.DayOffService;
+import ltd.syskaoqin.springboot.util.JWTUtil;
 import ltd.syskaoqin.springboot.util.result.Result;
 import ltd.syskaoqin.springboot.util.result.ResultUtils;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -7,7 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author Teears
@@ -20,11 +25,15 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/tea/dayOff/")
 public class TeacherDayOffController {
 
+    @Resource
+    private DayOffService dayOffService;
+
     @GetMapping(value = "/getDayOffList")
     @ResponseBody
     public Result getTeaName(HttpServletRequest request) {
-
-
-        return ResultUtils.success();
+        String token = request.getHeader("token");
+        String openid = JWTUtil.getUsername(token);
+        List<Map<String,String>> dayOffList = dayOffService.findTeaDayOffList(openid);
+        return ResultUtils.success(dayOffList);
     }
 }

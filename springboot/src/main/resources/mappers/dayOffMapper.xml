@@ -12,5 +12,17 @@
         insert into dayoff_apply(openid, dayoff_time, contact, reason, type)
         values (#{openid},#{dayOffTime},#{contact},#{reason},#{type})
     </insert>
+    <select id="findTeaDayOffList" resultType="java.util.Map">
+        select C.id,lab_number labNum,C.name,avatarUrl,dayoff_time time,contact phone,reason,
+               type,substr(apply_time,1,10) applyDate,is_pass isPass from user_lab,lab,
+        (select B.openid,name,avatarUrl,B.id,dayoff_time,contact,reason,type,apply_time,is_pass from student,
+        (select user.openid,`user`.stu_tea_id,avatarUrl,A.id,dayoff_time,contact,reason,type,apply_time,is_pass from `user`,
+        (select * from dayoff_apply where openid in(
+        select openid from user_lab where lab_id in(
+        select lab_id from user_lab_tea where openid=#{openid}
+        ))) A where `user`.openid=A.openid) B where B.stu_tea_id=student.stu_number) C
+        where C.openid=user_lab.openid and user_lab.lab_id=lab.id
+        ORDER BY applyDate desc
+    </select>
 
 </mapper>
