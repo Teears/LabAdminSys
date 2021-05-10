@@ -42,4 +42,16 @@ public class MessageServiceImpl implements MessageService {
     public void insertMessageTag(String openid, String messageId) {
         messageMapper.insertMessageTag(openid,messageId);
     }
+
+    @Override
+    public void insertMessage(Message message) {
+        messageMapper.insertMessage(message);
+    }
+
+    @Override
+    public List<Message> selectMessageBySendId(String sendId) {
+        return messageMapper.selectMessageBySendId(sendId);
+    }
+
+
 }

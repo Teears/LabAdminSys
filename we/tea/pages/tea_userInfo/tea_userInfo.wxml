@@ -1,5 +1,4 @@
 <!--tea/pages/tea_userInfo/tea_userInfo.wxml-->
-<!--stu/pages/stu_userInfo/stu_userInfo.wxml-->
 <view class="out_wrapper">
   <view class="cell_group">
     <van-cell title="头像" center>

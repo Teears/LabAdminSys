@@ -20,7 +20,7 @@ Page({
   onLoad: function (options) {
     const that = this
     wx.request({
-      url: app.globalData.host + '/tea/getUserInfo',
+      url: app.globalData.host + '/tea/mine/getUserInfo',
       method: "GET",
       "header": {
         "content-type": "application/json; charset=utf-8",

@@ -15,4 +15,9 @@
     <select id="findTeaName" resultType="java.util.Map">
         SELECT name from user,student where openid=#{openid} and stu_tea_id=stu_number
     </select>
+
+    <select id="findTeaInfo" resultType="java.util.Map">
+        select avatarUrl,name,sex,tea_number teaNum,teacher.phone from user,teacher
+        where openid=#{openid} and stu_tea_id=teacher.tea_number
+    </select>
 </mapper>

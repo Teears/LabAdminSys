@@ -37,4 +37,17 @@ public interface MessageMapper {
      * @param messageId id
      */
     void insertMessageTag(@Param("openid") String openid,@Param("messageId") String messageId);
+
+    /**
+     * 添加消息
+     * @param message
+     */
+    void insertMessage(Message message);
+
+    /**
+     * 获取发送者自己已发布的消息列表
+     * @param sendId sendId
+     * @return Message
+     */
+    List<Message> selectMessageBySendId(@Param("sendId") String sendId);
 }

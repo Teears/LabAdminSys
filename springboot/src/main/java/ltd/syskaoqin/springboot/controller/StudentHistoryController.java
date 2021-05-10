@@ -94,7 +94,6 @@ public class StudentHistoryController {
         String token = request.getHeader("token");
         String openid = JWTUtil.getUsername(token);
         List<Map<String,Integer>> list = recordService.findDaysInfo(TimeUtil.add0(month),year,openid);
-
         return ResultUtils.success(list);
     }
 }

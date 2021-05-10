@@ -58,7 +58,18 @@ export default {
   },
   methods: {
     login() {
-      this.$router.replace({ path: "/main" });
+      this.$axios
+        .post("/admin/login",{
+          userNumber:this.$data.userForm.userNumber,
+          password:this.$data.userForm.password
+        })
+        .then(res=>{
+          alert(res)
+          this.$router.replace({ path: "/main" });
+        })
+        .catch(error=>{
+          alert(error)
+        })
     }
   }
 };

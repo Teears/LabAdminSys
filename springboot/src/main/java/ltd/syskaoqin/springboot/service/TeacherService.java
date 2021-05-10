@@ -33,4 +33,11 @@ public interface TeacherService {
      * @return name
      */
     Map<String,String> findTeaName(String openid);
+
+    /**
+     * 获取教师个人信息
+     * @param openid openid
+     * @return
+     */
+    Map<String,Object> findTeaInfo(String openid);
 }

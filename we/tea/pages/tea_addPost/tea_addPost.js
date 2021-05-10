@@ -32,13 +32,12 @@ Page({
 
   submit:function(){
     const that = this
-    console.log(that.data)
     wx.showLoading({
       title: '请稍后...',
     })
     wx.request({
       method: "POST",
-      url: app.globalData.host + '/tea/addPost',
+      url: app.globalData.host + '/message/tea/addPost',
       header: {
         "content-type": "application/x-www-form-urlencoded",
         "token": wx.getStorageSync('token')
@@ -74,7 +73,7 @@ Page({
   onLoad: function (options) {
     const that = this
     wx.request({
-      url: app.globalData.host + '/tea/getLabList',
+      url: app.globalData.host + '/tea/mine/getLabList',
       method: "GET",
       "header": {
         "content-type": "application/json; charset=utf-8",

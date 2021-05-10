@@ -72,4 +72,11 @@ public interface LabMapper {
      * @return List<openid>
      */
     List<String> findStuListInLab(@Param("labId") String labId);
+
+    /**
+     * 获取教师所管理实验室
+     * @param openid
+     * @return
+     */
+    List<Map<String,String>> selectTeaLab(@Param("openid") String openid);
 }

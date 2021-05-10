@@ -34,4 +34,9 @@ public class TeacherServiceImpl implements TeacherService {
     public Map<String,String> findTeaName(String openid) {
         return teacherMapper.findTeaName(openid);
     }
+
+    @Override
+    public Map<String, Object> findTeaInfo(String openid) {
+        return teacherMapper.findTeaInfo(openid);
+    }
 }

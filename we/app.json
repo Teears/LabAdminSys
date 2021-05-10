@@ -1,7 +1,7 @@
 {
   "pages": [
-    "pages/tea_mine/tea_mine",
     "pages/start/start",
+    "pages/tea_mine/tea_mine",
     "pages/stu_history/stu_history",
     "pages/stu_mine/stu_mine",
     "pages/authLogin/authLogin",

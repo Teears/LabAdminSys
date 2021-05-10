@@ -48,7 +48,7 @@ public class StudentCheckController {
         int rank = recordService.selectRecordCountByLabIdAndCheckDate(labId,nowDate);
         Map<String,String> data = new HashMap<>();
         if(recordService.insertRecord(record) > 0){
-            data.put("rank",String.valueOf(rank));
+            data.put("rank",String.valueOf(rank+1));
         }
         return ResultUtils.success(data);
     }

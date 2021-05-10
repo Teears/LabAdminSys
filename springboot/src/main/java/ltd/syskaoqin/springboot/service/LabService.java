@@ -67,4 +67,11 @@ public interface LabService {
      * @return List<openid>
      */
     List<String> findStuListInLab(String labId);
+
+    /**
+     * 获取教师所管理实验室
+     * @param openid
+     * @return
+     */
+    List<Map<String,String>> selectTeaLab(String openid);
 }

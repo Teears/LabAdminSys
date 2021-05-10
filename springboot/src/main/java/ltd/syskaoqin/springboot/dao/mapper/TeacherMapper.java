@@ -36,4 +36,11 @@ public interface TeacherMapper {
      * @return name
      */
     Map<String,String> findTeaName(@Param("openid") String openid);
+
+    /**
+     * 获取教师个人信息
+     * @param openid openid
+     * @return
+     */
+    Map<String,Object> findTeaInfo(@Param("openid") String openid);
 }

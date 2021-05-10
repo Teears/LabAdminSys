@@ -1,14 +1,12 @@
 package ltd.syskaoqin.springboot.controller;
 
 import ltd.syskaoqin.springboot.dao.entity.Message;
+import ltd.syskaoqin.springboot.service.LabService;
 import ltd.syskaoqin.springboot.service.MessageService;
 import ltd.syskaoqin.springboot.util.JWTUtil;
 import ltd.syskaoqin.springboot.util.result.Result;
 import ltd.syskaoqin.springboot.util.result.ResultUtils;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -64,4 +62,28 @@ public class MessageController {
         return ResultUtils.success();
     }
 
+    @PostMapping(value = "/tea/addPost")
+    @ResponseBody
+    public Result addPost(String title,String content,@RequestParam(value = "labIdList") String[] labIdList, HttpServletRequest request){
+        String token = request.getHeader("token");
+        String openid = JWTUtil.getUsername(token);
+        Message message = new Message();
+        message.setContent(content);
+        message.setTitle(title);
+        message.setSendId(openid);
+        for(String labId: labIdList){
+            message.setLabId(labId);
+            messageService.insertMessage(message);
+        }
+        return ResultUtils.success();
+    }
+
+    @GetMapping(value = "/tea/getPost")
+    @ResponseBody
+    public Result getAdd(HttpServletRequest request){
+        String token = request.getHeader("token");
+        String openid = JWTUtil.getUsername(token);
+        List<Message> messageList = messageService.selectMessageBySendId(openid);
+        return ResultUtils.success(messageList);
+    }
 }

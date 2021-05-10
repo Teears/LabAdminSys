@@ -55,4 +55,10 @@ public class LabServiceImpl implements LabService {
     public List<String> findStuListInLab(String labId) {
         return labMapper.findStuListInLab(labId);
     }
+
+    @Override
+    public List<Map<String, String>> selectTeaLab(String openid) {
+        return labMapper.selectTeaLab(openid);
+    }
+
 }

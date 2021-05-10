@@ -53,4 +53,10 @@
     <select id="findStuListInLab" resultType="String">
         SELECT openid from user_lab where lab_id=#{labId} and status="1"
     </select>
+
+    <select id="selectTeaLab" resultType="java.util.Map">
+        select lab.id labId,lab_number labNum,substr(create_time,1,16) createTime
+        from user_lab_tea,lab where
+        openid=#{openid} and lab_id=lab.id
+    </select>
 </mapper>

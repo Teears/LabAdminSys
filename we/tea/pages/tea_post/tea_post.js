@@ -45,7 +45,7 @@ Page({
     const that = this
     var promise = new Promise((resolve, reject) => {
       wx.request({
-        url: app.globalData.host + '/tea/getPost',
+        url: app.globalData.host + '/message/tea/getPost',
         method: "GET",
         "header": {
           "content-type": "application/json; charset=utf-8",

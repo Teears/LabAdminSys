@@ -1,5 +1,6 @@
 package ltd.syskaoqin.springboot.controller;
 
+import ltd.syskaoqin.springboot.service.LabService;
 import ltd.syskaoqin.springboot.service.TeacherService;
 import ltd.syskaoqin.springboot.util.JWTUtil;
 import ltd.syskaoqin.springboot.util.result.Result;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -25,6 +28,8 @@ import java.util.Map;
 public class TeacherMineController {
     @Resource
     private TeacherService teacherService;
+    @Resource
+    private LabService labService;
 
     @GetMapping(value = "/getTeaName")
     @ResponseBody
@@ -35,4 +40,23 @@ public class TeacherMineController {
         return ResultUtils.success(name);
     }
 
+    @GetMapping(value = "/getLabList")
+    @ResponseBody
+    public Result getLabList(HttpServletRequest request) {
+        String token = request.getHeader("token");
+        String openid = JWTUtil.getUsername(token);
+        List<Map<String,String>> labIdList = labService.selectTeaLab(openid);
+        return ResultUtils.success(labIdList);
+    }
+
+    @GetMapping(value = "/getUserInfo")
+    @ResponseBody
+    public Result getUserInfo(HttpServletRequest request) {
+        String token = request.getHeader("token");
+        String openid = JWTUtil.getUsername(token);
+        Map<String,Object> teacherInfo = teacherService.findTeaInfo(openid);
+        List<Map<String,String>> labIdList = labService.selectTeaLab(openid);
+        teacherInfo.put("manageList",labIdList);
+        return ResultUtils.success(teacherInfo);
+    }
 }

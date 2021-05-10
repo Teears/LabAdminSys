@@ -34,4 +34,17 @@ public interface MessageService {
      * @param messageId id
      */
     void insertMessageTag(String openid,String messageId);
+
+    /**
+     * 添加消息
+     * @param message
+     */
+    void insertMessage(Message message);
+
+    /**
+     * 获取发送者自己已发布的消息列表
+     * @param sendId sendId
+     * @return Message
+     */
+    List<Message> selectMessageBySendId(String sendId);
 }
