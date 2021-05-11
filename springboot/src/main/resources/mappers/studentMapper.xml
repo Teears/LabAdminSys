@@ -13,4 +13,28 @@
         DELETE FROM student WHERE stu_number=#{stuNum}
     </delete>
 
+    <!--    管理员-->
+    <select id="getAllStudentList" resultType="java.util.Map">
+        select stu_number num, name, sex, phone, department, major from student
+    </select>
+    <select id="getStudentListByContent" resultType="java.util.Map">
+        select stu_number num, name, sex, phone, department, major
+        from student where CONCAT(stu_number,`name`) like CONCAT('%',#{content},'%')
+    </select>
+    <select id="checkStudent" resultType="java.util.Map">
+        select stu_number num, name, sex, phone, department, major from student_sys
+        where stu_number = #{num} and stu_number not in (
+        select stu_number from student)
+    </select>
+
+    <insert id="insertStudent" parameterType="ltd.syskaoqin.springboot.dao.entity.Student">
+        insert into student(stu_number, name, sex, phone, department, major, secret)
+        values (#{stuNumber}, #{name}, #{sex}, #{phone}, #{department}, #{major}, #{secret})
+    </insert>
+
+    <select id="findStudentInSys" resultType="ltd.syskaoqin.springboot.dao.entity.Student">
+        SELECT * FROM student_sys WHERE stu_number=#{num}
+    </select>
+
+
 </mapper>

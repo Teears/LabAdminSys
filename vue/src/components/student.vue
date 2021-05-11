@@ -29,13 +29,39 @@
     @size-change="handleSizeChange"
     @current-change="handleCurrentChange"
     :current-page="currentPage"
-    :page-sizes="[10,15,20,30,50]"
-    :page-size="10"
+    :page-sizes="[12]"
+    :page-size="pageSize"
     :total="total"
     layout="prev,pager,next,jumper,sizes,total">
     </el-pagination>
 
-    <el-dialog></el-dialog>
+    <el-dialog :visible.sync="dialogVisible" @closed="closedDialog" :close-on-click-modal="false" width="30%">
+      <el-form :model="form" label-width="70px">
+        <el-form-item label="工号">
+          <el-input v-model="form.num" :disabled="lock"></el-input>
+          <el-button type="text" @click="checkInfo" :icon="iconTip" :loading="loading">验证</el-button>
+        </el-form-item>
+        <el-form-item label="姓名">
+          <el-input v-model="form.name" disabled></el-input>
+        </el-form-item>
+        <el-form-item label="性别">
+          <el-input v-model="form.sex" disabled></el-input>
+        </el-form-item>
+        <el-form-item label="联系方式">
+          <el-input v-model="form.phone" disabled></el-input>
+        </el-form-item>
+        <el-form-item label="学院">
+          <el-input v-model="form.department" disabled></el-input>
+        </el-form-item>
+        <el-form-item label="专业">
+          <el-input v-model="form.major" disabled></el-input>
+        </el-form-item>
+      </el-form>
+      <span slot="footer">
+        <el-button @click="dialogVisible=false">取消</el-button>
+        <el-button @click="enterAddStudent" type="primary" :disabled="!lock">添加</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
@@ -45,49 +71,118 @@ export default {
   data(){
     return{
       search:"",
-      studentTableData:[{
-        num:"2017110323",
-        name:"李小明",
-        sex:"男",
-        phone:"18011108917",
-        department:"计算机科学学院",
-        major:"网络工程"
-      },{
-        num:"2017110323",
-        name:"李小明",
-        sex:"男",
-        phone:"18011108917",
-        department:"计算机科学学院",
-        major:"网络工程"
-      },{
-        num:"2017110323",
-        name:"李小明",
-        sex:"男",
-        phone:"18011108917",
-        department:"计算机科学学院",
-        major:"网络工程"
-      }],
-      studentForm:{},
-      dialogVosible:false,
-      currentPage:1
+      studentTableData:[],
+      dialogVisible:false,
+      currentPage:1,
+      pageSize:12,
+      total:12,
+      form:{
+        num:"",
+        name:"",
+        sex:"",
+        phone:"",
+        department:"",
+        major:""
+      },
+      loading:false,
+      iconTip:"",
+      lock:false
     }
   },
   methods:{
-    getStudentInfo(){
-
+    searchStudent(){
+      this.getStudentList(this.search,this.currentPage,this.pageSize)
+    },
+    handleSizeChange(val){
+      this.pageSize = val
+      this.getStudentList(this.search,this.currentPage,val)
+    },
+    handleCurrentChange(val){
+      this.currentPage = val
+      this.getStudentList(this.search,val,this.pageSize)
+    },
+    closedDialog(){
+      this.loading = false
+      this.iconTip=""
+      this.lock = false
+      this.form = {
+        num:"",
+        name:"",
+        sex:"",
+        phone:"",
+        department:"",
+        major:""
+      }
     },
     addStudent(){
-
+      this.dialogVisible = true
+    },
+    checkInfo(){
+      this.loading = true
+      const that = this
+      this.$axios
+        .get("/api/admin/student/checkStudent?num="+that.form.num)
+        .then(res=>{
+          if(res.data.statusCode == 200){
+            that.form = res.data.data
+            that.loading = false
+            that.iconTip = "el-icon-check"
+            that.lock = true
+          }else{
+            that.loading = false
+            that.iconTip = "el-icon-close"
+            that.$message(res.data.msg)
+          }
+        })
+        .catch(error=>{
+          this.$message(error)
+        })
+    },
+    enterAddStudent(){
+      this.$axios
+        .post("/api/admin/student/addStudent",{
+          num:this.form.num
+        })
+        .then(()=>{
+          this.studentTableData.unshift(this.form)
+          this.dialogVisible = false
+          this.$message({
+            message: '添加成功',
+            type: 'success'
+          })
+        })
+        .catch(error=>{
+          this.$message(error)
+        })
     },
     deleteStudent(index,row){
-      alert(index + row)
+      this.$axios
+        .post("/api/admin/student/deleteStudent",{
+          num:row.num
+        })
+        .then(()=>{
+          this.studentTableData.splice(index,1)
+          this.$message('已删除')
+        })
+        .catch(error=>{
+          this.$message(error)
+        })
     },
-    searchStudent(){
-
+    getStudentList(content,currentPage,pageSize){
+      this.$axios
+        .get("/api/admin/student/getStudentList?content="+content+
+        "&currentPage="+currentPage+"&pageSize="+pageSize)
+        .then(res=>{
+          this.studentTableData = res.data.data.list
+          this.total = res.data.data.total
+        })
+        .catch(error=>{
+          this.$message(error)
+        })
     }
   },
   created(){
-
+    this.getStudentList("",this.currentPage,this.pageSize)
   }
 }
 </script>

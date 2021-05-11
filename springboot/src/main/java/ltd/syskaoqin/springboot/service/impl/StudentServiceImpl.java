@@ -6,6 +6,8 @@ import ltd.syskaoqin.springboot.service.StudentService;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author Teears
@@ -32,5 +34,30 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public int deleteStudent(String stuNum) {
         return studentMapper.deleteStudent(stuNum);
+    }
+
+    @Override
+    public List<Map<String, String>> getAllStudentList() {
+        return studentMapper.getAllStudentList();
+    }
+
+    @Override
+    public List<Map<String, String>> getStudentListByContent(String content) {
+        return studentMapper.getStudentListByContent(content);
+    }
+
+    @Override
+    public Map<String, String> checkStudent(String num) {
+        return studentMapper.checkStudent(num);
+    }
+
+    @Override
+    public Student findStudentInSys(String num) {
+        return studentMapper.findStudentInSys(num);
+    }
+
+    @Override
+    public void insertStudent(Student student) {
+        studentMapper.insertStudent(student);
     }
 }

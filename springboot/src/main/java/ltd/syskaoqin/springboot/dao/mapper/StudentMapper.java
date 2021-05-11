@@ -4,6 +4,9 @@ import ltd.syskaoqin.springboot.dao.entity.Student;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import java.util.List;
+import java.util.Map;
+
 /**
  * @author Teears
  * @version 1.0.0
@@ -33,4 +36,38 @@ public interface StudentMapper {
      * @return
      */
     int deleteStudent(@Param("stuNum") String stuNum);
+
+    /**
+     * 获取所有学生列表
+     * @return
+     */
+    List<Map<String,String>> getAllStudentList();
+
+    /**
+     * 根据content搜索学生列表
+     * @param content 搜索条件 姓名和学号模糊搜索
+     * @return
+     */
+    List<Map<String,String>> getStudentListByContent(@Param("content") String content);
+
+    /**
+     * 检查教师，student_sys表中存在student表中不存在的方可添加
+     * @param num stu_number
+     * @return
+     */
+    Map<String,String> checkStudent(@Param("num") String num);
+
+    /**
+     * 从student_sys中查找Student
+     * @param num
+     * @return
+     */
+    Student findStudentInSys(@Param("num") String num);
+
+    /**
+     * 向teacher表中添加数据，添加的数据来自于student_sys
+     * @param student  student
+     */
+    void insertStudent(Student student);
+
 }
