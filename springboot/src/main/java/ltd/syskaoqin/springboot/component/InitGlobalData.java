@@ -1,8 +1,7 @@
-package ltd.syskaoqin.springboot.config;
+package ltd.syskaoqin.springboot.component;
 
 import ltd.syskaoqin.springboot.dao.entity.GlobalData;
 import ltd.syskaoqin.springboot.service.GlobalDataService;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;

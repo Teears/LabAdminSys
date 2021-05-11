@@ -1,4 +1,4 @@
-package ltd.syskaoqin.springboot.config;
+package ltd.syskaoqin.springboot.component;
 
 import ltd.syskaoqin.springboot.dao.entity.Record;
 import ltd.syskaoqin.springboot.service.DayOffService;

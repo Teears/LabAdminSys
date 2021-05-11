@@ -24,7 +24,7 @@
         </el-form>
         <div class="footer">
           <el-popover placement="right" title="扫描下方二维码,进入教师学生端" width="230" trigger="click">
-            <el-image :src="erweimaUrl" :fit="cover"></el-image>
+            <img src="../assets/miniprogram.jpg" style="height:230px;width:auto"/>
             <el-link slot="reference" type="primary">教师学生端</el-link>
           </el-popover>
         </div>
@@ -51,24 +51,25 @@ export default {
       userForm: {
         userNumber: "",
         password: ""
-      },
-      erweimaUrl:
-        "https://fuss10.elemecdn.com/e/5d/4a731a90594a4af544c0c25941171jpeg.jpeg"
-    };
+      }
+    }
   },
   methods: {
     login() {
       this.$axios
-        .post("/admin/login",{
+        .post("/api/admin/login",{
           userNumber:this.$data.userForm.userNumber,
           password:this.$data.userForm.password
         })
         .then(res=>{
-          alert(res)
-          this.$router.replace({ path: "/main" });
+          if(res.data.statusCode == 200){
+            this.$router.replace({ path: "/main" });
+          }else{
+            this.$message('账号或密码错误');
+          }
         })
         .catch(error=>{
-          alert(error)
+          this.$message(error)
         })
     }
   }
@@ -158,9 +159,5 @@ img {
 .el-popover {
   text-align: center;
   font-size: x-small;
-}
-.el-image {
-  width: 230px;
-  height: 230px;
 }
 </style>

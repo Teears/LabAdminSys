@@ -11,10 +11,10 @@ import lombok.Data;
  */
 @Data
 public class Teacher {
-    private String id;
     private String teaNumber;
     private String name;
     private String sex;
+    private String department;
     private String phone;
     private String secret;
 }

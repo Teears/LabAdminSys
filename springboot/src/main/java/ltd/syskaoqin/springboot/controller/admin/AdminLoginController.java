@@ -1,17 +1,13 @@
 package ltd.syskaoqin.springboot.controller.admin;
 
-
-import com.alibaba.fastjson.JSONObject;
-import ltd.syskaoqin.springboot.dao.entity.User;
+import ltd.syskaoqin.springboot.dao.entity.Admin;
+import ltd.syskaoqin.springboot.service.AdminService;
 import ltd.syskaoqin.springboot.util.JWTUtil;
-import ltd.syskaoqin.springboot.util.WechatUtil;
 import ltd.syskaoqin.springboot.util.result.Result;
 import ltd.syskaoqin.springboot.util.result.ResultUtils;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.UsernamePasswordToken;
-import org.apache.shiro.subject.Subject;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.Resource;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -23,20 +19,24 @@ import java.util.Map;
  * @createTime 2021年04月22日20:22
  */
 @RestController
-@RequestMapping("/admin")
+@RequestMapping("/admin/login")
 public class AdminLoginController {
 
-    @PostMapping(value = "/login")
-    @ResponseBody
-    public Result login(@RequestParam Map<String, String> param){
+    @Resource
+    private AdminService adminService;
+
+    @PostMapping(value = "")
+    public Result login(@RequestBody Map<String, String> param){
         String userNumber = param.get("userNumber");
         String password = param.get("password");
-        System.out.println(userNumber);
 
+        Admin admin = adminService.findAdminByNum(userNumber);
+        if(password == null || admin == null || !password.equals(admin.getPassword())){
+            return ResultUtils.error(-1,"密码错误！");
+        }
         Map<String,String> data = new HashMap<>();
         data.put("token", JWTUtil.sign(userNumber,password));
         data.put("roleId","4");
-        System.out.println(data);
-        return ResultUtils.success();
+        return ResultUtils.success(data);
     }
 }

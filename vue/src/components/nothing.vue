@@ -1,6 +1,6 @@
 <template>
   <div>
-    <img src="../assets/logo.png" />
+    <img src="../assets/nothing.png" />
   </div>
 </template>
 
@@ -13,9 +13,12 @@ export default {
 <style scoped>
 div{
   overflow: hidden;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 img{
-  height: 200px;
+  height: 400px;
   width: auto;
 }
 </style>

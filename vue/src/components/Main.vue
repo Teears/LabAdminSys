@@ -2,28 +2,28 @@
   <el-container class="container">
     <el-header class="header">
       <img src="../assets/logo.png" />
-      <div>上次登录：{{lastTime}}</div>
+      <div>考勤管理系统</div>
     </el-header>
 
     <el-container>
       <el-menu router="true" collapse="true">
         <el-menu-item index="/main/student">
-          <i class="el-icon-setting"></i>
+          <i class="iconfont iconxuesheng"></i>
         </el-menu-item>
         <el-menu-item index="/main/teacher">
-          <i class="el-icon-setting"></i>
+          <i class="iconfont iconjiaoshi"></i>
         </el-menu-item>
         <el-menu-item index="/main/lab">
-          <i class="el-icon-setting"></i>
+          <i class="iconfont iconshiyan"></i>
         </el-menu-item>
         <el-menu-item index="/main/statistic">
-          <i class="el-icon-setting"></i>
+          <i class="iconfont icontongji"></i>
         </el-menu-item>
         <el-menu-item index="/main/message">
-          <i class="el-icon-setting"></i>
+          <i class="iconfont iconxiaoxi"></i>
         </el-menu-item>
         <el-menu-item index="/main/super">
-          <i class="el-icon-setting"></i>
+          <i class="iconfont iconshezhi"></i>
         </el-menu-item>
       </el-menu>
 
@@ -36,22 +36,17 @@
 
 <script>
 export default {
-  name:'MainPage',
-  data(){
-    return{
-      lastTime:"2020/10/01 10:21:11"
-    }
-  }
+  name:'MainPage'
 }
 </script>
 
 <style scoped>
 .container{
   height: 100%;
-  background-color: rgb(245, 254, 255);
+  background-color: #F2F6FC;
 }
 .header{
-  background-color: rgb(76, 153, 216)
+  background-color: #233B6E;
 }
 .header>img{
   height: 60px;
@@ -59,9 +54,12 @@ export default {
   float: left;
 }
 .header>div{
-  float: right;
-  font-size: smaller;
+  font-size: x-large;
   margin-top: 20px;
   color: white;
+}
+i{
+  font-size: large;
+  font-weight: bold;
 }
 </style>

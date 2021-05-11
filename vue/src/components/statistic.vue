@@ -1,6 +1,6 @@
 <template>
-  <div>
-    Statistic
+  <div class="out-wrapper">
+    
   </div>
 </template>
 

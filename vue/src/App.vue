@@ -23,5 +23,9 @@ html,
 body,
 .el-container {
   height: 100%;
+  overflow: hidden;
+}
+.el-main{
+  text-align: center;
 }
 </style>

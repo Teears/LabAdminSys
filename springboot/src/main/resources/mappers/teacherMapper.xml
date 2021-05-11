@@ -20,4 +20,32 @@
         select avatarUrl,name,sex,tea_number teaNum,teacher.phone from user,teacher
         where openid=#{openid} and stu_tea_id=teacher.tea_number
     </select>
+
+<!--    管理员-->
+    <select id="getAllTeacherList" resultType="java.util.Map">
+        select tea_number num, name, sex, department, phone from teacher
+    </select>
+    <select id="getTeacherListByContent" resultType="java.util.Map">
+        select tea_number num, name, sex, department, phone
+        from teacher where CONCAT(tea_number,`name`) like CONCAT('%',#{content},'%')
+    </select>
+
+    <select id="checkTeacher" resultType="java.util.Map">
+        select tea_number num, name, sex, department, phone from teacher_sys
+        where tea_number = #{num} and tea_number not in (
+        select tea_number from teacher)
+    </select>
+
+    <insert id="insertTeacher" parameterType="ltd.syskaoqin.springboot.dao.entity.Teacher">
+        insert into teacher(tea_number, name, sex, department, phone, secret)
+        values (#{teaNumber}, #{name}, #{sex}, #{department}, #{phone}, #{secret})
+    </insert>
+
+    <select id="findTeacherInSys" resultType="ltd.syskaoqin.springboot.dao.entity.Teacher">
+        SELECT * FROM teacher_sys WHERE tea_number=#{num}
+    </select>
+
+    <delete id="deleteTeacher">
+        delete from teacher where tea_number=#{num}
+    </delete>
 </mapper>

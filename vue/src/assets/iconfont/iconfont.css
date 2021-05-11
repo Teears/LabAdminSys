@@ -1,10 +1,8 @@
-@font-face {font-family: "iconfont";
-  src: url('iconfont.eot?t=1613360756290'); /* IE9 */
-  src: url('iconfont.eot?t=1613360756290#iefix') format('embedded-opentype'), /* IE6-IE8 */
-  url('data:application/x-font-woff2;charset=utf-8;base64,d09GMgABAAAAAAOAAAsAAAAAB6AAAAM0AAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHEIGVgCDBgqDBIJ3ATYCJAMMCwgABCAFhG0HORvABhHVm2/IfhbYMW3IbMUFbRQvSuLNyCgsI+37IojHtc95SXabD1QAllWEeyVElSJIAlJXdXULZQmkK3dzs77jalSEYknO8376jnRDuJBfAZAQUPX/czm+EXg4v2W5zLXsqBdgHFBAY20KLMACCchTGF672GEehgBZmtMVGTh4+HgsBjpKAFm+ZNEcbEaHaSgWLIJfsdAgR/Gwap+qQXEk+L78YRYLCk9Djxq9cNB8+n7v/n3TLnVM1w43nQUQloEGugIGZGalbTI6inVFk9VkpjnbxyCoqYJpGvB0hb/RP54C8aGFeQA6Iq7ge3eHCYHvK55AAaAB8AELbAJegFQ33WDKahfwJvn8tP3XUO56u9LVm6K33cia4ru4tb6YBKXqqJU6F87MShxPDMPxZCVJJkXRhOlXbjSWkzcPXG/EsWsrsmE8sVSS472E4cJO6uNR2lqdNOklmejwNUsYzvU4CW+stOvXa2+q7Rxb+ZZgQu3OtwqqPOcFwZhbY1xu1KHqQKcJkQSzZwcQC8+GOEqH1fIjR5ZDrFg2atPONomTTW2xATOGP9ujHjRXg2qrHQ/v7dbPbLbPji+prQc9bt5jyWJ1cK9aWHvdLTuAZ7Of2h21ZWGhw2I1P1gmRw6pJRb5yMFliu2pZQnY7MS2/y/DFy0YKSNk8QIZLsMY9wgZKejObABSp2PtgsRdfVpP/Gm/Ydnnmj2zSj3vcgaAL6NL6+FNnaG7AXtLdoFfxO9YZ3Qh1Wuj8hyeadf0SXlQAI7oJIW6avNtuKJe5wgINsMXQFGLZqCxtEUMqSt45OgGPpY+kKULwfIcdViLRkwG6MwuAkKZu6Ao8hY0Zd4jhvQVPOrzD3zKoiHLRKmzYY72wmY9gNEIerB/yI72YBtFh8U3jO9mOC0MKC/kMwdh6sd88oo78hRTzk+cRQIEpg1Wchy2RnAwFXTSJ5FjGYZQ9aLe0aY0AxiNoAf7h+xoD15z0YXP3zC+m+EGQo31hXzm9mHqxw7IVbZ3ItzKM+cnziIBAtMGK+mHrREc1f0KOunTgMixDFaj0FXWL6/Y3m8LkIVuokWJFoNZkTfTbU1mj46VlAI=') format('woff2'),
-  url('iconfont.woff?t=1613360756290') format('woff'),
-  url('iconfont.ttf?t=1613360756290') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */
-  url('iconfont.svg?t=1613360756290#iconfont') format('svg'); /* iOS 4.1- */
+@font-face {
+  font-family: "iconfont"; /* Project id 2373749 */
+  src: url('//at.alicdn.com/t/font_2373749_usl3dsxfk6g.woff2?t=1620661894865') format('woff2'),
+       url('//at.alicdn.com/t/font_2373749_usl3dsxfk6g.woff?t=1620661894865') format('woff'),
+       url('//at.alicdn.com/t/font_2373749_usl3dsxfk6g.ttf?t=1620661894865') format('truetype');
 }
 
 .iconfont {
@@ -15,6 +13,30 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+.icontongji:before {
+  content: "\e69b";
+}
+
+.iconshiyan:before {
+  content: "\e653";
+}
+
+.iconshezhi:before {
+  content: "\e65e";
+}
+
+.iconjiaoshi:before {
+  content: "\e7d0";
+}
+
+.iconxiaoxi:before {
+  content: "\e736";
+}
+
+.iconxuesheng:before {
+  content: "\e7c0";
+}
+
 .iconmima:before {
   content: "\e63a";
 }
@@ -22,4 +44,3 @@
 .iconzhanghao:before {
   content: "\e66d";
 }
-

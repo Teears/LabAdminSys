@@ -2,16 +2,7 @@ package ltd.syskaoqin.springboot.util;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.sun.org.apache.xerces.internal.impl.dv.util.Base64;
-import ltd.syskaoqin.springboot.config.InitGlobalData;
-import org.bouncycastle.jce.provider.BouncyCastleProvider;
-
-import javax.crypto.Cipher;
-import javax.crypto.spec.IvParameterSpec;
-import javax.crypto.spec.SecretKeySpec;
-import java.security.Key;
-import java.security.Security;
-import java.util.Arrays;
+import ltd.syskaoqin.springboot.component.InitGlobalData;
 
 /**
  * @author Teears
