@@ -59,4 +59,24 @@
         from user_lab_tea,lab where
         openid=#{openid} and lab_id=lab.id
     </select>
+
+<!--    管理员-->
+    <select id="getAllLabList" resultType="java.util.Map">
+        select id, lab_number num, name, seat, room, address, substr(revise_time,1,10) time from lab
+    </select>
+    <select id="getLabListByContent" resultType="java.util.Map">
+        select id, lab_number num, name, seat, room, address, substr(revise_time,1,10) time from lab
+        where CONCAT(lab_number,`name`) like CONCAT('%',#{content},'%')
+    </select>
+    <update id="updateLabAdminInfo">
+        update lab set lab_number=#{labNumber},name=#{name},seat=#{seat},
+        room=#{room}, address=#{address} where id=#{id}
+    </update>
+    <insert id="addLab" parameterType="ltd.syskaoqin.springboot.dao.entity.Lab">
+        insert into lab(lab_number, name, seat, room, address)
+        values (#{labNumber}, #{name}, #{seat}, #{room}, #{address})
+    </insert>
+    <delete id="deleteLab">
+        delete from lab where id=#{id}
+    </delete>
 </mapper>

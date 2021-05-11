@@ -61,4 +61,29 @@ public class LabServiceImpl implements LabService {
         return labMapper.selectTeaLab(openid);
     }
 
+    @Override
+    public List<Map<String, String>> getAllLabList() {
+        return labMapper.getAllLabList();
+    }
+
+    @Override
+    public List<Map<String, String>> getLabListByContent(String content) {
+        return labMapper.getLabListByContent(content);
+    }
+
+    @Override
+    public void updateLabAdminInfo(Lab lab) {
+        labMapper.updateLabAdminInfo(lab);
+    }
+
+    @Override
+    public void addLab(Lab lab) {
+        labMapper.addLab(lab);
+    }
+
+    @Override
+    public void deleteLab(String id) {
+        labMapper.deleteLab(id);
+    }
+
 }

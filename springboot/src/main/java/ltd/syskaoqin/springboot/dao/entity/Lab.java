@@ -16,7 +16,7 @@ public class Lab {
     private String name;
     private String room;
     private String address;
-    private int seat;
+    private String seat;
     private String openTime;
     private String closeTime;
     private String checkinStart;

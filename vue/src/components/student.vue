@@ -35,7 +35,10 @@
     layout="prev,pager,next,jumper,sizes,total">
     </el-pagination>
 
-    <el-dialog :visible.sync="dialogVisible" @closed="closedDialog" :close-on-click-modal="false" width="30%">
+    <el-dialog :visible.sync="dialogVisible" 
+    @closed="closedDialog" 
+    :close-on-click-modal="false" 
+    width="30%">
       <el-form :model="form" label-width="70px">
         <el-form-item label="工号">
           <el-input v-model="form.num" :disabled="lock"></el-input>
@@ -105,14 +108,7 @@ export default {
       this.loading = false
       this.iconTip=""
       this.lock = false
-      this.form = {
-        num:"",
-        name:"",
-        sex:"",
-        phone:"",
-        department:"",
-        major:""
-      }
+      this.form = {}
     },
     addStudent(){
       this.dialogVisible = true

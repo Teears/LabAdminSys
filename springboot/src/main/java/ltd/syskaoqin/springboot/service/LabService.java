@@ -74,4 +74,35 @@ public interface LabService {
      * @return
      */
     List<Map<String,String>> selectTeaLab(String openid);
+
+    /**
+     * 获取所有lab列表
+     * @return
+     */
+    List<Map<String,String>> getAllLabList();
+
+    /**
+     * 通过lab_number和name模糊查询
+     * @param content
+     * @return
+     */
+    List<Map<String,String>> getLabListByContent(String content);
+
+    /**
+     * 管理员更新Lab
+     * @param lab
+     */
+    void updateLabAdminInfo(Lab lab);
+
+    /**
+     * 管理员添加Lab
+     * @param lab
+     */
+    void addLab(Lab lab);
+
+    /**
+     * 删除
+     * @param id
+     */
+    void deleteLab(String id);
 }
