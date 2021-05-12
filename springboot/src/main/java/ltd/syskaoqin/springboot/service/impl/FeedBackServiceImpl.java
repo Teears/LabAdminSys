@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Teears
@@ -28,5 +29,10 @@ public class FeedBackServiceImpl implements FeedBackService {
     @Override
     public List<FeedBack> selectAll() {
         return feedBackMapper.selectAll();
+    }
+
+    @Override
+    public List<Map<String, String>> selectFeedBack() {
+        return feedBackMapper.selectFeedBack();
     }
 }

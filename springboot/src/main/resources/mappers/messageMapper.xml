@@ -16,7 +16,7 @@
         insert into message(send_id,lab_id,title,content) VALUES (#{sendId},#{labId},#{title},#{content})
     </insert>
     <select id="selectMessageBySendId" resultType="ltd.syskaoqin.springboot.dao.entity.Message">
-        select * from message where send_id=#{sendId}
+        select id, send_id, lab_id, title, content, type, substr(create_time,1,16)
+        from message where send_id=#{sendId}
     </select>
-
 </mapper>

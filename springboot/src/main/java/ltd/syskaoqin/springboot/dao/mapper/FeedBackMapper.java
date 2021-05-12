@@ -4,6 +4,7 @@ import ltd.syskaoqin.springboot.dao.entity.FeedBack;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Teears
@@ -26,4 +27,10 @@ public interface FeedBackMapper {
      * @return openid表示nickname
      */
     List<FeedBack> selectAll();
+
+    /**
+     * 获取所有反馈
+     * @return
+     */
+    List<Map<String,String>> selectFeedBack();
 }

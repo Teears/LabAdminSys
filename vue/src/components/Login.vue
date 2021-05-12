@@ -44,6 +44,7 @@
 </template>
 
 <script>
+import {setCookie} from '../cookie'
 export default {
   name: "Login",
   data() {
@@ -63,6 +64,8 @@ export default {
         })
         .then(res=>{
           if(res.data.statusCode == 200){
+            setCookie("token",res.data.data.token,1)
+            setCookie("roleId",res.data.data.roleId,1)
             this.$router.replace({ path: "/main" });
           }else{
             this.$message('账号或密码错误');

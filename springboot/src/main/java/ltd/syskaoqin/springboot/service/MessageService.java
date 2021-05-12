@@ -3,6 +3,7 @@ package ltd.syskaoqin.springboot.service;
 import ltd.syskaoqin.springboot.dao.entity.Message;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Teears

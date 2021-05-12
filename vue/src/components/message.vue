@@ -3,8 +3,8 @@
     <!-- 第一版 -->
     <div>
       <div class="top">
-        <img src="../assets/write.png" />
-        <div></div>
+        <div class="write-img"></div>
+        <div class="line"></div>
         <span>新发布</span>
       </div>
       <div class="post-new">
@@ -36,13 +36,19 @@
     <!-- 第二版 -->
     <div>
       <div class="top">
-        <img src="../assets/posted.png" />
-        <div></div>
+        <div class="posted-img"></div>
+        <div class="line"></div>
         <span>已发布</span>
       </div>
       <div class="post-history">
         <el-collapse>
-          <el-collapse-item v-for="item in messageList" :key="item.id" :title="item.title">
+          <el-collapse-item v-for="item in messageList" :key="item.id">
+            <template slot="title">
+              <div class="space-between">
+                <div>{{item.title}}</div>
+                <div>{{item.createTime}}</div>
+              </div>
+            </template>
             <div style="color:gray">{{item.content}}</div>
           </el-collapse-item>
         </el-collapse>
@@ -52,14 +58,14 @@
     <!-- 第三版 -->
     <div>
       <div class="top">
-        <img src="../assets/feedback.png" />
-        <div></div>
+        <div class="feedback-img"></div>
+        <div class="line"></div>
         <span>反馈</span>
       </div>
       <div class="post-history">
         <div class="feedback-wrapper" v-for="item in feedbackList" :key="item.id">
           <div class="feedback-title">
-            <div>{{item.name}}</div>
+            <div>{{item.nickname}}</div>
             <div>{{item.time}}</div>
           </div>
           <div>{{item.content}}</div>
@@ -80,26 +86,8 @@ export default {
         title: "",
         content: ""
       },
-      messageList:[{
-        id:1,
-        title:"一致性 Consistency",
-        content:"与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念"
-      },{
-        id:2,
-        title:"一致性 Consistency",
-        content:"与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念"
-      }],
-      feedbackList:[{
-        id:1,
-        name:"一致性 Consistency",
-        time:"2020-10-10 12:31",
-        content:"与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念"
-      },{
-        id:2,
-        name:"一致性 Consistency",
-        time:"2020-10-10 12:31",
-        content:"与现实生活一致：与现实生活的流程、逻辑保持一致，遵循用户习惯的语言和概念"
-      }]
+      messageList:[],
+      feedbackList:[]
     };
   },
   methods:{
@@ -132,7 +120,7 @@ export default {
     }
   },
   created(){
-    initPageList()
+    this.initPageList()
   }
 };
 </script>
@@ -162,11 +150,25 @@ export default {
   width: 100%;
   margin-bottom: 20px;
 }
-.top > .el-image {
+.write-img {
+  background: url("../assets/write.png") no-repeat bottom;
+  background-size: cover;
   height: 60px;
-  width: auto;
+  width: 60px;
 }
-.top > div {
+.posted-img {
+  background: url("../assets/posted.png") no-repeat bottom;
+  background-size: cover;
+  height: 60px;
+  width: 60px;
+}
+.feedback-img {
+  background: url("../assets/feedback.png") no-repeat bottom;
+  background-size: cover;
+  height: 60px;
+  width: 60px;
+}
+.line{
   background-color: rgba(0, 0, 0, 0.12);
   width: 1px;
   height: 90%;
@@ -197,18 +199,12 @@ export default {
   flex-direction: row;
   justify-content: space-between;
 }
-/* .post-history {
-  height: 88%;
-  text-align: start;
-  overflow-y: auto;
-  overflow-x: hidden;
-}
-.post-history > div {
-  height: 150px;
+.space-between{
   width: 100%;
-  margin: 0 2px 2px 2px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.12);
-} */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
 .el-button {
   width: 200px;
 }

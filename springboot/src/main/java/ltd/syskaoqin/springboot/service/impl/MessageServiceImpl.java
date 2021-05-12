@@ -53,5 +53,4 @@ public class MessageServiceImpl implements MessageService {
         return messageMapper.selectMessageBySendId(sendId);
     }
 
-
 }

@@ -17,4 +17,9 @@
         select feedback.id,nickname as openid,feedback.content,feedback.create_time
         from feedback,user where feedback.openid=user.openid
     </select>
+
+    <select id="selectFeedBack" resultType="java.util.Map">
+        select feedback.id id,nickname,substr(feedback.create_time,1,16) time,content
+        from feedback,user where user.openid = feedback.openid
+    </select>
 </mapper>

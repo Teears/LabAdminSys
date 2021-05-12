@@ -6,10 +6,13 @@ import './assets/iconfont/iconfont.css'
 import './assets/scroll.css'
 import router from './router/index'
 import axios from 'axios'
+import {post,get} from "./http.js"
 
 axios.defaults.withCredentials = true
 axios.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8'
 Vue.prototype.$axios = axios
+Vue.prototype.$post=post
+Vue.prototype.$get=get
 
 Vue.use(ElementUI,{ size: 'small'});
 

@@ -3,6 +3,7 @@ package ltd.syskaoqin.springboot.service;
 import ltd.syskaoqin.springboot.dao.entity.FeedBack;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author Teears
@@ -24,4 +25,10 @@ public interface FeedBackService {
      * @return
      */
     List<FeedBack> selectAll();
+
+    /**
+     * admin获取feedback
+     * @return
+     */
+    List<Map<String,String>> selectFeedBack();
 }
