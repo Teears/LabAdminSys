@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -44,9 +46,19 @@ public class AdminMessageManageController {
     }
 
     @PostMapping(value = "/addMessage")
-    public Result addMessage(@RequestBody Map<String, Map<String,String>> param){
-        Map<String,String> form = param.get("form");
+    public Result addMessage(HttpServletRequest request,@RequestBody Map<String, Map<String,Object>> param){
+        String token = request.getHeader("token");
+        String id = JWTUtil.getUsername(token);
+        Map<String,Object> form = param.get("form");
+        Message message = new Message();
+        message.setTitle(form.get("title").toString());
+        message.setSendId(id);
+        message.setContent(form.get("content").toString());
+        message.setType("1");
+        messageService.insertMessage(message);
 
-        return ResultUtils.success();
+        Date day=new Date();
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+        return ResultUtils.success(df.format(day));
     }
 }

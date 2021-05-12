@@ -97,11 +97,22 @@ export default {
           form:this.form
         })
         .then((res)=>{
-          this.messageList.unshift(res.data.data)
+          var date = new Date()
+          date.getFullYear()
+          date.getMonth+1
+          date.getDate
+          var newMessage = {
+            id:0,
+            title:this.form.title,
+            content:this.form.content,
+            createTime:res.data.data
+          }
+          this.messageList.unshift(newMessage)
           this.$message({
             message: '添加成功',
             type: 'success'
           })
+          this.form = {}
         })
         .catch(error=>{
           this.$message(error)
