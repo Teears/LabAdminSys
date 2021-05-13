@@ -13,6 +13,7 @@
       <el-table :data="studentTableData" border style="width:100%">
         <el-table-column prop="num" label="学号" width="100"></el-table-column>
         <el-table-column prop="name" label="姓名" width="200"></el-table-column>
+        <el-table-column prop="labId" label="实验室ID" width="80"></el-table-column>
         <el-table-column prop="sex" label="性别" width="50"></el-table-column>
         <el-table-column prop="phone" label="联系方式" width="200"></el-table-column>
         <el-table-column prop="department" label="学院"></el-table-column>
@@ -40,8 +41,11 @@
     :close-on-click-modal="false" 
     width="30%">
       <el-form :model="form" label-width="70px">
-        <el-form-item label="工号">
-          <el-input v-model="form.num" :disabled="lock"></el-input>
+        <el-form-item label="学号">
+          <el-input v-model="form.num" :disabled="lock" placeholder="请输入学号"></el-input>
+        </el-form-item>
+        <el-form-item label="实验室ID">
+          <el-input v-model="form.labId" :disabled="lock" placeholder="ID可在实验管理查询"></el-input>
           <el-button type="text" @click="checkInfo" :icon="iconTip" :loading="loading">验证</el-button>
         </el-form-item>
         <el-form-item label="姓名">
@@ -81,6 +85,7 @@ export default {
       total:12,
       form:{
         num:"",
+        labId:"",
         name:"",
         sex:"",
         phone:"",
@@ -117,10 +122,12 @@ export default {
       this.loading = true
       const that = this
       this.$axios
-        .get("/api/admin/student/checkStudent?num="+that.form.num)
+        .get("/api/admin/student/checkStudent?num="+that.form.num+"&labId="+that.form.labId)
         .then(res=>{
           if(res.data.statusCode == 200){
+            var labId = that.form.labId
             that.form = res.data.data
+            that.form.labId = labId
             that.loading = false
             that.iconTip = "el-icon-check"
             that.lock = true
@@ -137,7 +144,8 @@ export default {
     enterAddStudent(){
       this.$axios
         .post("/api/admin/student/addStudent",{
-          num:this.form.num
+          num:this.form.num,
+          labId:this.form.labId
         })
         .then(()=>{
           this.studentTableData.unshift(this.form)

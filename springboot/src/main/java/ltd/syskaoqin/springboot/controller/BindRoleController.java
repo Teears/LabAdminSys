@@ -4,6 +4,7 @@ import ltd.syskaoqin.springboot.dao.entity.Student;
 import ltd.syskaoqin.springboot.dao.entity.Teacher;
 import ltd.syskaoqin.springboot.service.StudentService;
 import ltd.syskaoqin.springboot.service.TeacherService;
+import ltd.syskaoqin.springboot.service.UserAndLabService;
 import ltd.syskaoqin.springboot.service.UserService;
 import ltd.syskaoqin.springboot.util.JWTUtil;
 import ltd.syskaoqin.springboot.util.result.Result;
@@ -34,6 +35,8 @@ public class BindRoleController {
     private TeacherService teacherService;
     @Resource
     private UserService userService;
+    @Resource
+    private UserAndLabService userAndLabService;
 
     @PostMapping(value = "/stu")
     @ResponseBody
@@ -48,6 +51,7 @@ public class BindRoleController {
             data.put("isBinded","0");
         }else {
             userService.updateBindAndRole(openid,stu.getStuNumber(),"1");
+            userAndLabService.updateOpenid(openid,stuNumber);
             data.put("roleId","1");
             data.put("isBinded","1");
             UsernamePasswordToken aToken = new UsernamePasswordToken("WECHAT",openid);

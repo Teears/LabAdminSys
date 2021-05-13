@@ -2,13 +2,18 @@ package ltd.syskaoqin.springboot.controller.admin;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import ltd.syskaoqin.springboot.dao.entity.Lab;
 import ltd.syskaoqin.springboot.dao.entity.Student;
+import ltd.syskaoqin.springboot.dao.entity.UserAndLab;
+import ltd.syskaoqin.springboot.service.LabService;
 import ltd.syskaoqin.springboot.service.StudentService;
+import ltd.syskaoqin.springboot.service.UserAndLabService;
 import ltd.syskaoqin.springboot.util.result.Result;
 import ltd.syskaoqin.springboot.util.result.ResultUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -23,6 +28,10 @@ import java.util.Map;
 public class AdminStudentManageController {
     @Resource
     private StudentService studentService;
+    @Resource
+    private LabService labService;
+    @Resource
+    private UserAndLabService userAndLabService;
 
     @GetMapping(value = "/getStudentList")
     @ResponseBody
@@ -40,10 +49,11 @@ public class AdminStudentManageController {
 
     @GetMapping(value = "/checkStudent")
     @ResponseBody
-    public Result checkStudent(String num) {
+    public Result checkStudent(String num,String labId) {
         Map<String,String> student = studentService.checkStudent(num);
-        if(student == null){
-            return ResultUtils.error(-1,"用户不存在或已添加");
+        Lab lab = labService.findLabByLabId(labId);
+        if(student == null || lab == null){
+            return ResultUtils.error(-1,"用户和实验室不存在或已添加");
         }else {
             return ResultUtils.success(student);
         }
@@ -52,7 +62,12 @@ public class AdminStudentManageController {
     @PostMapping(value = "/addStudent")
     public Result addStudent(@RequestBody Map<String, String> param){
         String num = param.get("num");
+        String labId = param.get("labId");
         Student student = studentService.findStudentInSys(num);
+        UserAndLab userAndLab = new UserAndLab();
+        userAndLab.setStuNumber(num);
+        userAndLab.setLabId(labId);
+        userAndLabService.insertUserLab(userAndLab);
         studentService.insertStudent(student);
         return ResultUtils.success();
     }
@@ -61,6 +76,7 @@ public class AdminStudentManageController {
     public Result deleteStudent(@RequestBody Map<String, String> param){
         String num = param.get("num");
         studentService.deleteStudent(num);
+        userAndLabService.deleteByStuNumber(num);
         return ResultUtils.success();
     }
 }

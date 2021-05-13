@@ -7,9 +7,9 @@ import './assets/scroll.css'
 import router from './router/index'
 import axios from 'axios'
 import {post,get} from "./http.js"
-import echarts from 'echarts'
+import ECharts from 'vue-echarts'
 
-Vue.prototype.$echarts = echarts
+Vue.component('v-chart', ECharts)
 
 axios.defaults.withCredentials = true
 axios.defaults.headers.post['Content-Type'] = 'application/json;charset=UTF-8'

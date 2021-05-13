@@ -15,11 +15,13 @@
 
     <!--    管理员-->
     <select id="getAllStudentList" resultType="java.util.Map">
-        select stu_number num, name, sex, phone, department, major from student
+        select student.stu_number num, name,lab_id labId, sex, phone, department, major
+        from student,user_lab where student.stu_number = user_lab.stu_number
     </select>
     <select id="getStudentListByContent" resultType="java.util.Map">
-        select stu_number num, name, sex, phone, department, major
-        from student where CONCAT(stu_number,`name`) like CONCAT('%',#{content},'%')
+        select student.stu_number num, name,lab_id labId, sex, phone, department, major
+        from student,user_lab where CONCAT(student.stu_number,`name`) like CONCAT('%',#{content},'%')
+        and student.stu_number = user_lab.stu_number
     </select>
     <select id="checkStudent" resultType="java.util.Map">
         select stu_number num, name, sex, phone, department, major from student_sys

@@ -14,6 +14,10 @@ module.exports = {
               '^/api': ''  //通过pathRewrite重写地址，将前缀/api转为/
           }
       }
-  }
-  }
+    }
+  },
+  transpileDependencies: [
+    'vue-echarts',
+    'resize-detector'
+  ]
 }

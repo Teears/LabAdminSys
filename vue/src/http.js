@@ -25,7 +25,7 @@ axios.interceptors.request.use(
 //http response 拦截器
 axios.interceptors.response.use(
   response => {
-    if(response.data.statusCode != 200){
+    if(response.data.statusCode == -200){
       router.replace("/")
     }
     return response;
@@ -43,15 +43,12 @@ axios.interceptors.response.use(
  * @returns {Promise}
  */
  
-export function fetch(url,params={}){
+export function get(url,data = {}){
   return new Promise((resolve,reject) => {
-    axios.get(url,{
-      params:params
-    })
+    axios.post(url,data)
       .then(response => {
         resolve(response.data);
-      })
-      .catch(err => {
+      },err => {
         reject(err)
       })
   })

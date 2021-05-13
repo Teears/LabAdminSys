@@ -8,5 +8,15 @@
     <select id="calculateLabTotal" resultType="Integer">
         select COUNT(*) from user_lab where lab_id=#{labId} and status=1
     </select>
+    <insert id="insertUserLab" parameterType="ltd.syskaoqin.springboot.dao.entity.UserAndLab">
+        insert into user_lab(stu_number, lab_id)
+        values (#{stuNumber}, #{labId})
+    </insert>
+    <delete id="deleteByStuNumber">
+        DELETE FROM user_lab WHERE stu_number=#{stuNumber}
+    </delete>
+    <update id="updateOpenid">
+        update user_lab set openid=#{openid} where stu_number=#{stuNumber}
+    </update>
 
 </mapper>

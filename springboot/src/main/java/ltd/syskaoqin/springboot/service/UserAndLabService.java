@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
  * @author Teears
  * @version 1.0.0
  * @ClassName UserAndLabService
- * @Description TODO
+ * @Description TODO 学生和实验室绑定关系
  * @createTime 2021年03月07日14:08
  */
 public interface UserAndLabService {
@@ -19,17 +19,28 @@ public interface UserAndLabService {
      */
     UserAndLab selectByStuOpenid(String openid);
 
-//    /**
-//     * 获取教师当前加入的实验室
-//     * @param openid openid
-//     * @return 当前加入的实验室以及加入时间等
-//     */
-//    UserAndLab selectByTeaOpenid(String openid);
-
     /**
      * 获取加入这个实验室的学生人数，需要减去一个教师人数
      * @param labId
      * @return
      */
     int calculateLabTotal(String labId);
+
+    /**
+     * 添加学生的绑定信息
+     * @param userAndLab
+     */
+    void insertUserLab(UserAndLab userAndLab);
+
+    /**
+     * 删除学生和实验的绑定关系
+     * @param stuNumber
+     */
+    void deleteByStuNumber(String stuNumber);
+
+    /**
+     * 学生绑定时确认所在实验
+     * @param openid
+     */
+    void updateOpenid(String openid,String stuNumber);
 }

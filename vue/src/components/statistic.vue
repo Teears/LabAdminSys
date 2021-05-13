@@ -1,11 +1,14 @@
 <template>
-  <div class="out-wrapper">
+<v-chart :options="option" />
+  <!-- <div class="out-wrapper">
     <div class="entire-data-wrapper">
       <div class="tag-wrapper">
         <div v-for="item in tagList" :key="item.id"></div>
       </div>
       <div class="chart-wrapper">
-        <div></div>
+        <div>
+          <v-chart :options="option" />
+        </div>
         <div></div>
       </div>
     </div>
@@ -13,10 +16,7 @@
     <div class="lab-wrapper">
       <div v-for="item in labList" :key="item.id"></div>
     </div>
-
-    <div id="polyLineChart" :style="{width: '300px', height: '300px'}"></div>
-
-  </div>
+  </div> -->
 </template>
 
 <script>
@@ -24,6 +24,19 @@ export default {
   name:'Statistic',
   data(){
     return{
+      option:{
+        xAxis: {
+          type: 'category',
+          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+        },
+        yAxis: {
+          type: 'value'
+        },
+        series: [{
+          data: [120, 200, 150, 80, 70, 110, 130],
+          type: 'bar'
+        }]
+      },
       tagList:[{
         id:1
       },{
@@ -40,73 +53,51 @@ export default {
       }]
     }
   },
-  methods:{
-    polyLineChart() {
-      var myChart = this.$echarts.init(
-        document.getElementById("polyLineChart")
-      );
-      var option = {
-        xAxis: {
-          type: "category",
-          data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
-        },
-        yAxis: {
-          type: "value"
-        },
-        series: [
-          {
-            data: [820, 932, 901, 934, 1290, 1330, 1320],
-            type: "line"
-          }
-        ]
-      };
-      myChart.setOption(option);
-    }
-  },
   mounted(){
-    this.polyLineChart()
+  },
+  methods:{
   }
 }
 </script>
 
 <style scoped>
-.out-wrapper{
+.out-wrapper {
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: row;
 }
-.entire-data-wrapper{
+.entire-data-wrapper {
   width: 100%;
   height: 100%;
 }
-.lab-wrapper{
+.lab-wrapper {
   box-sizing: border-box;
   padding: 2px 10px 0 10px;
   height: 100%;
   width: 450px;
   overflow: auto;
 }
-.lab-wrapper>div{
+.lab-wrapper > div {
   height: 150px;
-  width:100%;
+  width: 100%;
   margin-bottom: 10px;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 }
-.tag-wrapper{
+.tag-wrapper {
   box-sizing: border-box;
   padding: 0 10px 10px 0;
   height: 35%;
   width: 100%;
 }
-.tag-wrapper>div{
+.tag-wrapper > div {
   display: inline-block;
   width: 300px;
   height: 42%;
   margin: 0 20px 20px 0;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 }
-.chart-wrapper{
+.chart-wrapper {
   box-sizing: border-box;
   padding: 10px 10px 0 0;
   height: 65%;
@@ -115,7 +106,7 @@ export default {
   flex-direction: row;
   justify-content: space-around;
 }
-.chart-wrapper>div{
+.chart-wrapper > div {
   height: 100%;
   width: 48%;
   box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);

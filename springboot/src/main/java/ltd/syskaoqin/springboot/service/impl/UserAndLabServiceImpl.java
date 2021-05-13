@@ -24,11 +24,6 @@ public class UserAndLabServiceImpl implements UserAndLabService {
         return userAndLabMapper.selectByStuOpenid(openid);
     }
 
-//    @Override
-//    public UserAndLab selectByTeaOpenid(String openid) {
-//        return userAndLabMapper.selectByTeaOpenid(openid);
-//    }
-
     @Override
     public int calculateLabTotal(String labId) {
         int total = userAndLabMapper.calculateLabTotal(labId);
@@ -36,5 +31,20 @@ public class UserAndLabServiceImpl implements UserAndLabService {
             total -= 1;
         }
         return total;
+    }
+
+    @Override
+    public void insertUserLab(UserAndLab userAndLab) {
+        userAndLabMapper.insertUserLab(userAndLab);
+    }
+
+    @Override
+    public void deleteByStuNumber(String stuNumber) {
+        userAndLabMapper.deleteByStuNumber(stuNumber);
+    }
+
+    @Override
+    public void updateOpenid(String openid, String stuNumber) {
+        userAndLabMapper.updateOpenid(openid,stuNumber);
     }
 }

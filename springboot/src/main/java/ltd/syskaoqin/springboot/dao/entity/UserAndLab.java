@@ -13,6 +13,7 @@ import lombok.Data;
 public class UserAndLab {
     private String id;
     private String openid;
+    private String stuNumber;
     private String labId;
     private String createTime;
     private String status;
