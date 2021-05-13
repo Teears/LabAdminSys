@@ -23,17 +23,19 @@
 
 <!--    管理员-->
     <select id="getAllTeacherList" resultType="java.util.Map">
-        select tea_number num, name, sex, department, phone from teacher
+        select teacher.tea_number num, name, lab_id labId,sex, department, phone
+        from teacher,user_lab_tea where teacher.tea_number = user_lab_tea.tea_number
     </select>
     <select id="getTeacherListByContent" resultType="java.util.Map">
-        select tea_number num, name, sex, department, phone
-        from teacher where CONCAT(tea_number,`name`) like CONCAT('%',#{content},'%')
+        select teacher.tea_number num, name, lab_id labId,sex, department, phone
+        from teacher,user_lab_tea where CONCAT(teacher.tea_number,`name`) like CONCAT('%',#{content},'%')
+        and teacher.tea_number = user_lab_tea.tea_number
     </select>
 
     <select id="checkTeacher" resultType="java.util.Map">
         select tea_number num, name, sex, department, phone from teacher_sys
         where tea_number = #{num} and tea_number not in (
-        select tea_number from teacher)
+        select tea_number from user_lab_tea where tea_number=#{num} and lab_id=#{labId})
     </select>
 
     <insert id="insertTeacher" parameterType="ltd.syskaoqin.springboot.dao.entity.Teacher">

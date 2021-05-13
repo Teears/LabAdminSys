@@ -52,9 +52,10 @@ public class TeacherServiceImpl implements TeacherService {
     }
 
     @Override
-    public Map<String, String> checkTeacher(String num) {
-        return teacherMapper.checkTeacher(num);
+    public Map<String, String> checkTeacher(String num, String labId) {
+        return teacherMapper.checkTeacher(num,labId);
     }
+
 
     @Override
     public void insertTeacher(Teacher teacher) {

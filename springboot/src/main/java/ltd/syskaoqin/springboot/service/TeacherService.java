@@ -57,10 +57,11 @@ public interface TeacherService {
 
     /**
      * 检查教师，teacher_sys表中存在teacher表中不存在的方可添加
-     * @param num tea_number
+     * @param num
+     * @param labId
      * @return
      */
-    Map<String,String> checkTeacher(String num);
+    Map<String,String> checkTeacher(String num,String labId);
 
     /**
      * 向teacher表中添加数据，添加的数据来自于teacher_sys
@@ -80,4 +81,5 @@ public interface TeacherService {
      * @param num 工号
      */
     void deleteTeacher(String num);
+
 }

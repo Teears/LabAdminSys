@@ -60,10 +60,11 @@ public interface TeacherMapper {
 
     /**
      * 检查教师，teacher_sys表中存在teacher表中不存在的方可添加
-     * @param num tea_number
+     * @param num
+     * @param labId
      * @return
      */
-    Map<String,String> checkTeacher(@Param("num") String num);
+    Map<String,String> checkTeacher(@Param("num") String num,@Param("labId") String labId);
 
     /**
      * 向teacher表中添加数据，添加的数据来自于teacher_sys

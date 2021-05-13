@@ -19,4 +19,18 @@
         update user_lab set openid=#{openid} where stu_number=#{stuNumber}
     </update>
 
+    <insert id="insertUserLabTea" parameterType="ltd.syskaoqin.springboot.dao.entity.UserAndLab">
+        insert into user_lab_tea(tea_number, lab_id)
+        values (#{stuNumber}, #{labId})
+    </insert>
+    <delete id="deleteByTeaNumber">
+        DELETE FROM user_lab_tea WHERE tea_number=#{teaNumber} and lab_id=#{labId}
+    </delete>
+    <update id="updateTeaOpenid">
+        update user_lab_tea set openid=#{openid} where tea_number=#{teaNumber}
+    </update>
+
+    <select id="findByTeaNumber" resultType="ltd.syskaoqin.springboot.dao.entity.UserAndLab">
+        select * from user_lab_tea where tea_number = #{teaNumber} and status= 1
+    </select>
 </mapper>

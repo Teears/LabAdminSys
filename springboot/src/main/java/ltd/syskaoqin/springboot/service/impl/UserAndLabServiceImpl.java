@@ -3,9 +3,11 @@ package ltd.syskaoqin.springboot.service.impl;
 import ltd.syskaoqin.springboot.dao.entity.UserAndLab;
 import ltd.syskaoqin.springboot.dao.mapper.UserAndLabMapper;
 import ltd.syskaoqin.springboot.service.UserAndLabService;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * @author Teears
@@ -46,5 +48,25 @@ public class UserAndLabServiceImpl implements UserAndLabService {
     @Override
     public void updateOpenid(String openid, String stuNumber) {
         userAndLabMapper.updateOpenid(openid,stuNumber);
+    }
+
+    @Override
+    public void insertUserLabTea(UserAndLab userAndLab) throws DuplicateKeyException {
+        userAndLabMapper.insertUserLabTea(userAndLab);
+    }
+
+    @Override
+    public void deleteByTeaNumber(String teaNumber,String labId) {
+        userAndLabMapper.deleteByTeaNumber(teaNumber,labId);
+    }
+
+    @Override
+    public void updateTeaOpenid(String openid, String teaNumber) {
+        userAndLabMapper.updateTeaOpenid(openid,teaNumber);
+    }
+
+    @Override
+    public List<UserAndLab> findByTeaNumber(String teaNumber) {
+        return userAndLabMapper.findByTeaNumber(teaNumber);
     }
 }

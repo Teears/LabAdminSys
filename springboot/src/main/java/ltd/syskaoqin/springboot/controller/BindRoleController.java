@@ -75,6 +75,7 @@ public class BindRoleController {
             data.put("isBinded","0");
         }else {
             userService.updateBindAndRole(openid,teacher.getTeaNumber(),"2");
+            userAndLabService.updateTeaOpenid(openid,teaNumber);
             data.put("roleId","2");
             data.put("isBinded","1");
             UsernamePasswordToken aToken = new UsernamePasswordToken("WECHAT",openid);

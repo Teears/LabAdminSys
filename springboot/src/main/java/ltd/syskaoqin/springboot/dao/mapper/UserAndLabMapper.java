@@ -3,6 +3,9 @@ package ltd.syskaoqin.springboot.dao.mapper;
 import ltd.syskaoqin.springboot.dao.entity.UserAndLab;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import org.springframework.dao.DuplicateKeyException;
+
+import java.util.List;
 
 /**
  * @author Teears
@@ -45,4 +48,31 @@ public interface UserAndLabMapper {
      * @param openid
      */
     void updateOpenid(@Param("openid") String openid,@Param("stuNumber") String stuNumber);
+
+    /**
+     * 添加教师的绑定信息
+     * @param userAndLab
+     */
+    void insertUserLabTea(UserAndLab userAndLab) throws DuplicateKeyException;
+
+    /**
+     * 删除教师和实验的绑定关系
+     * @param teaNumber
+     * @param labId
+     */
+    void deleteByTeaNumber(@Param("teaNumber") String teaNumber,@Param("labId") String labId);
+
+    /**
+     * 教师绑定时确认所在实验
+     * @param openid
+     * @param teaNumber
+     */
+    void updateTeaOpenid(@Param("openid") String openid,@Param("teaNumber") String teaNumber);
+
+    /**
+     * 通过teaNumber查找对应关系
+     * @param teaNumber
+     * @return
+     */
+    List<UserAndLab> findByTeaNumber(@Param("teaNumber") String teaNumber);
 }
