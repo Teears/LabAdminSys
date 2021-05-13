@@ -11,7 +11,7 @@
  Target Server Version : 80019
  File Encoding         : 65001
 
- Date: 03/05/2021 22:50:22
+ Date: 13/05/2021 23:51:00
 */
 
 SET NAMES utf8mb4;
@@ -22,13 +22,17 @@ SET FOREIGN_KEY_CHECKS = 0;
 -- ----------------------------
 DROP TABLE IF EXISTS `a_user`;
 CREATE TABLE `a_user`  (
-  `id` int(0) NOT NULL,
-  `tea_number` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '教师id',
+  `user_number` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '教师id',
   `password` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '密码',
-  `appoint_time` datetime(0) NULL DEFAULT NULL COMMENT '任命时间',
+  `appoint_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '任命时间',
   `role_id` int(0) NULL DEFAULT NULL COMMENT '角色id，一般只有管理员3，和超级管理员4两种',
-  PRIMARY KEY (`id`) USING BTREE
+  PRIMARY KEY (`user_number`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of a_user
+-- ----------------------------
+INSERT INTO `a_user` VALUES ('2017110323', '123456', '2021-05-01 18:28:44', 4);
 
 -- ----------------------------
 -- Table structure for dayoff_apply
@@ -46,7 +50,7 @@ CREATE TABLE `dayoff_apply`  (
   `pass_time` datetime(0) NULL DEFAULT NULL COMMENT '通过时间',
   `pass_id` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '批准申请的id，一般是当前实验室负责人的openid',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of dayoff_apply
@@ -64,8 +68,9 @@ INSERT INTO `dayoff_apply` VALUES (10, 'o_t9X42WD-rF-MymTztUFieNOV-M', '2021-02-
 INSERT INTO `dayoff_apply` VALUES (11, 'o_t9X42WD-rF-MymTztUFieNOV-M', '2021-03-03,2021-03-07', '18011108917', '我也不知道什么原因，这就是个测试而已。', 1, '2021-03-01 15:26:29', 1, '2021-03-02 15:26:47', '233333');
 INSERT INTO `dayoff_apply` VALUES (12, 'o_t9X42WD-rF-MymTztUFieNOV-M', '2021-03-21', '18011108917', '测试2', 0, '2021-03-21 19:40:33', 2, NULL, NULL);
 INSERT INTO `dayoff_apply` VALUES (13, '125421', '2021-03-21,2021-03-22', '', '微信', 1, '2021-03-21 20:45:02', 2, NULL, NULL);
-INSERT INTO `dayoff_apply` VALUES (14, '130', '2021-03-25,2021-03-26', '18011108917', '你猜', 0, '2021-03-23 15:20:46', 2, NULL, NULL);
-INSERT INTO `dayoff_apply` VALUES (15, '112', '2021-04-28', '1801108917', '112的请假理由', 1, '2021-05-03 22:21:56', 2, '2021-04-27 22:21:40', NULL);
+INSERT INTO `dayoff_apply` VALUES (14, '130', '2021-03-25,2021-03-26', '18011108917', '你猜', 0, '2021-03-23 15:20:46', 1, '2021-05-07 22:46:46', '23333');
+INSERT INTO `dayoff_apply` VALUES (15, '112', '2021-04-28', '18011108917', '112的请假理由', 1, '2021-05-03 22:21:56', 2, '2021-05-07 23:10:00', 'o_t9X42WD-rF-MymTztUFieNOV-M');
+INSERT INTO `dayoff_apply` VALUES (16, '121111', '2021-05-01,2021-05-02,2021-05-03,2021-05-04', '18011108917', '102的学生的请假理由', 1, '2021-05-07 21:18:24', 1, '2021-05-07 23:08:56', 'o_t9X42WD-rF-MymTztUFieNOV-M');
 
 -- ----------------------------
 -- Table structure for feedback
@@ -82,7 +87,7 @@ CREATE TABLE `feedback`  (
 -- ----------------------------
 -- Records of feedback
 -- ----------------------------
-INSERT INTO `feedback` VALUES (1, '233333', '反馈的内容在这里最多500字', '2021-03-22 23:18:34');
+INSERT INTO `feedback` VALUES (1, '233333', '反馈的内容在这里最多500字反馈的内容在这里最多500字反馈的内容在这里最多500字反馈的内容在这里最多500字反馈的内容在这里最多500字反馈的内容在这里最多500字', '2021-05-12 15:35:20');
 INSERT INTO `feedback` VALUES (3, '233333', 'cs', '2021-03-23 15:28:35');
 INSERT INTO `feedback` VALUES (5, 'o_t9X42WD-rF-MymTztUFieNOV-M', '来着微信的反馈', '2021-03-23 15:33:36');
 
@@ -123,15 +128,20 @@ CREATE TABLE `lab`  (
   `basic_desc` varchar(1000) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '实验室文字介绍',
   `pic_url` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '实验室照片url',
   `rule_desc` varchar(1000) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '管理规则',
-  `revise_time` date NULL DEFAULT NULL COMMENT '修改时间',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 3 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
+  `revise_time` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '修改时间',
+  PRIMARY KEY (`id`) USING BTREE,
+  UNIQUE INDEX `unique`(`lab_number`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of lab
 -- ----------------------------
-INSERT INTO `lab` VALUES (1, 101, '信息开发实验室', '101', '川师成龙校区第一实验楼', 12, '08:00:00', '18:00:00', '09:00:00', '09:30:00', '18:00:00', '18:30:00', 'desc', 'D:/GP/img/1-6c23e7b1-fc0e-48a8-80e4-d8fbd18fa14f.jpg', 'rule', '2021-03-21');
-INSERT INTO `lab` VALUES (2, 102, '测试实验室', '102', '川师成龙校区第一实验楼', 15, '08:30:00', '19:00:00', '08:00:00', '09:00:00', '17:00:00', '17:30:00', 'xxx实验室成立于2016年，隶属于四川师范大学计算机科学学院，xxx配备有先进的xx设备，可以容纳20位学生行xx实验，这是乱写的乱写的乱写的乱写为实验人员提供xxx保障。', 'https://img.yzcdn.cn/vant/cat.jpeg', '1、进入实验室的所有人员，必须整洁、文明、肃静，必须遵守实验室的各项规章制\r\n度。 \r\n2、实验人员在实验过程中，要注意保持室内卫生及良好的实验习惯。实验结束后，必\r\n须及时做好清洁整理工作，实验人员必须将工作台、仪器设备、器皿等清洁干净，并将\r\n仪器设备和器皿按规定归类放好，不能随意放置。所有实验所产生的废物应及时放入废\r\n物箱内，并及时处理，清理好现场。 \r\n3、每次实验结束后，实验人员必须对实验室进行清扫。 \r\n4、实验室负责人需安排日常的卫生清扫。实验室成员有清扫实验室的义务。 \r\n5、实验室内各种设备、物品摆放要合理、整齐，与实验无关的物品禁止带入、存放在\r\n实验室。 \r\n6、实验室为保持室内地面、实验台、设备和工作环境的干净整洁，必须坚持每天一小\r\n扫，每周一大扫的卫生制度，每年彻底清扫1--2次。   \r\n7、实验室内的仪器设备、各人实验台架、凳和各种设施摆放整齐，并经常擦拭，保持\r\n无污渍、无灰尘。 \r\n8、卫生值日人员应对实验室桌面、地面及时打扫。注意保持室内仪器设备的整洁卫\r\n生。 \r\n9、实验室内杂物要清理干净，有机溶剂、腐蚀性液体的废液必须盛于废液桶内，贴上\r\n标签，统一回收处理。 \r\n10、保持室内地面无灰尘、无积水、无纸屑等垃圾。  ', '2020-01-01');
+INSERT INTO `lab` VALUES (1, 101, '信息开发实验室', '101', '川师成龙校区第一实验楼', 12, '08:00:00', '18:00:00', '09:00:00', '09:30:00', '18:00:00', '18:30:00', 'desc', 'D:/GP/img/1-6c23e7b1-fc0e-48a8-80e4-d8fbd18fa14f.jpg', 'rule', '2021-03-21 00:00:00');
+INSERT INTO `lab` VALUES (2, 102, '测试实验室', '102', '四川师范大学成龙校区第一实验楼', 15, '08:30:00', '19:00:00', '08:00:00', '09:00:00', '17:00:00', '17:30:00', 'xxx实验室成立于2016年，隶属于四川师范大学计算机科学学院，xxx配备有先进的xx设备，可以容纳20位学生行xx实验，这是乱写的乱写的乱写的乱写为实验人员提供xxx保障。', 'https://img.yzcdn.cn/vant/cat.jpeg', '1、进入实验室的所有人员，必须整洁、文明、肃静，必须遵守实验室的各项规章制\r\n度。 \r\n2、实验人员在实验过程中，要注意保持室内卫生及良好的实验习惯。实验结束后，必\r\n须及时做好清洁整理工作，实验人员必须将工作台、仪器设备、器皿等清洁干净，并将\r\n仪器设备和器皿按规定归类放好，不能随意放置。所有实验所产生的废物应及时放入废\r\n物箱内，并及时处理，清理好现场。 \r\n3、每次实验结束后，实验人员必须对实验室进行清扫。 \r\n4、实验室负责人需安排日常的卫生清扫。实验室成员有清扫实验室的义务。 \r\n5、实验室内各种设备、物品摆放要合理、整齐，与实验无关的物品禁止带入、存放在\r\n实验室。 \r\n6、实验室为保持室内地面、实验台、设备和工作环境的干净整洁，必须坚持每天一小\r\n扫，每周一大扫的卫生制度，每年彻底清扫1--2次。   \r\n7、实验室内的仪器设备、各人实验台架、凳和各种设施摆放整齐，并经常擦拭，保持\r\n无污渍、无灰尘。 \r\n8、卫生值日人员应对实验室桌面、地面及时打扫。注意保持室内仪器设备的整洁卫\r\n生。 \r\n9、实验室内杂物要清理干净，有机溶剂、腐蚀性液体的废液必须盛于废液桶内，贴上\r\n标签，统一回收处理。 \r\n10、保持室内地面无灰尘、无积水、无纸屑等垃圾。  ', '2020-01-01 00:00:00');
+INSERT INTO `lab` VALUES (3, 103, '嵌入式实验室', '103', '川师成龙校区第一实验楼', 15, '08:30:00', '19:00:00', '08:00:00', '09:00:00', '17:00:00', '17:30:00', 'xxx实验室成立于2016年，隶属于四川师范大学计算机科学学院，xxx配备有先进的xx设备，可以容纳20位学生行xx实验，这是乱写的乱写的乱写的乱写为实验人员提供xxx保障。', 'https://img.yzcdn.cn/vant/cat.jpeg', '1、进入实验室的所有人员，必须整洁、文明、肃静，必须遵守实验室的各项规章制\r\n度。 \r\n2、实验人员在实验过程中，要注意保持室内卫生及良好的实验习惯。实验结束后，必\r\n须及时做好清洁整理工作，实验人员必须将工作台、仪器设备、器皿等清洁干净，并将\r\n仪器设备和器皿按规定归类放好，不能随意放置。所有实验所产生的废物应及时放入废\r\n物箱内，并及时处理，清理好现场。 \r\n3、每次实验结束后，实验人员必须对实验室进行清扫。 \r\n4、实验室负责人需安排日常的卫生清扫。实验室成员有清扫实验室的义务。 \r\n5、实验室内各种设备、物品摆放要合理、整齐，与实验无关的物品禁止带入、存放在\r\n实验室。 \r\n6、实验室为保持室内地面、实验台、设备和工作环境的干净整洁，必须坚持每天一小\r\n扫，每周一大扫的卫生制度，每年彻底清扫1--2次。   \r\n7、实验室内的仪器设备、各人实验台架、凳和各种设施摆放整齐，并经常擦拭，保持\r\n无污渍、无灰尘。 \r\n8、卫生值日人员应对实验室桌面、地面及时打扫。注意保持室内仪器设备的整洁卫\r\n生。 \r\n9、实验室内杂物要清理干净，有机溶剂、腐蚀性液体的废液必须盛于废液桶内，贴上\r\n标签，统一回收处理。 \r\n10、保持室内地面无灰尘、无积水、无纸屑等垃圾。  ', '2020-01-01 00:00:00');
+INSERT INTO `lab` VALUES (4, 104, '网络工程实验室', '104', '川师成龙校区第一实验楼', 15, '08:30:00', '19:00:00', '08:00:00', '09:00:00', '17:00:00', '17:30:00', 'xxx实验室成立于2016年，隶属于四川师范大学计算机科学学院，xxx配备有先进的xx设备，可以容纳20位学生行xx实验，这是乱写的乱写的乱写的乱写为实验人员提供xxx保障。', 'https://img.yzcdn.cn/vant/cat.jpeg', '1、进入实验室的所有人员，必须整洁、文明、肃静，必须遵守实验室的各项规章制\r\n度。 \r\n2、实验人员在实验过程中，要注意保持室内卫生及良好的实验习惯。实验结束后，必\r\n须及时做好清洁整理工作，实验人员必须将工作台、仪器设备、器皿等清洁干净，并将\r\n仪器设备和器皿按规定归类放好，不能随意放置。所有实验所产生的废物应及时放入废\r\n物箱内，并及时处理，清理好现场。 \r\n3、每次实验结束后，实验人员必须对实验室进行清扫。 \r\n4、实验室负责人需安排日常的卫生清扫。实验室成员有清扫实验室的义务。 \r\n5、实验室内各种设备、物品摆放要合理、整齐，与实验无关的物品禁止带入、存放在\r\n实验室。 \r\n6、实验室为保持室内地面、实验台、设备和工作环境的干净整洁，必须坚持每天一小\r\n扫，每周一大扫的卫生制度，每年彻底清扫1--2次。   \r\n7、实验室内的仪器设备、各人实验台架、凳和各种设施摆放整齐，并经常擦拭，保持\r\n无污渍、无灰尘。 \r\n8、卫生值日人员应对实验室桌面、地面及时打扫。注意保持室内仪器设备的整洁卫\r\n生。 \r\n9、实验室内杂物要清理干净，有机溶剂、腐蚀性液体的废液必须盛于废液桶内，贴上\r\n标签，统一回收处理。 \r\n10、保持室内地面无灰尘、无积水、无纸屑等垃圾。  ', '2020-01-01 00:00:00');
+INSERT INTO `lab` VALUES (5, 105, 'iOS开发实验室', '105', '川师成龙校区第一实验楼', 30, '08:30:00', '19:00:00', '08:00:00', '09:00:00', '17:00:00', '17:30:00', 'xxx实验室成立于2016年，隶属于四川师范大学计算机科学学院，xxx配备有先进的xx设备，可以容纳20位学生行xx实验，这是乱写的乱写的乱写的乱写为实验人员提供xxx保障。', 'https://img.yzcdn.cn/vant/cat.jpeg', '1、进入实验室的所有人员，必须整洁、文明、肃静，必须遵守实验室的各项规章制\r\n度。 \r\n2、实验人员在实验过程中，要注意保持室内卫生及良好的实验习惯。实验结束后，必\r\n须及时做好清洁整理工作，实验人员必须将工作台、仪器设备、器皿等清洁干净，并将\r\n仪器设备和器皿按规定归类放好，不能随意放置。所有实验所产生的废物应及时放入废\r\n物箱内，并及时处理，清理好现场。 \r\n3、每次实验结束后，实验人员必须对实验室进行清扫。 \r\n4、实验室负责人需安排日常的卫生清扫。实验室成员有清扫实验室的义务。 \r\n5、实验室内各种设备、物品摆放要合理、整齐，与实验无关的物品禁止带入、存放在\r\n实验室。 \r\n6、实验室为保持室内地面、实验台、设备和工作环境的干净整洁，必须坚持每天一小\r\n扫，每周一大扫的卫生制度，每年彻底清扫1--2次。   \r\n7、实验室内的仪器设备、各人实验台架、凳和各种设施摆放整齐，并经常擦拭，保持\r\n无污渍、无灰尘。 \r\n8、卫生值日人员应对实验室桌面、地面及时打扫。注意保持室内仪器设备的整洁卫\r\n生。 \r\n9、实验室内杂物要清理干净，有机溶剂、腐蚀性液体的废液必须盛于废液桶内，贴上\r\n标签，统一回收处理。 \r\n10、保持室内地面无灰尘、无积水、无纸屑等垃圾。  ', '2020-01-01 00:00:00');
+INSERT INTO `lab` VALUES (6, 106, 'Android开发实验室', '106', '川师成龙校区第一实验楼', 20, '08:30:00', '19:00:00', '08:00:00', '09:00:00', '17:00:00', '17:30:00', 'xxx实验室成立于2016年，隶属于四川师范大学计算机科学学院，xxx配备有先进的xx设备，可以容纳20位学生行xx实验，这是乱写的乱写的乱写的乱写为实验人员提供xxx保障。', 'https://img.yzcdn.cn/vant/cat.jpeg', '1、进入实验室的所有人员，必须整洁、文明、肃静，必须遵守实验室的各项规章制\r\n度。 \r\n2、实验人员在实验过程中，要注意保持室内卫生及良好的实验习惯。实验结束后，必\r\n须及时做好清洁整理工作，实验人员必须将工作台、仪器设备、器皿等清洁干净，并将\r\n仪器设备和器皿按规定归类放好，不能随意放置。所有实验所产生的废物应及时放入废\r\n物箱内，并及时处理，清理好现场。 \r\n3、每次实验结束后，实验人员必须对实验室进行清扫。 \r\n4、实验室负责人需安排日常的卫生清扫。实验室成员有清扫实验室的义务。 \r\n5、实验室内各种设备、物品摆放要合理、整齐，与实验无关的物品禁止带入、存放在\r\n实验室。 \r\n6、实验室为保持室内地面、实验台、设备和工作环境的干净整洁，必须坚持每天一小\r\n扫，每周一大扫的卫生制度，每年彻底清扫1--2次。   \r\n7、实验室内的仪器设备、各人实验台架、凳和各种设施摆放整齐，并经常擦拭，保持\r\n无污渍、无灰尘。 \r\n8、卫生值日人员应对实验室桌面、地面及时打扫。注意保持室内仪器设备的整洁卫\r\n生。 \r\n9、实验室内杂物要清理干净，有机溶剂、腐蚀性液体的废液必须盛于废液桶内，贴上\r\n标签，统一回收处理。 \r\n10、保持室内地面无灰尘、无积水、无纸屑等垃圾。  ', '2020-01-01 00:00:00');
 
 -- ----------------------------
 -- Table structure for log_operate_record
@@ -159,19 +169,30 @@ CREATE TABLE `message`  (
   `lab_id` int(0) NULL DEFAULT NULL COMMENT '教师对实验室成员群体通知时有效',
   `title` varchar(30) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '消息标题',
   `content` varchar(500) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '消息内容',
-  `type` tinyint(0) UNSIGNED NULL DEFAULT NULL COMMENT '消息类型，0教师对实验室成员群体通知，1管理员全体通知，2管理员教师通知',
+  `type` tinyint(0) UNSIGNED NULL DEFAULT 0 COMMENT '消息类型，0教师对实验室成员群体通知，1管理员全体通知，2管理员教师通知',
   `create_time` timestamp(0) NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '创建时间',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of message
 -- ----------------------------
 INSERT INTO `message` VALUES (1, '233333', 1, '国庆放假通知', '这是国庆放假通知的内容，是系统管理员编辑的。这是国庆放假通知的内容，是系统管理员编辑的。这是国庆放假通知的内容，是系统管理员编辑的。', 0, '2021-03-22 13:56:21');
 INSERT INTO `message` VALUES (2, '20101103', NULL, '管理员对全体师生的通知', '管理员对全体师生的通知', 1, '2021-03-20 14:09:21');
-INSERT INTO `message` VALUES (3, '233333', 2, '老师对另一个实验室的通知', '老师对另一个实验室的通知', 0, '2021-03-22 14:10:22');
-INSERT INTO `message` VALUES (4, '20101103', NULL, '管理员对老师的通知', '管理员对老师的通知', 2, '2021-03-22 14:11:01');
-INSERT INTO `message` VALUES (5, '233333', 1, '五一放假', '这是五一放假通知的内容', 0, '2021-05-01 18:46:20');
+INSERT INTO `message` VALUES (3, 'o_t9X42WD-rF-MymTztUFieNOV-M', 2, '老师对另一个实验室的通知', '老师对另一个实验室的通知', 0, '2021-03-22 14:10:22');
+INSERT INTO `message` VALUES (4, 'o_t9X42WD-rF-MymTztUFieNOV-M', NULL, '管理员对老师的通知', '管理员对老师的通知', 2, '2021-03-22 14:11:01');
+INSERT INTO `message` VALUES (5, 'o_t9X42WD-rF-MymTztUFieNOV-M', 1, '五一放假', '这是五一放假通知的内容', 0, '2021-05-01 18:46:20');
+INSERT INTO `message` VALUES (6, 'o_t9X42WD-rF-MymTztUFieNOV-M', 1, '又是五一放假', '这是通知的内容', 0, '2021-05-07 23:18:11');
+INSERT INTO `message` VALUES (7, 'o_t9X42WD-rF-MymTztUFieNOV-M', 1, '测试', '测试通知的内容', 1, '2021-05-07 23:21:22');
+INSERT INTO `message` VALUES (8, 'o_t9X42WD-rF-MymTztUFieNOV-M', 1, '测试2', '测试通知的内容2', 2, '2021-05-07 23:21:54');
+INSERT INTO `message` VALUES (9, '2017110323', 2, '新发布', '这是新发布的内容', 0, '2021-05-08 16:34:02');
+INSERT INTO `message` VALUES (10, '2017110323', 1, '五一放假', '节假日期间，各地区、各部门要妥善安排好值班和安全、保卫等工作，遇有重大突发事件，要按规定及时报告并妥善处置，确保人民群众祥和平安度过节日假期。', 0, '2021-05-01 13:26:14');
+INSERT INTO `message` VALUES (11, '2017110323', 1, '春节放假', '节假日期间，各地区、各部门要妥善安排好值班和安全、保卫等工作，遇有重大突发事件，要按规定及时报告并妥善处置，确保人民群众祥和平安度过节日假期。', 0, '2021-05-12 13:29:13');
+INSERT INTO `message` VALUES (12, '2017110323', 1, '国庆放假通知', '这是国庆放假通知的内容，是系统管理员编辑的。这是国庆放假通知的内容，是系统管理员编辑的。这是国庆放假通知的内容，是系统管理员编辑的。', 0, '2021-05-12 13:29:39');
+INSERT INTO `message` VALUES (13, '2017110323', 2, '国庆放假通知', '国庆节、中秋节即将来临，现将节日期间有关工作安排通知如下：\r\n　　一、时间安排\r\n　　根据省办公厅关于国庆节、中秋节放假通知精神，结合我校工作实际，国庆节、中秋节假期时间为9月30日至10月7日，共8天。其中9月30日 为中秋节（周日）；10月1日、2日、3日为国庆节（周一至周三）；前四天为法定节假日。10月4日、5日、6日、7日放假调休，9月29日（周六）、10月8日（周一）照常上课！', 0, '2021-05-12 13:31:51');
+INSERT INTO `message` VALUES (14, '2017110323', NULL, 'web', '这是新发布内容，这是新发布内容，这是新发布内容，这是新发布内容，这是新发布内容，这是新发布内容，这是新发布内容，这是新发布内容，这是新发布内容，这是新发布内容，这是新发布内容，这是新发布内容，这是新发布内容，这是新发布内容，这是新发布内容，这是新发布内容，这是新发布内容', 0, '2021-05-12 16:15:26');
+INSERT INTO `message` VALUES (15, '2017110323', NULL, '从web新添加', '从web新添加从web新添加从web新添加从web新添加从web新添加从web新添加从web新添加从web新添加从web新添加。', 0, '2021-05-12 16:32:59');
+INSERT INTO `message` VALUES (16, '2017110323', NULL, '第二次新添加', '第二次新添加第二次新添加第二次新添加第二次新添加第二次新添加第二次新添加', 0, '2021-05-12 16:34:23');
 
 -- ----------------------------
 -- Table structure for message_tag
@@ -190,6 +211,8 @@ CREATE TABLE `message_tag`  (
 INSERT INTO `message_tag` VALUES (1, 'o_t9X42WD-rF-MymTztUFieNOV-M');
 INSERT INTO `message_tag` VALUES (2, 'o_t9X42WD-rF-MymTztUFieNOV-M');
 INSERT INTO `message_tag` VALUES (5, 'o_t9X42WD-rF-MymTztUFieNOV-M');
+INSERT INTO `message_tag` VALUES (6, 'o_t9X42WD-rF-MymTztUFieNOV-M');
+INSERT INTO `message_tag` VALUES (7, 'o_t9X42WD-rF-MymTztUFieNOV-M');
 
 -- ----------------------------
 -- Table structure for record
@@ -212,28 +235,48 @@ CREATE TABLE `record`  (
 -- ----------------------------
 INSERT INTO `record` VALUES ('111', 1, '2021-05-01', '19:52:07', '19:52:26', '四川省成都市成都环球中心天堂洲际大饭店', '四川省成都市成都环球中心天堂洲际大饭店', 0);
 INSERT INTO `record` VALUES ('111', 1, '2021-05-02', NULL, NULL, NULL, NULL, 1);
+INSERT INTO `record` VALUES ('111', 1, '2021-05-07', NULL, NULL, NULL, NULL, 1);
+INSERT INTO `record` VALUES ('111', 1, '2021-05-10', NULL, NULL, NULL, NULL, 1);
 INSERT INTO `record` VALUES ('111111', 1, '2021-04-11', '16:19:08', NULL, 'www', NULL, 3);
 INSERT INTO `record` VALUES ('112', 1, '2021-05-01', '19:53:58', NULL, '四川省成都市成都环球中心天堂洲际大饭店', NULL, 3);
 INSERT INTO `record` VALUES ('112', 1, '2021-05-02', NULL, NULL, NULL, NULL, 1);
+INSERT INTO `record` VALUES ('112', 1, '2021-05-07', NULL, NULL, NULL, NULL, 1);
+INSERT INTO `record` VALUES ('112', 1, '2021-05-10', NULL, NULL, NULL, NULL, 1);
 INSERT INTO `record` VALUES ('113', 1, '2021-05-01', '19:56:46', '19:56:50', '四川师范大学', '四川师范大学', 0);
 INSERT INTO `record` VALUES ('113', 1, '2021-05-02', NULL, NULL, NULL, NULL, 1);
+INSERT INTO `record` VALUES ('113', 1, '2021-05-07', NULL, NULL, NULL, NULL, 1);
+INSERT INTO `record` VALUES ('113', 1, '2021-05-10', NULL, NULL, NULL, NULL, 1);
 INSERT INTO `record` VALUES ('114', 1, '2021-05-01', '19:57:33', '19:57:36', '四川师范大学', '四川师范大学', 0);
 INSERT INTO `record` VALUES ('114', 1, '2021-05-02', NULL, NULL, NULL, NULL, 1);
+INSERT INTO `record` VALUES ('114', 1, '2021-05-07', NULL, NULL, NULL, NULL, 1);
+INSERT INTO `record` VALUES ('114', 1, '2021-05-10', NULL, NULL, NULL, NULL, 1);
 INSERT INTO `record` VALUES ('115', 1, '2021-05-01', '19:57:53', NULL, '四川师范大学', '', 3);
 INSERT INTO `record` VALUES ('115', 1, '2021-05-02', NULL, NULL, NULL, NULL, 1);
+INSERT INTO `record` VALUES ('115', 1, '2021-05-07', NULL, NULL, NULL, NULL, 1);
+INSERT INTO `record` VALUES ('115', 1, '2021-05-10', NULL, NULL, NULL, NULL, 1);
 INSERT INTO `record` VALUES ('116', 1, '2021-05-01', NULL, NULL, NULL, NULL, 1);
 INSERT INTO `record` VALUES ('116', 1, '2021-05-02', NULL, NULL, NULL, NULL, 1);
+INSERT INTO `record` VALUES ('116', 1, '2021-05-07', NULL, NULL, NULL, NULL, 1);
+INSERT INTO `record` VALUES ('116', 1, '2021-05-10', NULL, NULL, NULL, NULL, 1);
 INSERT INTO `record` VALUES ('117', 1, '2021-05-01', NULL, '19:59:42', NULL, '四川省成都市成都环球中心天堂洲际大饭店', 2);
 INSERT INTO `record` VALUES ('117', 1, '2021-05-02', NULL, NULL, NULL, NULL, 1);
+INSERT INTO `record` VALUES ('117', 1, '2021-05-07', NULL, NULL, NULL, NULL, 1);
+INSERT INTO `record` VALUES ('117', 1, '2021-05-10', NULL, NULL, NULL, NULL, 1);
 INSERT INTO `record` VALUES ('118', 1, '2021-05-01', '20:00:09', '20:00:19', '四川省成都市成都环球中心天堂洲际大饭店', '四川省成都市成都环球中心天堂洲际大饭店', 0);
 INSERT INTO `record` VALUES ('118', 1, '2021-05-02', NULL, NULL, NULL, NULL, 1);
+INSERT INTO `record` VALUES ('118', 1, '2021-05-07', NULL, NULL, NULL, NULL, 1);
+INSERT INTO `record` VALUES ('118', 1, '2021-05-10', NULL, NULL, NULL, NULL, 1);
 INSERT INTO `record` VALUES ('119', 1, '2021-05-01', '20:01:00', NULL, '四川省成都市成都环球中心天堂洲际大饭店', NULL, 3);
 INSERT INTO `record` VALUES ('119', 1, '2021-05-02', NULL, NULL, NULL, NULL, 1);
+INSERT INTO `record` VALUES ('119', 1, '2021-05-07', NULL, NULL, NULL, NULL, 1);
+INSERT INTO `record` VALUES ('119', 1, '2021-05-10', NULL, NULL, NULL, NULL, 1);
 INSERT INTO `record` VALUES ('121111', 2, '2021-03-07', '21:19:30', '21:19:32', NULL, NULL, 0);
 INSERT INTO `record` VALUES ('121111', 2, '2021-03-20', NULL, NULL, NULL, NULL, 1);
 INSERT INTO `record` VALUES ('121111', 2, '2021-03-22', NULL, NULL, NULL, NULL, 1);
 INSERT INTO `record` VALUES ('121111', 2, '2021-05-01', NULL, NULL, NULL, NULL, 1);
 INSERT INTO `record` VALUES ('121111', 2, '2021-05-02', NULL, NULL, NULL, NULL, 1);
+INSERT INTO `record` VALUES ('121111', 2, '2021-05-07', NULL, NULL, NULL, NULL, 1);
+INSERT INTO `record` VALUES ('121111', 2, '2021-05-10', NULL, NULL, NULL, NULL, 1);
 INSERT INTO `record` VALUES ('122235', 1, '2021-03-04', '15:23:31', NULL, NULL, NULL, 3);
 INSERT INTO `record` VALUES ('122235', 1, '2021-03-20', NULL, NULL, NULL, NULL, 1);
 INSERT INTO `record` VALUES ('122235', 1, '2021-03-22', NULL, NULL, NULL, NULL, 1);
@@ -241,6 +284,8 @@ INSERT INTO `record` VALUES ('125421', 1, '2021-03-01', '12:14:17', '15:11:56', 
 INSERT INTO `record` VALUES ('125421', 1, '2021-03-04', NULL, NULL, NULL, NULL, 1);
 INSERT INTO `record` VALUES ('125421', 1, '2021-03-20', NULL, NULL, NULL, NULL, 1);
 INSERT INTO `record` VALUES ('125421', 1, '2021-03-22', NULL, NULL, NULL, NULL, 1);
+INSERT INTO `record` VALUES ('130', 3, '2021-05-07', NULL, NULL, NULL, NULL, 1);
+INSERT INTO `record` VALUES ('130', 3, '2021-05-10', NULL, NULL, NULL, NULL, 1);
 INSERT INTO `record` VALUES ('o_t9X42WD-rF-MymTztUFieNOV-M', 1, '2021-02-28', NULL, '15:23:52', NULL, NULL, 2);
 INSERT INTO `record` VALUES ('o_t9X42WD-rF-MymTztUFieNOV-M', 1, '2021-03-01', '15:10:51', '23:31:12', '四川省成都市成都环球中心天堂洲际大饭店', '四川省成都市成都环球中心天堂洲际大饭店', 0);
 INSERT INTO `record` VALUES ('o_t9X42WD-rF-MymTztUFieNOV-M', 1, '2021-03-02', NULL, NULL, '', '', 1);
@@ -253,6 +298,8 @@ INSERT INTO `record` VALUES ('o_t9X42WD-rF-MymTztUFieNOV-M', 1, '2021-03-20', NU
 INSERT INTO `record` VALUES ('o_t9X42WD-rF-MymTztUFieNOV-M', 1, '2021-03-22', NULL, NULL, '', '', 1);
 INSERT INTO `record` VALUES ('o_t9X42WD-rF-MymTztUFieNOV-M', 1, '2021-05-01', '20:12:06', NULL, '四川省成都市成都环球中心天堂洲际大饭店', NULL, 3);
 INSERT INTO `record` VALUES ('o_t9X42WD-rF-MymTztUFieNOV-M', 1, '2021-05-02', NULL, NULL, NULL, NULL, 1);
+INSERT INTO `record` VALUES ('o_t9X42WD-rF-MymTztUFieNOV-M', 1, '2021-05-07', NULL, NULL, NULL, NULL, 1);
+INSERT INTO `record` VALUES ('o_t9X42WD-rF-MymTztUFieNOV-M', 1, '2021-05-10', NULL, NULL, NULL, NULL, 1);
 
 -- ----------------------------
 -- Table structure for s_perms
@@ -317,50 +364,149 @@ INSERT INTO `s_role_perms` VALUES (3, 2, 0);
 -- ----------------------------
 DROP TABLE IF EXISTS `student`;
 CREATE TABLE `student`  (
-  `id` int(0) NOT NULL AUTO_INCREMENT COMMENT '学生编号，无具体意义，作为主键，递增',
-  `stu_number` varchar(10) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '学生学号',
+  `stu_number` varchar(10) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '学生学号',
   `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '学生姓名',
   `sex` char(1) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '学生性别，0代表女，1代表男',
   `phone` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '手机号',
   `department` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '学院',
   `major` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '专业',
-  `secret` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '学生学号密码',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
+  `secret` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT '123456' COMMENT '学生学号密码',
+  PRIMARY KEY (`stu_number`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of student
 -- ----------------------------
-INSERT INTO `student` VALUES (1, '2017110323', '李其芳', '女', '18011108917', '计算机科学学院', '网络工程', '242384');
-INSERT INTO `student` VALUES (2, '2017110111', '张三', '女', '18011108917', '计算机科学学院', '网络工程', '123456');
-INSERT INTO `student` VALUES (3, '2017110112', '李四', '男', '18011108917', '计算机科学学院', '网络工程', '123456');
-INSERT INTO `student` VALUES (4, '2017110113', '王五', '男', '18011108917', '计算机科学学院', '网络工程', '123456');
-INSERT INTO `student` VALUES (5, '2017110114', '刘小明', '男', '18011108917', '计算机科学学院', '网络工程', '123456');
-INSERT INTO `student` VALUES (6, '2017110115', '张大壮', '男', '18011108917', '计算机科学学院', '网络工程', '123456');
-INSERT INTO `student` VALUES (7, '2017110116', '王美丽', '女', '18011108917', '计算机科学学院', '网络工程', '123456');
-INSERT INTO `student` VALUES (8, '2017110117', '李好看', '女', '18011108917', '计算机科学学院', '网络工程', '123456');
-INSERT INTO `student` VALUES (9, '2017110118', '赵漂亮', '女', '18011108917', '计算机科学学院', '网络工程', '123456');
-INSERT INTO `student` VALUES (10, '2017110119', '张小明', '女', '18011108917', '计算机科学学院', '网络工程', '123456');
+INSERT INTO `student` VALUES ('2016110114', '刘小明2', '男', '18011108917', '计算机科学学院', '网络工程', '123456');
+INSERT INTO `student` VALUES ('2017110111', '张三', '女', '18011108917', '计算机科学学院', '网络工程', '123456');
+INSERT INTO `student` VALUES ('2017110112', '李四', '男', '18011108917', '计算机科学学院', '网络工程', '123456');
+INSERT INTO `student` VALUES ('2017110113', '王五', '男', '18011108917', '计算机科学学院', '网络工程', '123456');
+INSERT INTO `student` VALUES ('2017110114', '刘小明', '男', '18011108917', '计算机科学学院', '网络工程', '123456');
+INSERT INTO `student` VALUES ('2017110115', '张大壮', '男', '18011108917', '计算机科学学院', '网络工程', '123456');
+INSERT INTO `student` VALUES ('2017110116', '王美丽', '女', '18011108917', '计算机科学学院', '网络工程', '123456');
+INSERT INTO `student` VALUES ('2017110117', '李好看', '女', '18011108917', '计算机科学学院', '网络工程', '123456');
+INSERT INTO `student` VALUES ('2017110118', '赵漂亮', '女', '18011108917', '计算机科学学院', '网络工程', '123456');
+INSERT INTO `student` VALUES ('2017110119', '张小明', '女', '18011108917', '计算机科学学院', '网络工程', '123456');
+INSERT INTO `student` VALUES ('2017110120', '真小二', '男', '18011108917', '计算机科学学院', '软件工程', '123456');
+INSERT INTO `student` VALUES ('2017110323', '李其芳', '女', '18011108917', '计算机科学学院', '网络工程', '242384');
+
+-- ----------------------------
+-- Table structure for student_sys
+-- ----------------------------
+DROP TABLE IF EXISTS `student_sys`;
+CREATE TABLE `student_sys`  (
+  `stu_number` varchar(10) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '学生学号',
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '学生姓名',
+  `sex` char(1) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '学生性别，0代表女，1代表男',
+  `phone` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '手机号',
+  `department` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '学院',
+  `major` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '专业',
+  `secret` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT '123456' COMMENT '学生学号密码',
+  PRIMARY KEY (`stu_number`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of student_sys
+-- ----------------------------
+INSERT INTO `student_sys` VALUES ('2016010113', '王五2', '男', '18011108917', '计算机科学学院', '网络工程', '123456');
+INSERT INTO `student_sys` VALUES ('2016010117', '李好看2', '女', '18011108917', '计算机科学学院', '网络工程', '123456');
+INSERT INTO `student_sys` VALUES ('2016090120', '真小二2', '男', '18011108917', '计算机科学学院', '软件工程', '123456');
+INSERT INTO `student_sys` VALUES ('2016100115', '张大壮2', '男', '18011108917', '计算机科学学院', '网络工程', '123456');
+INSERT INTO `student_sys` VALUES ('2016110111', '张三2', '女', '18011108917', '计算机科学学院', '网络工程', '123456');
+INSERT INTO `student_sys` VALUES ('2016110112', '李四2', '男', '18011108917', '计算机科学学院', '网络工程', '123456');
+INSERT INTO `student_sys` VALUES ('2016110114', '刘小明2', '男', '18011108917', '计算机科学学院', '网络工程', '123456');
+INSERT INTO `student_sys` VALUES ('2016110116', '王美丽2', '女', '18011108917', '计算机科学学院', '网络工程', '123456');
+INSERT INTO `student_sys` VALUES ('2016110118', '赵漂亮2', '女', '18011108917', '计算机科学学院', '网络工程', '123456');
+INSERT INTO `student_sys` VALUES ('2016110119', '张小明2', '女', '18011108917', '计算机科学学院', '网络工程', '123456');
+INSERT INTO `student_sys` VALUES ('2016110323', '李其芳2', '女', '18011108917', '计算机科学学院', '网络工程', '242384');
+INSERT INTO `student_sys` VALUES ('2017110111', '张三', '女', '18011108917', '计算机科学学院', '网络工程', '123456');
+INSERT INTO `student_sys` VALUES ('2017110112', '李四', '男', '18011108917', '计算机科学学院', '网络工程', '123456');
+INSERT INTO `student_sys` VALUES ('2017110113', '王五', '男', '18011108917', '计算机科学学院', '网络工程', '123456');
+INSERT INTO `student_sys` VALUES ('2017110114', '刘小明', '男', '18011108917', '计算机科学学院', '网络工程', '123456');
+INSERT INTO `student_sys` VALUES ('2017110115', '张大壮', '男', '18011108917', '计算机科学学院', '网络工程', '123456');
+INSERT INTO `student_sys` VALUES ('2017110116', '王美丽', '女', '18011108917', '计算机科学学院', '网络工程', '123456');
+INSERT INTO `student_sys` VALUES ('2017110117', '李好看', '女', '18011108917', '计算机科学学院', '网络工程', '123456');
+INSERT INTO `student_sys` VALUES ('2017110118', '赵漂亮', '女', '18011108917', '计算机科学学院', '网络工程', '123456');
+INSERT INTO `student_sys` VALUES ('2017110119', '张小明', '女', '18011108917', '计算机科学学院', '网络工程', '123456');
+INSERT INTO `student_sys` VALUES ('2017110120', '真小二', '男', '18011108917', '计算机科学学院', '软件工程', '123456');
+INSERT INTO `student_sys` VALUES ('2017110323', '李其芳', '女', '18011108917', '计算机科学学院', '网络工程', '242384');
 
 -- ----------------------------
 -- Table structure for teacher
 -- ----------------------------
 DROP TABLE IF EXISTS `teacher`;
 CREATE TABLE `teacher`  (
-  `id` int(0) NOT NULL AUTO_INCREMENT COMMENT '教师编号，无具体意义，作为主键，递增',
   `tea_number` varchar(10) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '教师工号',
   `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '教师姓名',
   `sex` char(1) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '0代表你,1代表男',
   `department` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '学院',
   `phone` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '手机号',
-  `secret` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '教师工号密码',
-  PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 2 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
+  `secret` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '123456' COMMENT '教师工号密码',
+  PRIMARY KEY (`tea_number`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 16 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of teacher
 -- ----------------------------
-INSERT INTO `teacher` VALUES (1, '20101103', '张三', '男', NULL, '18732164561', '242384');
+INSERT INTO `teacher` VALUES ('2001110323', '刘老师', '女', '计算机科学学院', '18745612341', '123456');
+INSERT INTO `teacher` VALUES ('2002110123', '赵老师', '女', '计算机科学学院', '18745612341', '123456');
+INSERT INTO `teacher` VALUES ('2003110223', '孙老师', '女', '计算机科学学院', '18745612341', '123456');
+INSERT INTO `teacher` VALUES ('2003120223', '孙老师', '女', '计算机科学学院', '18745612341', '123456');
+INSERT INTO `teacher` VALUES ('2004110323', '李四', '女', '计算机科学学院', '18745612341', '123456');
+INSERT INTO `teacher` VALUES ('2005110123', '周老师', '女', '计算机科学学院', '18745612341', '123456');
+INSERT INTO `teacher` VALUES ('2006110323', '吴老师', '女', '计算机科学学院', '18745612341', '123456');
+INSERT INTO `teacher` VALUES ('2007110423', '韩老师', '女', '计算机科学学院', '18745612341', '123456');
+INSERT INTO `teacher` VALUES ('2008110223', '陈老师', '女', '计算机科学学院', '18745612341', '123456');
+INSERT INTO `teacher` VALUES ('2009110323', '褚老师', '女', '计算机科学学院', '18745612341', '123456');
+INSERT INTO `teacher` VALUES ('2010110323', '张老师', '男', '计算机科学学院', '152123456', '123456');
+INSERT INTO `teacher` VALUES ('2011120323', '张三', '男', '计算机科学学院', '18732164561', '242384');
+INSERT INTO `teacher` VALUES ('2014110323', '王老师', '女', '计算机科学学院', '18745612341', '123456');
+INSERT INTO `teacher` VALUES ('2014120323', '王老师', '女', '计算机科学学院', '18745612341', '123456');
+INSERT INTO `teacher` VALUES ('2017110323', '李老师', '女', '计算机科学学院', '18011108917', '123456');
+
+-- ----------------------------
+-- Table structure for teacher_sys
+-- ----------------------------
+DROP TABLE IF EXISTS `teacher_sys`;
+CREATE TABLE `teacher_sys`  (
+  `tea_number` varchar(10) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL COMMENT '教师工号',
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '教师姓名',
+  `sex` char(1) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '0代表你,1代表男',
+  `department` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '学院',
+  `phone` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '手机号',
+  `secret` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL DEFAULT '123456' COMMENT '教师工号密码',
+  PRIMARY KEY (`tea_number`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of teacher_sys
+-- ----------------------------
+INSERT INTO `teacher_sys` VALUES ('2001110323', '刘老师', '女', '计算机科学学院', '18745612341', '123456');
+INSERT INTO `teacher_sys` VALUES ('2001120323', '刘老师', '女', '计算机科学学院', '18745612341', '123456');
+INSERT INTO `teacher_sys` VALUES ('2002110123', '赵老师', '女', '计算机科学学院', '18745612341', '123456');
+INSERT INTO `teacher_sys` VALUES ('2002120123', '赵老师', '女', '计算机科学学院', '18745612341', '123456');
+INSERT INTO `teacher_sys` VALUES ('2003110223', '孙老师', '女', '计算机科学学院', '18745612341', '123456');
+INSERT INTO `teacher_sys` VALUES ('2003120223', '孙老师', '女', '计算机科学学院', '18745612341', '123456');
+INSERT INTO `teacher_sys` VALUES ('2004110323', '李四', '女', '计算机科学学院', '18745612341', '123456');
+INSERT INTO `teacher_sys` VALUES ('2004120323', '李四', '女', '计算机科学学院', '18745612341', '123456');
+INSERT INTO `teacher_sys` VALUES ('2005110123', '周老师', '女', '计算机科学学院', '18745612341', '123456');
+INSERT INTO `teacher_sys` VALUES ('2005120123', '周老师', '女', '计算机科学学院', '18745612341', '123456');
+INSERT INTO `teacher_sys` VALUES ('2006110323', '吴老师', '女', '计算机科学学院', '18745612341', '123456');
+INSERT INTO `teacher_sys` VALUES ('2006120323', '吴老师', '女', '计算机科学学院', '18745612341', '123456');
+INSERT INTO `teacher_sys` VALUES ('2007110423', '韩老师', '女', '计算机科学学院', '18745612341', '123456');
+INSERT INTO `teacher_sys` VALUES ('2007120423', '韩老师', '女', '计算机科学学院', '18745612341', '123456');
+INSERT INTO `teacher_sys` VALUES ('2008110223', '陈老师', '女', '计算机科学学院', '18745612341', '123456');
+INSERT INTO `teacher_sys` VALUES ('2008120223', '陈老师', '女', '计算机科学学院', '18745612341', '123456');
+INSERT INTO `teacher_sys` VALUES ('2009110323', '褚老师', '女', '计算机科学学院', '18745612341', '123456');
+INSERT INTO `teacher_sys` VALUES ('2009120323', '褚老师', '女', '计算机科学学院', '18745612341', '123456');
+INSERT INTO `teacher_sys` VALUES ('2010110323', '张老师', '男', '计算机科学学院', '152123456', '123456');
+INSERT INTO `teacher_sys` VALUES ('2010120323', '张老师', '男', '计算机科学学院', '152123456', '123456');
+INSERT INTO `teacher_sys` VALUES ('2011110323', '张三', '男', '计算机科学学院', '18732164561', '242384');
+INSERT INTO `teacher_sys` VALUES ('2011120323', '张三', '男', '计算机科学学院', '18732164561', '242384');
+INSERT INTO `teacher_sys` VALUES ('2014110323', '王老师', '女', '计算机科学学院', '18745612341', '123456');
+INSERT INTO `teacher_sys` VALUES ('2014120323', '王老师', '女', '计算机科学学院', '18745612341', '123456');
+INSERT INTO `teacher_sys` VALUES ('2017110323', '李老师', '女', '计算机科学学院', '18011108917', '123456');
+INSERT INTO `teacher_sys` VALUES ('2017120323', '李老师', '女', '计算机科学学院', '18011108917', '123456');
 
 -- ----------------------------
 -- Table structure for user
@@ -378,13 +524,13 @@ CREATE TABLE `user`  (
   `latest_time` timestamp(0) NULL DEFAULT NULL COMMENT '最近登录',
   PRIMARY KEY (`id`) USING BTREE,
   UNIQUE INDEX `openid`(`openid`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 13 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user
 -- ----------------------------
 INSERT INTO `user` VALUES (1, '233333', '张四先生', 'https://thirdwx.qlogo.cn/mmopen/vi_32/WUndm7hBa1EWLicC9c5qeEqeUkVGbwcYicXP8KSrEjfPI9Z3tMCmBW9prPBaB3wS9HdJQ5HM3iamzVwSIdDfdIAicg/132', NULL, '20101103', 2, '2021-03-21 22:10:31', NULL);
-INSERT INTO `user` VALUES (2, 'o_t9X42WD-rF-MymTztUFieNOV-M', '星辰入袖', 'https://thirdwx.qlogo.cn/mmopen/vi_32/WUndm7hBa1EWLicC9c5qeEqeUkVGbwcYicXP8KSrEjfPI9Z3tMCmBW9prPBaB3wS9HdJQ5HM3iamzVwSIdDfdIAicg/132', NULL, '2017110323', 2, '2021-02-25 18:32:53', '2021-05-03 21:45:17');
+INSERT INTO `user` VALUES (2, 'o_t9X42WD-rF-MymTztUFieNOV-M', '星辰入袖', 'https://thirdwx.qlogo.cn/mmopen/vi_32/WUndm7hBa1EWLicC9c5qeEqeUkVGbwcYicXP8KSrEjfPI9Z3tMCmBW9prPBaB3wS9HdJQ5HM3iamzVwSIdDfdIAicg/132', NULL, '2017110323', 2, '2021-02-25 18:32:53', '2021-05-13 22:16:05');
 INSERT INTO `user` VALUES (3, '111', '111', 'https://thirdwx.qlogo.cn/mmopen/vi_32/WUndm7hBa1EWLicC9c5qeEqeUkVGbwcYicXP8KSrEjfPI9Z3tMCmBW9prPBaB3wS9HdJQ5HM3iamzVwSIdDfdIAicg/132', NULL, '2017110111', 2, '2021-05-02 18:53:13', '2021-05-02 18:53:58');
 INSERT INTO `user` VALUES (4, '112', '112', 'https://thirdwx.qlogo.cn/mmopen/vi_32/WUndm7hBa1EWLicC9c5qeEqeUkVGbwcYicXP8KSrEjfPI9Z3tMCmBW9prPBaB3wS9HdJQ5HM3iamzVwSIdDfdIAicg/132', NULL, '2017110112', 2, '2021-05-02 18:54:33', NULL);
 INSERT INTO `user` VALUES (5, '113', '113', 'https://thirdwx.qlogo.cn/mmopen/vi_32/WUndm7hBa1EWLicC9c5qeEqeUkVGbwcYicXP8KSrEjfPI9Z3tMCmBW9prPBaB3wS9HdJQ5HM3iamzVwSIdDfdIAicg/132', NULL, '2017110113', 2, '2021-05-02 18:54:38', NULL);
@@ -394,6 +540,7 @@ INSERT INTO `user` VALUES (8, '116', '116', 'https://thirdwx.qlogo.cn/mmopen/vi_
 INSERT INTO `user` VALUES (9, '117', '117', 'https://thirdwx.qlogo.cn/mmopen/vi_32/WUndm7hBa1EWLicC9c5qeEqeUkVGbwcYicXP8KSrEjfPI9Z3tMCmBW9prPBaB3wS9HdJQ5HM3iamzVwSIdDfdIAicg/132', NULL, '2017110117', 2, '2021-05-02 18:54:58', NULL);
 INSERT INTO `user` VALUES (10, '118', '118', 'https://thirdwx.qlogo.cn/mmopen/vi_32/WUndm7hBa1EWLicC9c5qeEqeUkVGbwcYicXP8KSrEjfPI9Z3tMCmBW9prPBaB3wS9HdJQ5HM3iamzVwSIdDfdIAicg/132', NULL, '2017110118', 2, '2021-05-02 18:55:04', NULL);
 INSERT INTO `user` VALUES (11, '119', '119', 'https://thirdwx.qlogo.cn/mmopen/vi_32/WUndm7hBa1EWLicC9c5qeEqeUkVGbwcYicXP8KSrEjfPI9Z3tMCmBW9prPBaB3wS9HdJQ5HM3iamzVwSIdDfdIAicg/132', NULL, '2017110119', 2, '2021-05-02 18:55:28', NULL);
+INSERT INTO `user` VALUES (12, '121111', '小二', 'https://thirdwx.qlogo.cn/mmopen/vi_32/WUndm7hBa1EWLicC9c5qeEqeUkVGbwcYicXP8KSrEjfPI9Z3tMCmBW9prPBaB3wS9HdJQ5HM3iamzVwSIdDfdIAicg/132', NULL, '2017110120', 2, '2021-05-07 21:19:41', NULL);
 
 -- ----------------------------
 -- Table structure for user_lab
@@ -402,29 +549,27 @@ DROP TABLE IF EXISTS `user_lab`;
 CREATE TABLE `user_lab`  (
   `id` int(0) NOT NULL AUTO_INCREMENT COMMENT '所属实验室自增序列',
   `openid` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '用户openid',
+  `stu_number` varchar(10) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL COMMENT '教师添加的',
   `lab_id` int(0) NULL DEFAULT NULL COMMENT '实验室id',
   `create_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP(0) COMMENT '加入时间',
   `status` tinyint(0) NULL DEFAULT 1 COMMENT '状态，0退出，1存在',
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 15 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 16 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user_lab
 -- ----------------------------
-INSERT INTO `user_lab` VALUES (1, 'o_t9X42WD-rF-MymTztUFieNOV-M', 1, '2021-02-26 10:58:39', 1);
-INSERT INTO `user_lab` VALUES (2, '122235', 1, '2021-03-07 21:50:56', 0);
-INSERT INTO `user_lab` VALUES (4, '125421', 1, '2021-03-07 21:52:15', 0);
-INSERT INTO `user_lab` VALUES (5, '121111', 2, '2021-03-07 21:53:57', 1);
-INSERT INTO `user_lab` VALUES (6, '111', 1, '2021-05-01 19:54:41', 1);
-INSERT INTO `user_lab` VALUES (7, '112', 1, '2021-05-01 19:54:47', 1);
-INSERT INTO `user_lab` VALUES (8, '113', 1, '2021-05-01 19:55:01', 1);
-INSERT INTO `user_lab` VALUES (9, '114', 1, '2021-05-01 19:55:13', 1);
-INSERT INTO `user_lab` VALUES (10, '115', 1, '2021-05-01 19:55:23', 1);
-INSERT INTO `user_lab` VALUES (11, '116', 1, '2021-05-01 19:55:31', 1);
-INSERT INTO `user_lab` VALUES (12, '117', 1, '2021-05-01 19:55:45', 1);
-INSERT INTO `user_lab` VALUES (13, '118', 1, '2021-05-01 19:55:53', 1);
-INSERT INTO `user_lab` VALUES (14, '119', 1, '2021-05-01 19:56:01', 1);
-INSERT INTO `user_lab` VALUES (15, '130', 3, '2021-05-03 22:09:55', 1);
+INSERT INTO `user_lab` VALUES (1, 'o_t9X42WD-rF-MymTztUFieNOV-M', '2017110323', 1, '2021-02-26 10:58:39', 1);
+INSERT INTO `user_lab` VALUES (6, '111', '2017110111', 2, '2021-05-01 19:54:41', 1);
+INSERT INTO `user_lab` VALUES (7, '112', '2017110112', 1, '2021-05-01 19:54:47', 1);
+INSERT INTO `user_lab` VALUES (8, '113', '2017110113', 1, '2021-05-01 19:55:01', 1);
+INSERT INTO `user_lab` VALUES (9, '114', '2017110114', 2, '2021-05-01 19:55:13', 1);
+INSERT INTO `user_lab` VALUES (10, '115', '2017110115', 1, '2021-05-01 19:55:23', 1);
+INSERT INTO `user_lab` VALUES (11, '116', '2017110116', 2, '2021-05-01 19:55:31', 1);
+INSERT INTO `user_lab` VALUES (12, '117', '2017110117', 1, '2021-05-01 19:55:45', 1);
+INSERT INTO `user_lab` VALUES (13, '118', '2017110118', 1, '2021-05-01 19:55:53', 1);
+INSERT INTO `user_lab` VALUES (14, '119', '2017110119', 2, '2021-05-01 19:56:01', 1);
+INSERT INTO `user_lab` VALUES (17, NULL, '2016110114', 1, '2021-05-13 10:04:16', 1);
 
 -- ----------------------------
 -- Table structure for user_lab_tea
@@ -432,19 +577,32 @@ INSERT INTO `user_lab` VALUES (15, '130', 3, '2021-05-03 22:09:55', 1);
 DROP TABLE IF EXISTS `user_lab_tea`;
 CREATE TABLE `user_lab_tea`  (
   `id` int(0) NOT NULL AUTO_INCREMENT,
+  `tea_number` varchar(10) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
   `openid` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NULL DEFAULT NULL,
   `lab_id` int(0) NULL DEFAULT NULL,
-  `create_time` datetime(0) NULL DEFAULT NULL,
-  `status` tinyint(0) NULL DEFAULT NULL,
+  `create_time` datetime(0) NULL DEFAULT CURRENT_TIMESTAMP(0),
+  `status` tinyint(0) NULL DEFAULT 1,
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_bin ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of user_lab_tea
 -- ----------------------------
-INSERT INTO `user_lab_tea` VALUES (1, '233333', 3, '2021-03-21 15:29:08', 1);
-INSERT INTO `user_lab_tea` VALUES (2, 'o_t9X42WD-rF-MymTztUFieNOV-M', 1, '2021-05-01 19:14:34', 1);
-INSERT INTO `user_lab_tea` VALUES (3, 'o_t9X42WD-rF-MymTztUFieNOV-M', 2, '2021-04-07 19:19:16', 1);
+INSERT INTO `user_lab_tea` VALUES (1, '2010110323', '233333', 3, '2021-03-21 15:29:08', 1);
+INSERT INTO `user_lab_tea` VALUES (2, '2017110323', 'o_t9X42WD-rF-MymTztUFieNOV-M', 1, '2021-05-01 19:14:34', 1);
+INSERT INTO `user_lab_tea` VALUES (3, '2017110323', 'o_t9X42WD-rF-MymTztUFieNOV-M', 2, '2021-04-07 19:19:16', 1);
+INSERT INTO `user_lab_tea` VALUES (4, '2014110323', '1001', 3, '2021-05-13 22:35:32', 1);
+INSERT INTO `user_lab_tea` VALUES (5, '2001110323', '1002', 3, '2021-05-13 22:35:35', 1);
+INSERT INTO `user_lab_tea` VALUES (6, '2002110123', '1003', 3, '2021-05-06 22:35:40', 1);
+INSERT INTO `user_lab_tea` VALUES (7, '2003110223', '1004', 3, '2021-05-08 22:35:44', 1);
+INSERT INTO `user_lab_tea` VALUES (8, '2004110323', '1005', 3, '2021-05-02 22:35:49', 1);
+INSERT INTO `user_lab_tea` VALUES (9, '2005110123', '1006', 3, '2021-05-08 22:35:52', 1);
+INSERT INTO `user_lab_tea` VALUES (10, '2006110323', '1007', 3, '2021-05-17 22:35:58', 1);
+INSERT INTO `user_lab_tea` VALUES (11, '2007110423', '1008', 3, '2021-05-29 22:36:02', 1);
+INSERT INTO `user_lab_tea` VALUES (12, '2008110223', '1009', 3, '2021-05-29 22:36:07', 1);
+INSERT INTO `user_lab_tea` VALUES (13, '2009110323', '1010', 3, '2021-05-02 22:36:11', 1);
+INSERT INTO `user_lab_tea` VALUES (14, '1011120323', '1011', 3, '2021-05-27 22:36:15', 1);
+INSERT INTO `user_lab_tea` VALUES (15, '2014120323', '1012', 3, '2021-05-13 22:36:19', 1);
 
 -- ----------------------------
 -- Triggers structure for table record
