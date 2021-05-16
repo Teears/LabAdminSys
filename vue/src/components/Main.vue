@@ -19,12 +19,12 @@
         <el-menu-item index="/main/message">
           <i class="iconfont iconxiaoxi"></i>
         </el-menu-item>
-        <el-menu-item index="/main/statistic">
+        <!-- <el-menu-item index="/main/statistic">
           <i class="iconfont icontongji"></i>
         </el-menu-item>
         <el-menu-item index="/main/super">
           <i class="iconfont iconshezhi"></i>
-        </el-menu-item>
+        </el-menu-item> -->
       </el-menu>
 
       <el-main>

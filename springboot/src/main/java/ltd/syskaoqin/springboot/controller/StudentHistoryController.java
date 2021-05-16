@@ -68,8 +68,11 @@ public class StudentHistoryController {
         data.put("finishRate",String.format("%.2f", finishRate*100));
         double rank = recordService.calculateSurpass(openid,userAndLab.getLabId());
         double whole = userAndLabService.calculateLabTotal(userAndLab.getLabId());
-        data.put("surpass",String.format("%.2f",(whole-rank)*100/whole));
-
+        if((whole-rank)*100/whole <= 0){
+            data.put("surpass","100");
+        }else {
+            data.put("surpass",String.format("%.2f",(whole-rank)*100/whole));
+        }
         return ResultUtils.success(data);
     }
 
