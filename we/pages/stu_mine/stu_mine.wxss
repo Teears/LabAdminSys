@@ -1,0 +1,34 @@
+/* pages/stu_mine/stu_mine.wxss */
+@import "/style/iconfont.wxss";
+.out_wrapper{
+  height: 100%;
+}
+/* 
+  下方cell
+*/
+.iconfont{
+  position: absolute;
+  left: 10rpx;
+  font-size: x-large;
+  margin-left: 40rpx;
+}
+.cell_title{
+  margin-left:80rpx
+}
+.cell_group{
+  padding-bottom: 60rpx;
+}
+
+/* 
+  上方头像
+*/
+.avatar_view{
+  height: 35%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.avatar_view text{
+  color: #666699;
+}

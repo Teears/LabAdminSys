@@ -1,0 +1,36 @@
+<!--pages/stu_history/stu_history.wxml-->
+<view class="out_wrapper">
+  <view class="statistic">
+    <chart chart-class="surpass_chart card" option="{{surpassOption}}" />
+    <view class="right_combine">
+      <view class="chart_text_combine card">
+        <chart chart-class="finish_rate_chart" option="{{finishRateOption}}" />
+        <text class="total">已加入\n\t{{total}}天</text>
+      </view>
+      <chart chart-class="detail_chart card" option="{{detailOption}}" />
+    </view>
+  </view>
+  <view class="calendar_box">
+    <calendar claendar-style="calendar" header-style="header" board-style="board" weeks-type="cn" show-more-days="true" 
+    start-date="{{startDate}}" end-date="{{endDate}}" 
+    days-color="{{daysInfo}}" bindnextMonth="nextMonth" bindprevMonth="prevMonth" binddateChange="dateChange" binddayClick="dayClick"/>
+    <view class="legend_box">
+      <view class="legend legend1"></view><text>到勤</text>
+      <view class="legend legend2"></view><text>迟到或未签退</text>
+      <view class="legend legend3"></view><text>缺席</text>
+      <view class="legend legend4"></view><text>请假</text>
+    </view>
+  </view>
+  <van-popup round custom-class="popup" show="{{dialogShow}}" bind:close="tapDialogButton">
+    <view class="popup_title">
+      {{dialogTitle}}
+    </view>
+    <view class="popup_content"><text decode="{{true}}">
+      签到：{{checkinTime}}\n{{checkinAddress}}\n
+      签退：{{checkoutTime}}\n{{checkoutAddress}}
+    </text></view>
+  </van-popup>
+</view>
+
+
+

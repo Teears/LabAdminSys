@@ -1,0 +1,33 @@
+<!--stu/pages/stu_addqingjia/stu_addqingjia.wxml-->
+<view class="out_wrapper">
+  <van-cell-group title="请假类型" >
+    <van-cell style="background-color:green" custom-class="custom_cell">
+      <van-radio-group slot="title" direction="horizontal" bind:change="changeRadio" value="{{dayoffType}}">
+        <view class="radio_view" icon-size="16"><van-radio name="0">事假</van-radio></view>
+        <view class="radio_view" icon-size="16"><van-radio name="1">病假</van-radio></view>
+      </van-radio-group>
+    </van-cell>
+  </van-cell-group>
+
+  <van-cell-group title="请假天数">
+    <van-cell bindtap="chooseDay" clickable="true"  custom-class="custom_cell">
+      <van-tag slot="title" custom-class="tags" size="large" plain round color="#666699" wx:for="{{dayDisplay}}"  wx:if="{{dayLength!=0}}">{{item}}</van-tag>
+      <text slot="title" wx:if="{{dayLength==0}}" class="dayoff_placeholder">请选择</text>
+      <icon slot="right-icon" class="iconfont icon-rili"></icon>
+    </van-cell>
+    <van-calendar show="{{calendarShow}}" type="multiple" bind:close="closeCalendar" bind:confirm="confirmCalendar" />
+  </van-cell-group>
+
+  <van-cell-group title="联系方式" custom-class="custom_cell">
+    <van-field value="{{phone}}" type="number" placeholder="手机号" bind:change="changePhone" />
+  </van-cell-group>
+
+  <van-cell-group title="请假事由">
+    <view class="desc_view">
+      <van-field value="{{ desc }}" type="textarea" maxlength="200" border="{{false}}" placeholder="请输入请假事由" autosize bind:change="changeDesc" />
+      <view class="text_maxlength">{{descLength}}/200</view>
+    </view>
+  </van-cell-group>
+
+  <van-button custom-class="enterBtn" type="primary" size="middle" block bindtap="submit">提  交</van-button>
+</view>

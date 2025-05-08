@@ -1,0 +1,20 @@
+<!--pages/stu_check/stu_check.wxml-->
+<import src="/template/basictp.wxml"/>
+
+<view class="container">
+  <!-- 尚未加入实验室 -->
+  <view wx:if="{{queshengMark == 1}}">
+    <template is="quesheng" data="{{queshengText}}" ></template>
+  </view>
+  <!-- 签到界面 -->
+  <view class="containerMain" wx:if="{{queshengMark == 0}}">
+    <view class="address">
+      <text>当前定位：{{address}}</text>
+      <view class="iconfont icon-shuaxin" animation="{{shuaxinAnimation}}" bindtap="shuaxinTap"></view>
+    </view>
+    <view>
+      <checkin-card-component wx:if="{{cardId == 1}}" rank="{{rank}}" turn="{{turn_in}}" bind:tap="checkin"></checkin-card-component>
+      <checkout-card-component wx:if="{{cardId == 0}}" turn="{{turn_out}}" bind:tap="checkout"></checkout-card-component>
+    </view>
+  </view>
+</view>

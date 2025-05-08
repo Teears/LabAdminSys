@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ltd.syskaoqin.springboot.dao.mapper.RecordMapper">
+
+    <resultMap id ="RecordMap" type="ltd.syskaoqin.springboot.dao.entity.Record">
+        <result column="openid" property="openid"/>
+        <result column="lab_id" property="labId"/>
+        <result column="check_date" property="checkDate"/>
+        <result column="checkin_time" property="checkinTime"/>
+        <result column="checkout_time" property="checkoutTime"/>
+        <result column="checkin_loc" property="checkinLocation"/>
+        <result column="checkout_loc" property="checkoutLocation"/>
+        <result column="status" property="status"/>
+    </resultMap>
+
+    <select id="findByOpenid" resultType="ltd.syskaoqin.springboot.dao.entity.Record">
+        SELECT * FROM record WHERE openid = #{openid}
+    </select>
+    <select id="findByOpenidAndDate" resultMap="RecordMap">
+        SELECT * FROM record WHERE openid = #{openid} and check_date=#{checkDate}
+    </select>
+    <insert id="insertRecord" parameterType="ltd.syskaoqin.springboot.dao.entity.Record">
+        insert into record(openid, lab_id, check_date, checkin_time, checkout_time, checkin_loc, checkout_loc, status)
+        values (#{openid},#{labId},#{checkDate},#{checkinTime},#{checkoutTime},#{checkinLocation},#{checkoutLocation},#{status})
+    </insert>
+    <select id="selectRecordCountByLabIdAndCheckDate" resultType="Integer">
+        select COUNT(*) from record where lab_id=#{labId} and check_date=#{checkDate}
+    </select>
+    <update id="updateRecordCheckout">
+        update record set checkout_time=#{checkoutTime},checkout_loc=#{checkoutLocation}
+        where openid=#{openid} and check_date = #{checkDate}
+    </update>
+    <insert id="insertCalculateRecord" parameterType="ltd.syskaoqin.springboot.dao.entity.Record">
+        insert into record(openid,lab_id,check_date,status)
+        values (#{openid},#{labId},#{checkDate},#{status})
+    </insert>
+    <select id="selectNotCheck" resultType="ltd.syskaoqin.springboot.dao.entity.Record">
+        select openid,lab_id from user_lab
+        where user_lab.status=1 and openid not in
+        (select openid from record where check_date=#{checkDate})
+    </select>
+    <update id="updateRecordStatus">
+        update record set status=#{status}
+        where openid=#{openid} and check_date = #{checkDate}
+    </update>
+    <select id="selectOnesStatus" resultType="java.util.Map">
+        select status as 'key', count(*) as 'value' from record where openid=#{openid} GROUP BY status
+    </select>
+    <select id="calculateFinishRate" resultType="Double">
+        select countB/countA as finishRate
+        from (select openid,count(*) as countA from record GROUP BY openid)A LEFT OUTER JOIN
+        (select openid,count(*) as countB from record where status=0 GROUP BY openid)B on A.openid=B.openid
+        where A.openid=#{openid}
+    </select>
+    <select id="calculateSurpass" resultType="Integer">
+        select R from
+            (select A.openid,rank() over(order by countB/countA desc) as R
+             from (select openid,count(*) as countA from record where lab_id=#{labId} GROUP BY openid)A LEFT OUTER JOIN
+                  (select openid,count(*) as countB from record where status=0 GROUP BY openid)B on A.openid=B.openid
+            ) as C
+        where C.openid=#{openid}
+    </select>
+    <select id="findDaysInfo" resultType="java.util.Map">
+        select RIGHT(check_date,2) as 'day',status from record where openid=#{openid} and check_date like #{yearMonthStr}
+    </select>
+
+    <select id="checkinCheckoutBoth" resultType="java.util.Map">
+        select COUNT(checkin_time) as checkin,COUNT(checkout_time) as checkout,
+               COUNT(checkin_time and checkout_time) as checkboth
+        from record where lab_id=#{labId} and check_date=#{checkDate}
+    </select>
+
+    <select id="getCheckList" resultType="java.util.Map">
+        select avatarUrl,name,checkin_time as checkinTime,checkin_loc as checkinLoc,
+        checkout_time as checkoutTime,checkout_loc as checkoutLoc,`status` as tag from
+        record,user,student where check_date=#{checkDate} and lab_id=#{labId}
+        and record.openid=user.openid and user.stu_tea_id=student.stu_number
+    </select>
+</mapper>

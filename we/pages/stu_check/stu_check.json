@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "checkin-card-component":"/components/card/card",
+    "checkout-card-component":"/components/checkout_card/checkout_card"
+  }
+}

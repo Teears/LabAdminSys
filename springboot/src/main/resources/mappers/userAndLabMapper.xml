@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ltd.syskaoqin.springboot.dao.mapper.UserAndLabMapper">
+
+    <select id="selectByStuOpenid" resultType="ltd.syskaoqin.springboot.dao.entity.UserAndLab">
+        select * from user_lab where openid = #{openid} and status= 1
+    </select>
+    <select id="calculateLabTotal" resultType="Integer">
+        select COUNT(*) from user_lab where lab_id=#{labId} and status=1
+    </select>
+    <insert id="insertUserLab" parameterType="ltd.syskaoqin.springboot.dao.entity.UserAndLab">
+        insert into user_lab(stu_number, lab_id)
+        values (#{stuNumber}, #{labId})
+    </insert>
+    <delete id="deleteByStuNumber">
+        DELETE FROM user_lab WHERE stu_number=#{stuNumber}
+    </delete>
+    <update id="updateOpenid">
+        update user_lab set openid=#{openid} where stu_number=#{stuNumber}
+    </update>
+
+    <insert id="insertUserLabTea" parameterType="ltd.syskaoqin.springboot.dao.entity.UserAndLab">
+        insert into user_lab_tea(tea_number, lab_id)
+        values (#{stuNumber}, #{labId})
+    </insert>
+    <delete id="deleteByTeaNumber">
+        DELETE FROM user_lab_tea WHERE tea_number=#{teaNumber} and lab_id=#{labId}
+    </delete>
+    <update id="updateTeaOpenid">
+        update user_lab_tea set openid=#{openid} where tea_number=#{teaNumber}
+    </update>
+
+    <select id="findByTeaNumber" resultType="ltd.syskaoqin.springboot.dao.entity.UserAndLab">
+        select * from user_lab_tea where tea_number = #{teaNumber} and status= 1
+    </select>
+</mapper>

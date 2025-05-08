@@ -1,0 +1,16 @@
+<!--tea/pages/tea_stuDetail/tea_stuDetail.wxml-->
+<view class="out_wrapper">
+  <view class="cell_group">
+    <van-cell title="头像" center>
+      <van-image round width="3rem" height="3rem" fit="cover" src="{{avatarUrl}}" />
+    </van-cell>
+    <van-cell title="姓名" value="{{name}}" />
+    <van-cell title="性别" value="{{sex}}" />
+  </view>
+  <view class="cell_group">
+    <van-cell title="学号" value="{{stuNum}}"/>
+    <van-cell title="手机号" value="{{phone}}" />
+    <van-cell title="学院" value="{{dept}}" />
+    <van-cell title="专业" value="{{major}}" />
+  </view>
+</view>

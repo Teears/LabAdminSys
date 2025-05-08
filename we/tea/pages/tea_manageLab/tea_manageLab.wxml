@@ -1,0 +1,44 @@
+<!--tea/pages/tea_manageLab/tea_manageLab.wxml-->
+<van-tabs animated swipeable sticky color="#666699" bind:change="onChange">
+  <van-tab title="签到">
+    <view class="card" wx:for="{{checkinList}}" wx:key="key">
+      <view class="header">
+        <van-image round width="3rem" height="3rem" fit="cover" src="{{item.avatarUrl}}" />
+        <view class="name">{{item.name}}</view>
+      </view>
+      <view class="detail header">
+        <view class="time">{{item.checkinTime}}</view>
+        <view class="loc">{{item.checkinLoc}}</view>
+        <view class="time">{{item.checkoutTime}}</view>
+        <view class="loc">{{item.checkoutLoc}}</view>
+      </view>
+      <view class="tag tag0" wx:if="{{item.tag == 0}}">勤</view>
+      <view class="tag tag1" wx:elif="{{item.tag == 1}}">缺</view>
+      <view class="tag tag2" wx:elif="{{item.tag == 2}}">迟</view>
+      <view class="tag tag2" wx:elif="{{item.tag == 3}}">退</view>
+      <view class="tag tag4" wx:else>假</view>
+    </view>
+    <button wx:if="{{visible == true}}" bindtap="select">{{date}}</button>
+  </van-tab>
+
+  <van-tab title="统计">
+    <view class="card" wx:for="{{statisticList}}" wx:key="key">
+      <van-image round width="3rem" height="3rem" fit="cover" src="{{item.avatarUrl}}" />
+      <view class="header">
+        <view class="text_title">{{item.name}}</view>
+        <van-tag plain type="success" size="large">{{item.finishRate}}%</van-tag>
+      </view>
+      <view class="text_num">
+        <text class="tag0">{{item.finished}}到勤 </text>|
+        <text class="tag1">{{item.absent}}缺席 </text>|
+        <text class="tag2">{{item.late}}迟到 </text>|
+        <text class="tag4">{{item.dayoff}}请假 </text>
+      </view>
+    </view>
+  </van-tab>
+</van-tabs>
+
+<van-popup round show="{{showPop}}" position="bottom" custom-style="height: 40%;" bind:close="onClosePop">
+  <van-datetime-picker confirm-button-text="确定" cancel-button-text="" show-toolbar="false" visible-item-count="4"
+    type="date" value="{{dateStamp}}" bind:confirm="confirm" />
+</van-popup>

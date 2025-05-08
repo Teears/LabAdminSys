@@ -1,0 +1,41 @@
+/* 
+圆形icon标志
+ */
+.tmp_roundIcon{
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  width: 250rpx;
+  height: 250rpx;
+  /* border: thin solid rgb(221, 221, 221); */
+}
+.tmp_roundIcon image{
+  width: auto;
+}
+.tmp_roundIcon text{
+  font-size: 32rpx;
+  margin-bottom: 20rpx;
+}
+/* 缺省页 */
+.tmp_wrapper{
+  width: 100%;
+  height: 100%;
+  background-color: #F7F7F7;
+  overflow: hidden;
+  text-align: center;
+}
+.tmp_content{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: small;
+  color: gray;
+  margin-top: 300rpx;
+}
+.tmp_content image{
+  width: 400rpx;
+  height: 300rpx;
+}

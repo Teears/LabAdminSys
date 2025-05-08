@@ -1,0 +1,27 @@
+<!--pages/tea_manage/tea_manage.wxml-->
+<view class="out_wrapper">
+  <view class="card gradient" wx:for="{{list}}" wx:key="key">
+    <view class="top">
+      <view class="time" bindtap="tapSet" data-index="{{index}}">
+          <view>{{item.checkin}}</view>
+          <view>{{item.checkout}}</view>
+      </view>
+      <text bindtap="tapEdit" data-index="{{index}}">{{item.labNum}}实验室</text>
+    </view>
+    <view class="bottom" bindtap="tapBottom" data-index="{{index}}">
+      <view>
+        <van-circle value="{{item.rate}}" color="{{ gradientColor }}" stroke-width="10" size="110" text="全勤率{{item.rate}}%" />
+      </view>
+      <view class="right">
+        <view>
+          <text>签到：<text class="light">{{item.check}}</text>/{{item.total}}</text>
+          <progress percent="{{100*item.check/item.total}}" border-radius="5" activeColor="#339933" stroke-width="10"/>
+        </view>
+        <view>
+          <text>签退：<text class="light">{{item.checkOut}}</text>/{{item.total}}</text>
+          <progress percent="{{100*item.checkOut/item.total}}" border-radius="5" activeColor="#666699" stroke-width="10"/>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

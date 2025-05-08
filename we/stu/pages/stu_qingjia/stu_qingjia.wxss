@@ -1,0 +1,57 @@
+/* stu/pages/stu_qingjia/stu_qingjia.wxss */
+@import"/template/basictp.wxss";
+.out_wrapper{
+  background-color: #F7F7F7;
+  width: 100%;
+}
+.panel{
+  font-size: smaller;
+  padding: 30rpx;
+  margin: 5rpx;
+  margin-right: 15rpx;
+  margin-left: 15rpx;
+  border-radius: 15rpx;
+}
+.header{
+  color: #666699;
+}
+.days{
+  margin: 1rpx;
+}
+.tag{
+  float: right;
+}
+.content{
+  color: #999999;
+  word-break:break-all;
+}
+button{
+  height: 100rpx;
+  width: 100rpx;
+  border-radius: 50%;
+  background-color: #49497e;
+  color: white;
+  position: fixed;
+  bottom: 120rpx;
+  right: 100rpx;
+  box-shadow: 0 0 20rpx 5rpx #999999;
+  opacity:0.8
+}
+.jia_icon{
+  font-size: xx-large;
+  font-weight: 700;
+}
+.loading_text{
+  width: 100%;
+  color: #999999;
+  font-size: smaller;
+  text-align: center;
+  margin: 10rpx;
+  margin-bottom: 20rpx;
+}
+.loading{
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+  margin: 10rpx;
+}

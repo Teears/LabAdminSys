@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "chart": "plugin://echarts/chart",
+    "van-icon": "@vant/weapp/icon/index",
+    "van-circle": "@vant/weapp/circle/index"
+  },
+  "enablePullDownRefresh": true,
+  "backgroundTextStyle": "dark"
+}

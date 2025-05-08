@@ -1,0 +1,3 @@
+<!--tea/pages/tea_editLab/tea_editLab.wxml-->
+<shiyanshiInfo-component labId="{{labId}}"></shiyanshiInfo-component>
+<button bindtap="enterEdit">进入编辑</button>

@@ -1,0 +1,28 @@
+<!--stu/pages/stu_qingjia/stu_qingjia.wxml-->
+<import src="/template/basictp.wxml" />
+<view class="out_wrapper">
+  <template wx:if="{{queshengMark == 1}}" is="quesheng" data="{{queshengText}}"></template>
+  <van-panel custom-class="panel" wx:for="{{list}}">
+    <view class="header" slot="header">
+      <!-- <text class="title">{{item.title.type}}：</text> -->
+      <text class="title" wx:if="{{item.title.type == 0}}">事假：</text>
+      <text class="title" wx:else >病假：</text>
+      <van-tag custom-class="days" plain round color="#666699" wx:for-item="item1" wx:for="{{item.title.days}}">
+        {{item1}}</van-tag>
+      <van-tag custom-class="tag" plain type="{{item.tagType}}">{{item.tag}}</van-tag>
+    </view>
+    <view class="content">
+      <text>
+        申请时间：{{item.applyTime}}\n{{item.content}}
+      </text>
+    </view>
+  </van-panel>
+  <view class="loading" wx:if="{{loading}}">
+    <van-loading text-size="6" type="spinner" />
+  </view>
+  <view class="loading_text" wx:if="{{last}}">————没有更多数据了————</view>
+  <view class="loading_text" wx:if="{{loadingFail}}">————网络故障————</view>
+  <button bindtap="addBtn">
+    <icon class="jia_icon" class="iconfont icon-jia"></icon>
+  </button>
+</view>

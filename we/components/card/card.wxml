@@ -1,0 +1,30 @@
+<!--components/card.wxml-->
+<view class="card">
+  <view class="box" animation="{{animationMain}}">
+    <view class="wrapperMain">
+    <view class="backgroundMain">
+      <view class="top">
+        <image class="main" src="{{main}}" mode="aspectFit"></image>
+        <image wx:if="{{randomLoc==1||randomLoc==2||randomLoc==3}}" class="leftTop" src="{{leftTop}}" mode="aspectFit"></image>
+        <image wx:if="{{randomLoc==1||randomLoc==4||randomLoc==5}}" class="rightTop" src="{{rightTop}}" mode="aspectFit"></image>
+        <image wx:if="{{randomLoc==2||randomLoc==4||randomLoc==6}}" class="rightBottom" src="{{rightBottom}}" mode="aspectFit"></image>
+        <image wx:if="{{randomLoc==3||randomLoc==5||randomLoc==6}}" class="leftBottom" src="{{leftBottom}}" mode="aspectFit"></image>
+      </view>
+      <view class="bottom">
+        <view class="calendar">
+          <view class="date">{{date.date}}</view>
+          <view class="day">{{date.day}}</view>
+          <view class="year_month">{{date.year_month}}</view>
+        </view>
+        <text class="remindText">点击签到</text>
+      </view>
+    </view>
+    </view>
+  </view>
+  <view class="box wrapperBack" animation="{{animationBack}}">
+    <view class="backgroundBack">
+      <view>No.{{rank}}</view>
+      <icon class="iconfont icon-gou"></icon>
+    </view>
+  </view>
+</view>

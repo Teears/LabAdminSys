@@ -1,0 +1,42 @@
+<!--pages/bindId/bindId.wxml-->
+<import src="/template/basictp.wxml"/>
+<view class="container">
+<!-- 学生卡片 -->
+<block wx:if="{{stuCard == true}}">
+<view class="roundCornerCard">
+  <view class="templateIcon">
+    <template is="roundIcon" data="{{...stuIcon}}"></template>
+  </view>
+  <van-cell-group>
+    <van-field type="number" class="formCell" value="{{stuNumber}}" bind:change="getStuNumber" label="账号：" placeholder="请输入学号"/>
+    <van-field type="password" class="formCell" value="{{stuPassword}}" bind:change="getStuPassword" label="密码：" placeholder="默认密码为身份证后六位"/>
+    <view class="btn-area">
+      <button class="submitBtn" form-type="submit" bindtap="submitStuForm">确认绑定</button>
+    </view>
+  </van-cell-group>
+</view>
+</block>
+
+<!-- 教师卡片 -->
+<block wx:if="{{stuCard == false}}">
+<view class="roundCornerCard">
+  <view class="templateIcon">
+    <template is="roundIcon" data="{{...teaIcon}}"></template>
+  </view>
+  <van-cell-group>
+    <van-field type="number" class="formCell" value="{{teaNumber}}" bind:change="getTeaNumber" label="账号：" placeholder="请输入工号"/>
+    <van-field type="password" class="formCell" value="{{teaPassword}}" bind:change="getTeaPassword" label="密码：" placeholder="默认密码为身份证后六位"/>
+    <view class="btn-area">
+      <button class="submitBtn" form-type="submit" bindtap="submitTeaForm">确认绑定</button>
+    </view>
+  </van-cell-group>
+</view>
+</block>
+<view class="change" bindtap="changeCard">
+  <view>{{changeCardText}}</view>
+  <view class="changeicon">
+    <van-icon name="arrow"/>
+  </view>
+</view>
+
+</view>

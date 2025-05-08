@@ -1,0 +1,27 @@
+<!--stu/pages/stu_xiaoxi/stu_xiaoxi.wxml-->
+<import src="/template/basictp.wxml" />
+<view class="out_wrapper">
+  <van-cell center clickable use-label-slot wx:for="{{list}}" bind:click="showPopup" data-index="{{index}}">
+    <view slot="title">
+      <text>{{item.title}}</text>
+      <van-icon custom-class="dot" wx:if="{{item.dot}}" dot />
+    </view>
+    <view slot="label" class="label_view">
+      <text>{{item.content}}</text>
+    </view>
+    <view>
+      <text>{{item.day}}\n{{item.time}}</text>
+    </view>
+  </van-cell>
+
+  <van-popup round custom-class="popup" show="{{dialogShow}}" bind:close="tapDialogButton">
+    <view class="popup_title">
+      {{list[index].title}}
+    </view>
+    <view class="popup_content">
+      <text>{{list[index].content}}</text>
+    </view>
+  </van-popup>
+
+  <view class="loading_text" >————只显示近半月内容————</view>
+</view>

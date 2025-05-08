@@ -1,0 +1,91 @@
+/* tea/pages/tea_manageLab/tea_manageLab.wxss */
+.out_wrapper{
+  height: 100%;
+  width: 100%;
+  background-color: #F7F7F7;
+}
+.card{
+  width: 100%;
+  padding-top: 10rpx;
+  padding-bottom: 10rpx;
+  border-bottom:1px solid #999999;
+  background-color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.header{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+/* 签到详情 */
+.detail{
+  width: 60%;
+}
+.time{
+  color: #666699;
+}
+.loc{
+  width: 100%;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  font-size: x-small;
+  color: #999999;
+}
+/* 圆形徽章 */
+.tag{
+  height: 80rpx;
+  width: 80rpx;
+  border-radius: 50%;
+  font-size: x-large;
+  margin-right: 10rpx;
+  line-height: 80rpx;
+  vertical-align: middle;
+  text-align: center;
+  margin-top: 30rpx;
+  border-style:solid;
+  border-width:1px;
+}
+.tag0{
+  border-color: #66CC99;
+  color: #66CC99;
+}
+.tag1{
+  border-color: #CC3333;
+  color: #CC3333;
+}
+.tag2{
+  border-color: #FF9966;
+  color: #FF9966;
+}
+.tag4{
+  border-color: #666666;
+  color: #666666;
+}
+
+/* 统计姓名和完成率 */
+.text_title{
+  color: #666699;
+  font-size: larger;
+}
+.text_num{
+  color: #999999;
+  align-self: center;
+}
+
+/* 日期筛选按钮 */
+button{
+  height: 80rpx;
+  width: 240rpx;
+  border-radius: 45rpx;
+  background-color: #0093E9;
+  color: white;
+  position: fixed;
+  bottom: 100rpx;
+  right: 100rpx;
+  box-shadow: 0 0 20rpx 5rpx #999999;
+  opacity:0.6;
+  font-size: medium;
+}

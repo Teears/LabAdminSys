@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ltd.syskaoqin.springboot.dao.mapper.LabMapper">
+
+    <resultMap id ="LabMap" type="ltd.syskaoqin.springboot.dao.entity.Lab">
+        <result column="id" property="id"/>
+        <result column="lab_number" property="labNumber"/>
+        <result column="name" property="name"/>
+        <result column="room" property="room"/>
+        <result column="address" property="address"/>
+        <result column="seat" property="seat"/>
+        <result column="open_time" property="openTime"/>
+        <result column="close_time" property="closeTime"/>
+        <result column="should_checkin_time_a" property="checkinStart"/>
+        <result column="should_checkin_time_b" property="checkinEnd"/>
+        <result column="should_checkout_time_a" property="checkoutStart"/>
+        <result column="should_checkout_time_b" property="checkoutEnd"/>
+        <result column="basic_desc" property="basicDesc"/>
+        <result column="pic_url" property="picUrl"/>
+        <result column="rule_desc" property="ruleDesc"/>
+    </resultMap>
+
+    <select id="findLabByStuOpenid" resultMap="LabMap">
+        select * from lab,
+        (select lab_id from user_lab where openid = #{openid} and status=1)T
+        where T.lab_id = lab.id
+    </select>
+
+    <select id="findLabByLabId" resultMap="LabMap">
+        select * from lab where id=#{labId}
+    </select>
+
+    <select id="findLabByTeaOpenid" resultMap="LabMap">
+        select * from lab where id in
+        (select lab_id from user_lab_tea where
+        openid=#{openid} and `status`=1)
+    </select>
+
+    <select id="countStuInLab" resultType="Integer">
+        select COUNT(*) from user_lab where lab_id=#{labId} and `status`=1
+    </select>
+
+    <update id="updateCheckTime">
+        update lab set should_checkin_time_a=#{checkin1},should_checkin_time_b=#{checkin2},
+                       should_checkout_time_a=#{checkout1},should_checkout_time_b=#{checkout2}
+        where id=#{labId}
+    </update>
+
+    <update id="updateLabInfo">
+        update lab set basic_desc=#{desc},rule_desc=#{rule},pic_url=#{picUrl} where id=#{labId}
+    </update>
+
+    <select id="findStuListInLab" resultType="String">
+        SELECT openid from user_lab where lab_id=#{labId} and status="1"
+    </select>
+
+    <select id="selectTeaLab" resultType="java.util.Map">
+        select lab.id labId,lab_number labNum,substr(create_time,1,16) createTime
+        from user_lab_tea,lab where
+        openid=#{openid} and lab_id=lab.id
+    </select>
+
+<!--    管理员-->
+    <select id="getAllLabList" resultType="java.util.Map">
+        select id, lab_number num, name, seat, room, address, substr(revise_time,1,10) time from lab
+    </select>
+    <select id="getLabListByContent" resultType="java.util.Map">
+        select id, lab_number num, name, seat, room, address, substr(revise_time,1,10) time from lab
+        where CONCAT(lab_number,`name`) like CONCAT('%',#{content},'%')
+    </select>
+    <update id="updateLabAdminInfo">
+        update lab set lab_number=#{labNumber},name=#{name},seat=#{seat},
+        room=#{room}, address=#{address} where id=#{id}
+    </update>
+    <insert id="addLab" parameterType="ltd.syskaoqin.springboot.dao.entity.Lab">
+        insert into lab(lab_number, name, seat, room, address)
+        values (#{labNumber}, #{name}, #{seat}, #{room}, #{address})
+    </insert>
+    <delete id="deleteLab">
+        delete from lab where id=#{id}
+    </delete>
+</mapper>

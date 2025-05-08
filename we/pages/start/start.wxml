@@ -1,0 +1,9 @@
+<!--index.wxml-->
+<image class="background" src="{{backgroundImgUrl}}" mode="aspectFill"></image>
+<view class="container">
+  <view class="startlogo">
+    <image  class="logo" src="../../image/startIcon.png" mode="center"></image>
+    <image class="text" src="../../image/text.png" mode="aspectFit"></image>
+  </view>
+
+</view>

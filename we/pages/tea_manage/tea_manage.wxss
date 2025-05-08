@@ -1,0 +1,61 @@
+/* pages/tea_manage/tea_manage.wxss */
+.loading{
+  width: 100%;
+  display: inline-block;
+  text-align: center;
+  margin: 10rpx;
+}
+.out_wrapper{
+  background-color: #f7f7f7;
+  height: 100%;
+  padding: 5rpx;
+  color: rgb(88, 88, 88);
+}
+.card{
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+  border-bottom: thin solid rgb(221, 221, 221);
+  border-right: thin solid rgb(221, 221, 221);
+  border-radius: 30rpx;
+  margin: 20rpx;
+  height: 25%;
+  padding: 25rpx;
+  display: flex;
+  flex-direction: column
+} 
+.gradient{
+  background-color: #abd0e9;
+  background-image: linear-gradient(135deg, #b2d6ee 0%, #afb2e7 100%);
+}
+.top{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  font-size: large;
+  padding-bottom: 10;
+  border-bottom: thin solid rgb(221, 221, 221);
+  padding-bottom: 10rpx;
+}
+.time{
+  display: flex;
+  flex-direction: column;
+  margin-left: 15rpx;
+  font-size: x-small;
+}
+
+.bottom{
+  padding-top: 20rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  vertical-align: middle;
+}
+.right{
+  width: 400rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+.light{
+  font-size: larger;
+  color: #2c2c7a;
+}

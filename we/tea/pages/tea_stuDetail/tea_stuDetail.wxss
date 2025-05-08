@@ -1,0 +1,2 @@
+/* tea/pages/tea_stuDetail/tea_stuDetail.wxss */
+@import"/style/avatarCell.wxss";

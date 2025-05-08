@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ltd.syskaoqin.springboot.dao.mapper.StudentMapper">
+
+    <select id="findStudentByStuNumber" resultType="ltd.syskaoqin.springboot.dao.entity.Student">
+        SELECT * FROM student WHERE stu_number=#{stuNumber}
+    </select>
+    <select id="findStudentByOpenid" resultType="ltd.syskaoqin.springboot.dao.entity.Student">
+        select * from student where stu_number in(
+            select stu_tea_id from user where openid=#{openid})
+    </select>
+    <delete id="deleteStudent">
+        DELETE FROM student WHERE stu_number=#{stuNum}
+    </delete>
+
+    <!--    管理员-->
+    <select id="getAllStudentList" resultType="java.util.Map">
+        select student.stu_number num, name,lab_id labId, sex, phone, department, major
+        from student,user_lab where student.stu_number = user_lab.stu_number
+    </select>
+    <select id="getStudentListByContent" resultType="java.util.Map">
+        select student.stu_number num, name,lab_id labId, sex, phone, department, major
+        from student,user_lab where CONCAT(student.stu_number,`name`) like CONCAT('%',#{content},'%')
+        and student.stu_number = user_lab.stu_number
+    </select>
+    <select id="checkStudent" resultType="java.util.Map">
+        select stu_number num, name, sex, phone, department, major from student_sys
+        where stu_number = #{num} and stu_number not in (
+        select stu_number from student)
+    </select>
+
+    <insert id="insertStudent" parameterType="ltd.syskaoqin.springboot.dao.entity.Student">
+        insert into student(stu_number, name, sex, phone, department, major, secret)
+        values (#{stuNumber}, #{name}, #{sex}, #{phone}, #{department}, #{major}, #{secret})
+    </insert>
+
+    <select id="findStudentInSys" resultType="ltd.syskaoqin.springboot.dao.entity.Student">
+        SELECT * FROM student_sys WHERE stu_number=#{num}
+    </select>
+
+
+</mapper>

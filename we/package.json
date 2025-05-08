@@ -1,0 +1,26 @@
+{
+  "name": "lab_admin_sys",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "@vant/weapp": "^1.5.3",
+    "miniprogram-api-promise": "^1.0.4",
+    "miniprogram-computed": "^2.2.0",
+    "we-cropper": "^1.3.10",
+    "weui-miniprogram": "^1.0.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "2734189761@qq.com"
+  },
+  "keywords": [
+    "lqf120120120"
+  ],
+  "author": "Teears",
+  "license": "ISC"
+}

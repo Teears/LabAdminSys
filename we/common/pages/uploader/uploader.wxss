@@ -1,0 +1,13 @@
+/* stu/pages/uploader/uploader.wxss */
+.cropper-wrapper{
+  height: 100%;
+  width: 100%;
+}
+.cropper-buttons{
+  position: absolute;
+  bottom: 10rpx;
+}
+.btn{
+  margin: 110rpx;
+  width: 150rpx;
+}

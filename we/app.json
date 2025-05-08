@@ -1,0 +1,106 @@
+{
+  "pages": [
+    "pages/start/start",
+    "pages/tea_mine/tea_mine",
+    "pages/stu_history/stu_history",
+    "pages/stu_mine/stu_mine",
+    "pages/authLogin/authLogin",
+    "pages/bindId/bindId",
+    "pages/tea_manage/tea_manage",
+    "pages/stu_check/stu_check"
+  ],
+  "subpackages": [
+    {
+      "root": "stu",
+      "pages": [
+        "pages/stu_userInfo/stu_userInfo",
+        "pages/stu_qingjia/stu_qingjia",
+        "pages/stu_addqingjia/stu_addqingjia",
+        "pages/stu_shiyanshi/stu_shiyanshi"
+      ]
+    },
+    {
+      "root": "tea",
+      "pages": [
+        "pages/tea_userInfo/tea_userInfo",
+        "pages/tea_editLab/tea_editLab",
+        "pages/tea_setLab/tea_setLab",
+        "pages/tea_manageLab/tea_manageLab",
+        "pages/tea_enterEdit/tea_enterEdit",
+        "pages/tea_stuDetail/tea_stuDetail",
+        "pages/tea_qingjia/tea_qingjia",
+        "pages/tea_post/tea_post",
+        "pages/tea_addPost/tea_addPost"
+      ]
+    },
+    {
+      "root": "common",
+      "pages": [
+        "pages/feedback/feedback",
+        "pages/xiaoxi/xiaoxi",
+        "pages/uploader/uploader"
+      ]
+    }
+  ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于签到定位"
+    }
+  },
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#0d1327",
+    "navigationBarTitleText": "",
+    "navigationBarTextStyle": "white"
+  },
+  "tabBar": {
+    "custom": true,
+    "backgroundColor": "#383852",
+    "selectedColor": "#D99993",
+    "borderStyle": "black",
+    "color": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/stu_history/stu_history",
+        "text": "历史",
+        "iconPath": "image/clock.png",
+        "selectedIconPath": "image/clock_on.png"
+      },
+      {
+        "pagePath": "pages/stu_check/stu_check",
+        "text": "签到",
+        "iconPath": "image/check.png",
+        "selectedIconPath": "image/check_on.png"
+      },
+      {
+        "pagePath": "pages/stu_mine/stu_mine",
+        "text": "个人",
+        "iconPath": "image/mine.png",
+        "selectedIconPath": "image/mine_on.png"
+      },
+      {
+        "pagePath": "pages/tea_manage/tea_manage",
+        "text": "实验室",
+        "iconPath": "image/manage.png",
+        "selectedIconPath": "image/manage_on.png"
+      },
+      {
+        "pagePath": "pages/tea_mine/tea_mine",
+        "text": "功能",
+        "iconPath": "image/function.png",
+        "selectedIconPath": "image/function_on.png"
+      }
+    ]
+  },
+  "plugins": {
+    "echarts": {
+      "version": "1.0.5",
+      "provider": "wx1db9e5ab1149ea03"
+    },
+    "calendar": {
+      "version": "1.1.3",
+      "provider": "wx92c68dae5a8bb046"
+    }
+  },
+  "sitemapLocation": "sitemap.json"
+}

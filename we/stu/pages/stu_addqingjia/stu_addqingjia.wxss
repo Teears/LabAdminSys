@@ -1,0 +1,31 @@
+/* stu/pages/stu_addqingjia/stu_addqingjia.wxss */
+.out_wrapper{
+  padding: 10rpx;
+  padding-top: 0rpx;
+  height: 100%;
+  background-color: #F7F7F7;
+}
+.radio_view{
+  display: inline-block;
+  width:200rpx
+}
+.tags{
+  margin:1rpx
+}
+.dayoff_placeholder{
+  color: rgb(190, 190, 190);
+}
+
+.text_maxlength{
+  font-size: smaller;
+  color: rgb(190, 190, 190);
+  text-align: right;
+  background-color: white;
+}
+.enterBtn{
+  background-color: #66CC99;
+  font-size: smaller;
+  font-weight: 500;
+  color: #F7F7F7;
+  margin-top: 60rpx;
+}

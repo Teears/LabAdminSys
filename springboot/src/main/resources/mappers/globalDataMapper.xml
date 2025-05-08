@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ltd.syskaoqin.springboot.dao.mapper.GlobalDataMapper">
+
+    <resultMap id ="GlobalDataMap" type="ltd.syskaoqin.springboot.dao.entity.GlobalData">
+        <result column="name" property="name"/>
+        <result column="content" property="content"/>
+    </resultMap>
+
+    <select id="findAllGlobalData" resultMap="GlobalDataMap">
+        SELECT * FROM global_data
+    </select>
+
+</mapper>

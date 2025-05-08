@@ -1,0 +1,14 @@
+<!--stu/pages/uploader/uploader.wxml-->
+<import src="../../../components/we-cropper/we-cropper.wxml" />
+<view class="cropper-wrapper">
+    <template is="we-cropper" data="{{...cropperOpt}}" />
+
+</view>
+<cover-view class="cropper-buttons">
+    <button class="btn" bindtap="cancelTap" size="mini">
+        取消
+    </button>
+    <button class="btn" bindtap="enterTap" type="primary" size="mini">
+        确定
+    </button>
+</cover-view>

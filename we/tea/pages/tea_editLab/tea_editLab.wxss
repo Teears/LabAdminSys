@@ -1,0 +1,14 @@
+/* tea/pages/tea_editLab/tea_editLab.wxss */
+button{
+  height: 90rpx;
+  width: 200rpx;
+  border-radius: 45rpx;
+  background-color: #339933;
+  color: white;
+  position: fixed;
+  bottom: 100rpx;
+  right: 100rpx;
+  box-shadow: 0 0 20rpx 5rpx #999999;
+  opacity:0.8;
+  font-size: medium;
+}

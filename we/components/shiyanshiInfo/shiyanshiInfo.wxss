@@ -1,0 +1,16 @@
+/* components/shiyanshiInfo/shiyanshiInfo.wxss */
+.out_wrapper{
+  padding: 10rpx;
+  height: 100%;
+}
+.tab_content{
+  height: 100%;
+  padding: 20rpx;
+  padding-top: 40rpx;
+  color: gray;
+  border-top: thin solid rgb(221, 221, 221);
+  line-height: 50rpx;
+}
+.bottom{
+  height:900rpx;
+}

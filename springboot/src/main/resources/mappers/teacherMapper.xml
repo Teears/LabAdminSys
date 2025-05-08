@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ltd.syskaoqin.springboot.dao.mapper.TeacherMapper">
+
+    <select id="findTeacherByLabId" resultType="ltd.syskaoqin.springboot.dao.entity.Teacher">
+        select * from teacher where tea_number in(
+        select stu_tea_id from user where openid in(
+        SELECT openid FROM user_lab_tea where lab_id=#{labId} and status=1))
+    </select>
+
+    <select id="findTeacherByTeaNumber" resultType="ltd.syskaoqin.springboot.dao.entity.Teacher">
+        SELECT * FROM teacher WHERE tea_number=#{teaNumber}
+    </select>
+
+    <select id="findTeaName" resultType="java.util.Map">
+        SELECT name from user,student where openid=#{openid} and stu_tea_id=stu_number
+    </select>
+
+    <select id="findTeaInfo" resultType="java.util.Map">
+        select avatarUrl,name,sex,tea_number teaNum,teacher.phone from user,teacher
+        where openid=#{openid} and stu_tea_id=teacher.tea_number
+    </select>
+
+<!--    管理员-->
+    <select id="getAllTeacherList" resultType="java.util.Map">
+        select teacher.tea_number num, name, lab_id labId,sex, department, phone
+        from teacher,user_lab_tea where teacher.tea_number = user_lab_tea.tea_number
+    </select>
+    <select id="getTeacherListByContent" resultType="java.util.Map">
+        select teacher.tea_number num, name, lab_id labId,sex, department, phone
+        from teacher,user_lab_tea where CONCAT(teacher.tea_number,`name`) like CONCAT('%',#{content},'%')
+        and teacher.tea_number = user_lab_tea.tea_number
+    </select>
+
+    <select id="checkTeacher" resultType="java.util.Map">
+        select tea_number num, name, sex, department, phone from teacher_sys
+        where tea_number = #{num} and tea_number not in (
+        select tea_number from user_lab_tea where tea_number=#{num} and lab_id=#{labId})
+    </select>
+
+    <insert id="insertTeacher" parameterType="ltd.syskaoqin.springboot.dao.entity.Teacher">
+        insert into teacher(tea_number, name, sex, department, phone, secret)
+        values (#{teaNumber}, #{name}, #{sex}, #{department}, #{phone}, #{secret})
+    </insert>
+
+    <select id="findTeacherInSys" resultType="ltd.syskaoqin.springboot.dao.entity.Teacher">
+        SELECT * FROM teacher_sys WHERE tea_number=#{num}
+    </select>
+
+    <delete id="deleteTeacher">
+        delete from teacher where tea_number=#{num}
+    </delete>
+</mapper>

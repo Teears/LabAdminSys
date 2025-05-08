@@ -1,0 +1,22 @@
+/**app.wxss**/
+/**引入weui**/
+/* @import 'miniprogram_npm/weui-miniprogram/weui-wxss/dist/style/weui.wxss'; */
+/**引入iconfont阿里巴巴矢量图标库**/
+@import "style/iconfont.wxss";
+page{
+  height: 100%;
+}
+
+.container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  box-sizing: border-box;
+} 
+.roundCornerCard{
+  background-color: #fdfdfd;
+  border-radius: 8rpx;
+  box-shadow: 4rpx 4rpx 4rpx 2 black;
+}

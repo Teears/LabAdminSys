@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "chart": "plugin://echarts/chart",
+    "calendar": "plugin://calendar/calendar",
+    "van-popup": "@vant/weapp/popup/index"
+  },
+  "disableScroll":true
+}

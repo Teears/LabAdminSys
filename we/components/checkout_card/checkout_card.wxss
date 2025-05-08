@@ -1,0 +1,54 @@
+/* components/checkout_card/checkout_card.wxss */
+
+@import "/style/iconfont.wxss";
+.card{
+  perspective: 2500rpx;
+}
+.box{
+  position: absolute;
+  backface-visibility: hidden;
+  width: 100%;
+}
+.backgroundMain{
+  background-color: #0D0847;
+  border-radius: 20rpx;
+  height: 850rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.backgroundBack{
+  background-image: linear-gradient(to bottom,#FF9966,#FF5E62);
+  border-radius: 20rpx;
+  height: 850rpx
+}
+/* 正面 */
+.iconview{
+  padding-top: 60rpx;
+}
+
+.remindText{
+  padding-top: 60rpx;
+  color: white;
+  margin: 30rpx;
+  font-size: xx-large;
+} 
+
+/* 
+背面样式
+ */
+ .wrapperBack{
+  transform: rotateY(-180deg);
+  text-align: center;
+}
+.backgroundBack view{
+  padding-top: 30rpx;
+  font-size: 300%;
+  color: white;
+  padding-bottom: 60rpx;
+}
+.iconfont{
+  font-size: 1300%;
+  color: white;
+  font-weight: 900;
+}

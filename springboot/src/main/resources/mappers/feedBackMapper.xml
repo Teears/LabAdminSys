@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ltd.syskaoqin.springboot.dao.mapper.FeedBackMapper">
+
+    <resultMap id ="FeedBackMap" type="ltd.syskaoqin.springboot.dao.entity.FeedBack">
+        <result column="id" property="id"/>
+        <result column="openid" property="openid"/>
+        <result column="content" property="content"/>
+        <result column="create_time" property="createTime"/>
+    </resultMap>
+
+    <insert id="insertFeedBack" parameterType="ltd.syskaoqin.springboot.dao.entity.FeedBack">
+        insert into feedback(openid, content)
+        values (#{openid},#{content})
+    </insert>
+    <select id="selectAll" resultType="ltd.syskaoqin.springboot.dao.entity.FeedBack">
+        select feedback.id,nickname as openid,feedback.content,feedback.create_time
+        from feedback,user where feedback.openid=user.openid
+    </select>
+
+    <select id="selectFeedBack" resultType="java.util.Map">
+        select feedback.id id,nickname,substr(feedback.create_time,1,16) time,content
+        from feedback,user where user.openid = feedback.openid
+    </select>
+</mapper>

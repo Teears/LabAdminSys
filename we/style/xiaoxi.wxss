@@ -1,0 +1,41 @@
+.out_wrapper{
+  background-color: #F7F7F7;
+  width: 100%;
+  height: 100%;
+}
+.popup{
+  border-radius: 10rpx;
+  padding: 40rpx;
+  width: 80%;
+}
+.popup_content{
+  color: #999999;
+  word-break:break-all;
+}
+.popup_title{
+  text-align: center;
+  color: #666699;
+  padding-bottom: 10rpx;
+}
+.dot{
+  margin: 0rpx;
+  padding: 0rpx;
+  margin-left: 10rpx;
+  padding-bottom: 15rpx;
+}
+.loading_text{
+  width: 100%;
+  color: #999999;
+  font-size: smaller;
+  text-align: center;
+  margin: 10rpx;
+  margin-bottom: 20rpx;
+}
+.label_view{
+  width: 450rpx;
+  color: #999999;
+  font-size: small;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; 
+}

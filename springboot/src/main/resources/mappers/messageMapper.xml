@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="ltd.syskaoqin.springboot.dao.mapper.MessageMapper">
+
+    <select id="stuGetMessageList" resultType="ltd.syskaoqin.springboot.dao.entity.Message">
+        select * from message where create_time>#{date} and type='1' or (type='0' and lab_id in
+        (select lab_id from user_lab where openid=#{openid})) ORDER BY create_time DESC
+    </select>
+    <select id="readedList" resultType="String">
+        select message_id from message_tag where openid=#{openid}
+    </select>
+    <insert id="insertMessageTag">
+        insert into message_tag(message_id, openid) VALUES (#{messageId},#{openid})
+    </insert>
+    <insert id="insertMessage" parameterType="ltd.syskaoqin.springboot.dao.entity.Message">
+        insert into message(send_id,lab_id,title,content) VALUES (#{sendId},#{labId},#{title},#{content})
+    </insert>
+    <select id="selectMessageBySendId" resultType="ltd.syskaoqin.springboot.dao.entity.Message">
+        select id, send_id, lab_id, title, content, type, substr(create_time,1,16) create_time
+        from message where send_id=#{sendId}
+    </select>
+</mapper>

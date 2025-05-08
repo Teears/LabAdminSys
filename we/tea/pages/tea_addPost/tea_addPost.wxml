@@ -1,0 +1,23 @@
+<!--tea/pages/tea_addPost/tea_addPost.wxml-->
+<view class="out_wrapper">
+  <van-cell-group title="标题">
+    <van-field value="{{title}}" placeholder="请输入20字内" bind:change="changeTitle" maxlength="20" />
+  </van-cell-group>
+
+  <van-cell-group title="内容">
+    <view class="content">
+      <van-field value="{{content}}" type="textarea" maxlength="500" border="{{false}}" placeholder="请输入" autosize
+        bind:change="changeContent" />
+      <view class="text_maxlength">{{contentLength}}/500</view>
+    </view>
+  </van-cell-group>
+
+  <van-cell-group title="选择实验室">
+    <view class="checkBox">
+      <van-checkbox-group value="{{checkBox}}" bind:change="onChangeCheckbox">
+        <van-checkbox shape="square" wx:for="{{labIdList}}" name="{{item.labId}}" wx:key="key">{{item.labNum}}</van-checkbox>
+      </van-checkbox-group>
+    </view>
+  </van-cell-group>
+  <van-button custom-class="enterBtn" type="primary" size="middle" block bindtap="submit">提 交</van-button>
+</view>

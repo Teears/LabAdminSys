@@ -1,0 +1,26 @@
+<!--tea/pages/tea_setLab/tea_setLab.wxml-->
+<!--stu/pages/stu_addqingjia/stu_addqingjia.wxml-->
+<view class="out_wrapper">
+  <van-cell-group title="签到">
+    <view class="out">
+      <input class="field" placeholder="请输入" disabled value="{{checkinTime1}}" bindtap="changeCheckinStart"/>
+      <view>开始 - </view>
+      <input class="field" placeholder="请输入" disabled value="{{checkinTime2}}" bindtap="changeCheckinEnd"/>
+      <view>结束</view>
+    </view>
+  </van-cell-group>
+  <van-cell-group title="签退">
+    <view class="out">
+      <input class="field" placeholder="请输入" disabled value="{{checkoutTime1}}" bindtap="changeCheckoutStart"/>
+      <view>开始 - </view>
+      <input class="field" placeholder="请输入" disabled value="{{checkoutTime2}}" bindtap="changeCheckoutEnd"/>
+      <view>结束</view>
+    </view>
+  </van-cell-group>
+  
+  <van-popup round show="{{showPop}}" position="bottom" custom-style="height: 40%;" bind:close="onClosePop">
+    <van-datetime-picker confirm-button-text="" cancel-button-text="" show-toolbar="false" visible-item-count="4" type="time" value="{{currentTime}}" bind:input="timeInput"/>
+  </van-popup>
+
+  <van-button custom-class="enterBtn" type="primary" size="middle" block bindtap="submit">提  交</van-button>
+</view>

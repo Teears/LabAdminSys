@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "shiyanshiInfo-component":"/components/shiyanshiInfo/shiyanshiInfo"
+  },
+  "navigationBarTitleText": "实验室"
+}

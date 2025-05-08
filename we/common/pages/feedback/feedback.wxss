@@ -1,0 +1,29 @@
+/* common/pages/feedback/feedback.wxss */
+.out_wrapper{
+  padding: 10rpx;
+  padding-top: 0rpx;
+  height: 100%;
+  background-color: #F7F7F7;
+}
+.middle_text{
+  width: 100%;
+  display: inline-flex;
+  justify-content:center;
+  color: #999999;
+  font-size: small;
+  margin: 20rpx;
+  margin-bottom: 20rpx;
+}
+.text_maxlength{
+  font-size: small;
+  color: rgb(190, 190, 190);
+  text-align: right;
+  background-color: white;
+}
+.enterBtn{
+  background-color: #66CC99;
+  font-size: smaller;
+  font-weight: 500;
+  color: #F7F7F7;
+  margin-top: 60rpx;
+}

@@ -1,0 +1,71 @@
+/* tea/pages/tea_qingjia/tea_qingjia.wxss */
+.out_wrapper{
+  background-color: #f7f7f7;
+  height: 100%;
+  padding: 5rpx;
+  color: rgb(88, 88, 88);
+  font-size: small;
+}
+.card{
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+  border-bottom: thin solid rgb(221, 221, 221);
+  border-right: thin solid rgb(221, 221, 221);
+  border-radius: 20rpx;
+  margin: 20rpx;
+  padding: 20rpx;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+}
+.top{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  border-bottom: thin solid rgb(221, 221, 221);
+  padding-bottom: 5rpx;
+}
+
+/* 姓名样式 */
+.title{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.title view{
+  align-self: center;
+}
+.name{
+  color: #666699;
+  font-size: large;
+}
+
+/* 详细信息 */
+.time{
+  display: flex;
+  flex-direction: row;
+  word-break: break-all
+}
+.time label{
+  width: 2.5rem;
+}
+.time view{
+  width: 9.5rem;
+}
+
+/* 原因和按钮 */
+.reason{
+  color: #999999;
+  padding-top: 10rpx;
+  padding-bottom: 10rpx;
+}
+.btn{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+
+/* tips */
+.tips{
+  text-align: center;
+  color: #999999;
+}

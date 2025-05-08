@@ -1,0 +1,22 @@
+<!-- <!--components/checkout_card/checkout_card.wxml-->
+
+<view class="card">
+  <view class="box wrapperMain" animation="{{animationMain}}">
+    <view class="backgroundMain">
+      <view class="iconview">
+        <icon class="iconfont icon-tuichu"></icon>
+      </view>
+      <view class="remindText">点击签退</view>
+    </view>
+  </view>
+
+  <view class="box wrapperBack" animation="{{animationBack}}">
+    <view class="backgroundBack">
+      <view>已签退</view>
+      <icon class="iconfont icon-gou"></icon>
+    </view>
+  </view>
+
+</view>
+
+ -->

@@ -1,0 +1,25 @@
+<!--tea/pages/tea_enterEdit/tea_enterEdit.wxml-->
+<view class="out_wrapper">
+
+  <van-cell-group title="实验室介绍">
+    <view>
+      <van-field value="{{ desc }}" type="textarea" maxlength="500" border="{{false}}" placeholder="请输入" autosize bind:change="changeDesc" />
+      <view class="text_maxlength">{{descLength}}/500</view>
+    </view>
+  </van-cell-group>
+
+  <van-cell-group title="实验室守则">
+    <view>
+      <van-field value="{{rule}}" type="textarea" maxlength="500" border="{{false}}" placeholder="请输入" autosize bind:change="changeRule" />
+      <view class="text_maxlength">{{ruleLength}}/500</view>
+    </view>
+  </van-cell-group>
+
+  <van-cell-group title="该图片将在介绍页展示">
+    <view class="last_view">
+      <van-uploader file-list="{{fileList}}" bind:after-read="afterRead" deletable="{{false}}"/>
+    </view>
+  </van-cell-group>
+
+  <van-button custom-class="enterBtn" type="primary" size="middle" block bindtap="submit">提  交</van-button>
+</view>

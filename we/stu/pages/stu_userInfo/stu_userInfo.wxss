@@ -1,0 +1,2 @@
+/* stu/pages/stu_userInfo/stu_userInfo.wxss */
+@import"/style/avatarCell.wxss";

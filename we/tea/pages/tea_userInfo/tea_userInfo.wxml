@@ -1,0 +1,17 @@
+<!--tea/pages/tea_userInfo/tea_userInfo.wxml-->
+<view class="out_wrapper">
+  <view class="cell_group">
+    <van-cell title="头像" center>
+      <van-image round width="3rem" height="3rem" fit="cover" src="{{avatarUrl}}" />
+    </van-cell>
+    <van-cell title="姓名" value="{{name}}" />
+    <van-cell title="性别" value="{{sex}}" />
+    <van-cell title="工号" value="{{teaNum}}"/>
+    <van-cell title="手机号" value="{{phone}}"/>
+  </view>
+
+  <van-cell-group title="实验室">
+    <van-cell wx:for="{{manageList}}" title="{{item.labNum}}实验室" value="{{item.createTime}}" wx:key="key"/>
+  </van-cell-group>
+
+</view>

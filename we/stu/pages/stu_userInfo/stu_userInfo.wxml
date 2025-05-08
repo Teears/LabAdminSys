@@ -1,0 +1,19 @@
+<!--stu/pages/stu_userInfo/stu_userInfo.wxml-->
+<view class="out_wrapper">
+  <view class="cell_group">
+    <van-cell title="头像" center clickable bind:click="tapAvatar">
+      <van-image round width="3rem" height="3rem" fit="cover" src="{{avatarUrl}}" />
+    </van-cell>
+    <van-cell title="姓名" value="{{name}}" />
+    <van-cell title="性别" value="{{sex}}" />
+  </view>
+  <view class="cell_group">
+    <van-cell title="学号" value="{{stuNum}}" clickable bind:click="tapStuNumber" />
+    <van-cell title="手机号" value="{{phone}}" />
+    <van-cell title="学院" value="{{dept}}" />
+    <van-cell title="专业" value="{{major}}" />
+    <van-cell title="实验室" value="{{belong}}实验室" />
+  </view>
+  <van-button class="button" type="danger" block bindtap="dropout">退出实验室</van-button>
+  <van-dialog id="van-dialog" />
+</view>

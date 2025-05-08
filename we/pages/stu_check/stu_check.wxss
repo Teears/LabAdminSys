@@ -1,0 +1,38 @@
+/* pages/stu_check/stu_check.wxss */
+@import"/template/basictp.wxss";
+@import "/style/iconfont.wxss";
+
+.container{
+  background-color: #F7F7F7;
+}
+.containerMain{
+  height: 80%;
+  width:86%;
+  position: absolute;
+  top: 8%;
+  display: flex;
+  flex-direction: column;
+}
+.address{
+  height: 50rpx;
+  width: 96%;
+  border-radius: 50rpx;
+  background-color: #FFFFCC;
+  border: thin solid #FFCC99;
+  font-size: x-small;
+  padding: 10rpx;
+  display: flex;
+  flex-direction: row;
+  align-items:center;/*垂直居中*/
+  margin-bottom: 20rpx;
+}
+.address text{
+  line-height: 25rpx;
+  vertical-align: middle;
+  word-break:break-all;
+}
+.address view{
+  margin-left: 10rpx;
+  position: absolute;
+  right: 20rpx;
+}
